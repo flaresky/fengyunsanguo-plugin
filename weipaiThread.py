@@ -1,4 +1,5 @@
-
+#!/usr/bin/python
+#encoding: utf-8
 import threading
 import argparse
 from sanguo import Sanguo
@@ -78,7 +79,8 @@ class weipaiThread(threading.Thread):
                     logger.error('no data')
                     raise Exception()
                 sanguo.close()
-                self.add_cost(tpe, level)
+                if not data[0].has_key('exception'):
+                    self.add_cost(tpe, level)
                 return data
             except:
                 #logger.error(traceback.format_exc())
@@ -111,7 +113,7 @@ class weipaiThread(threading.Thread):
                 res = self.do_weipai(Type, ml)
                 if res[0].has_key('exception'):
                     msg = res[0]['exception']['message']
-                    logger.info('got exception %s'%(msg))
+                    logger.info('got exception %s, TotalCost %d'%(msg, TotalCost))
                     if msg == 'CDTimeNotCool':
                         gi = GeneralInfo()
                         sp = gi.get_weipai_CDTime() - gi.get_serverTime()

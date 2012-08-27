@@ -56,9 +56,9 @@ def notify(msg):
     logger.info('Send an email: "%s"'%(msg))
     es.close()
 
-    myfetion = Fetion('13706818677','nihaoma0809')
-    myfetion.send2self(msg)
-    logger.info('Send a fetion: "%s"'%(msg))
+    #myfetion = Fetion('13706818677','nihaoma0809')
+    #myfetion.send2self(msg)
+    #logger.info('Send a fetion: "%s"'%(msg))
 
 def server_time_to_sec(st):
     st = st.split(':')
