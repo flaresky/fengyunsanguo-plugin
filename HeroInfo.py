@@ -89,7 +89,7 @@ class HeroInfo:
         return self.hid_dict[hid]['trainingEndTime']
 
     def get_maxLevel_by_id(self, hid):
-        return self.hid_dict[hid]['maxLevel']
+        return int(self.hid_dict[hid]['maxLevel'])
 
     def get_nextUpgrade_by_id(self, hid):
         return self.hid_dict[hid]['nextUpgrade']

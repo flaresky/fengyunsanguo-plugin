@@ -57,6 +57,9 @@ class Sanguo:
         data = '\x00\x53\x00\x05\x00\x03\x6e\x69\x6c\x00\x08\x36\x37\x32\x30\x31\x33\x30\x37\x00\x01\x30\x00\x00\x00\x3b\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x31\x39\x38\x33\x30\x38\x30\x39\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x66\x6c\x61\x72\x65\x73\x6b\x79\x40\x31\x36\x33\x2e\x63\x6f\x6d\x22\x7d'
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
+        data = '\x00\x1e\x00\xc9\x00\x1a\x7b\x22\x43\x55\x52\x52\x45\x4e\x54\x5f\x56\x45\x52\x53\x49\x4f\x4e\x22\x3a\x22\x31\x2e\x33\x31\x22\x7d'
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
         data = '\x00\x0e\x01\x2d\x00\x0a\x7b\x22\x6f\x70\x22\x3a\x33\x30\x31\x7d'
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
@@ -134,6 +137,7 @@ class Sanguo:
         return res
 
     def jianzhu(self, jid):
+        self.login()
         data = '\x00\x1d\x01\x2f\x00\x19\x7b\x22\x74\x79\x70\x65\x49\x64\x22\x3a\x22'
         data = data + JIANZHU[jid]
         data = data + '\x22\x2c\x22\x6f\x70\x22\x3a\x33\x30\x33\x7d'
@@ -359,7 +363,9 @@ if __name__ == '__main__':
     #res = sanguo.getCityInfo('xinye', '5')
     #res = sanguo.zengfu('xinye', 'yingzi')
     #stime = sanguo.login()
-    res = sanguo.tongsang('jianjianbiaoxie')
+    #res = sanguo.tongsang('jianjianbiaoxie')
+    #res = sanguo.jianzhu('minju9')
+    res = sanguo.keji('jiwen')
     #res = sanguo.getNpcInfo('huangjia80')
     #res = sanguo.soukuang('limoges')
     #res = sanguo.test()

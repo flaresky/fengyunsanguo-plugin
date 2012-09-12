@@ -41,9 +41,10 @@ PEOPLE_ID = {
         'zaozilong' : '66543199',
         # for tongsang
         'jianjianbiaoxie' : '64862103',
-        'nihongxiuse' : '65642323',
+        'lolo' : '66290987',
         'wangdaiman' : '63771615',
         'daofeiwang' : '66284359',
+        'nihongxiuse' : '65642323',
 }
 
 ARMY_ID = {
@@ -114,6 +115,7 @@ JIANZHU = {
         'jiaocang2' : '102',
         'junji' : '103',
         'sangdian' : '104',
+        'yizan' : '107',
         'qianzuang' : '108',
         'zubicang' : '109',
         'zangfang' : '110',
@@ -255,5 +257,7 @@ LEVEL_EXP_MAP = {
         97 : 828000,
         98 : 864000,
         99 : 900000,
-        #100 : 936000,
+        100 : 936000,
+        101 : 972000,
+        102 : 1008000,
 }

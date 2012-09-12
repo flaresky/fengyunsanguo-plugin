@@ -7,7 +7,7 @@ logger = Logger.getLogger()
 
 users = [
         'jianjianbiaoxie',
-        'nihongxiuse',
+        'lolo',
         'wangdaiman',
         'daofeiwang',
 ]

@@ -92,9 +92,11 @@ class JianzhuThread(threading.Thread):
                     logger.info('I will start upgrade %s now'%(next_jname))
                 res = self.do_jianzhu(next_jname)
                 if res.has_key('exception'):
-                    ep = res['exception']
-                    logger.info(unicode(ep))
-                    time.sleep(1000)
+                    msg = res['exception']['message']
+                    logger.error('Got Exception "%s", will exit'%(msg))
+                    if msg == 'CDTimeNotCool':
+                        continue
+                    return
                 time.sleep(2)
 
 def parsearg():

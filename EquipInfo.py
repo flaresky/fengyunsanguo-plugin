@@ -17,6 +17,7 @@ class EquipInfo:
                 '4' : u'紫',
                 '5' : u'黄',
                 '6' : u'红',
+                '7' : u'青',
                 }
     Type_Dict = {
                 '1' : u'武',
