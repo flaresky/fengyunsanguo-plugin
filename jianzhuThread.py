@@ -16,6 +16,7 @@ Delay_Time = 0
 Jianzhu_List = []
 Times = 0
 Sleep_Time = 60 # minutes
+Max_zuceng_level = 20
 
 class JianzhuThread(threading.Thread):
     def __init__(self):
@@ -46,6 +47,8 @@ class JianzhuThread(threading.Thread):
         for jname in JIANZHU_LIST:
             jid = JIANZHU[jname]
             jlevel = gi.get_jianzu_level_by_jid(jid)
+            if jname == 'zuceng' and jlevel < Max_zuceng_level:
+                return jname
             if jlevel < level:
                 return jname
         return None
@@ -95,6 +98,8 @@ class JianzhuThread(threading.Thread):
                     msg = res['exception']['message']
                     logger.error('Got Exception "%s", will exit'%(msg))
                     if msg == 'CDTimeNotCool':
+                        continue
+                    if msg == 'noBuildTeamUsable':
                         continue
                     return
                 time.sleep(2)
