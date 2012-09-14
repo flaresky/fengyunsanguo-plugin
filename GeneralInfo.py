@@ -191,6 +191,7 @@ class GeneralInfo:
         print '\tTufei CD Time: %s'%(util.format_time(self.get_tufei_CDTime()))
         print '\tMobility CD Time: %s'%(util.format_time(self.get_mobility_CDTime()))
         print '\tWeipai CD Time: %s'%(util.format_time(self.get_weipai_CDTime()))
+        print '\tZhuangbei CD Time: %s'%(util.format_time(self.get_zuangbei_CDTime()))
 
 if __name__ == '__main__':
     gi = GeneralInfo()
