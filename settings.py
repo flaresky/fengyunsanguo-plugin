@@ -1,11 +1,12 @@
-
-#HOST = '60.28.208.187'
+#!/usr/bin/python
+#encoding: utf-8
 HOST = '220.181.83.18'
 PORT = 8313
 #PORT = 8315
 
 LOGFILE = './log'
 LOGFORMAT = "%(asctime)s %(filename)s [%(levelname)s] %(message)s"
+USERNAME = '虽大然'
 
 UID = {
         'huatuo' : '41978',
@@ -45,6 +46,7 @@ PEOPLE_ID = {
         'wangdaiman' : '63771615',
         'daofeiwang' : '66284359',
         'nihongxiuse' : '65642323',
+        'vmao' : '64726651',
 }
 
 ARMY_ID = {
@@ -101,12 +103,12 @@ KEJI_LIST = [
         ('ff', 1),
         ('lingqi', 2),
         ('bingfu', 1),
-        ('yanxing', 5),
-        ('cuxing', 5),
-        ('cangse', 5),
-        ('yanyue', 5),
-        ('yulin', 5),
-        ('fengsi', 5),
+        #('yanxing', 5),
+        #('cuxing', 5),
+        #('cangse', 5),
+        #('yanyue', 5),
+        #('yulin', 5),
+        #('fengsi', 5),
 ]
 
 JIANZHU = {
@@ -132,8 +134,8 @@ JIANZHU = {
         'minju10' : '123',  
 }
 JIANZHU_LIST = [
-        'sangdian',
         'junji',
+        'sangdian',
         'jiaocang',
         'jiaocang2',
         'zangfang',
@@ -260,4 +262,5 @@ LEVEL_EXP_MAP = {
         100 : 936000,
         101 : 972000,
         102 : 1008000,
+        103 : 1044000,#
 }

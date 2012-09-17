@@ -51,6 +51,7 @@ def get_next_refresh_time(Server_Time):
     return int(time.mktime(res.timetuple())) 
 
 def notify(msg):
+    msg = USERNAME + ' --- ' + msg
     es = EmailSender()
     es.send_mail(msg, '')
     logger.info('Send an email: "%s"'%(msg))
@@ -216,7 +217,7 @@ def decode_data(dl):
     return ret
 
 if __name__ == '__main__':
-    #notify('magic is 22%')
+    notify('magic is 22%')
     #print intlen_2_hexstr(15)
     #t1 = time.time()
     #t1 = datetime.datetime.today().replace(hour=20)
@@ -224,10 +225,10 @@ if __name__ == '__main__':
     #print 't1: ' + str(datetime.datetime.fromtimestamp(t1))
     #t2 = get_next_refresh_time(t1)
     #print 't2: ' + str(datetime.datetime.fromtimestamp(t2))
-    data = {
-            'op' : 1323,
+    #data = {
+    #        'op' : 1323,
             #'level' : '1',
             #'type' : '3',
-        }
-    res = send_data(data)
-    print json.dumps(res, sort_keys = False, indent = 4)
+    #    }
+    #res = send_data(data)
+    #print json.dumps(res, sort_keys = False, indent = 4)

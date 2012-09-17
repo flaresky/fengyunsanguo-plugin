@@ -18,6 +18,31 @@ MaxLevel = None
 SellColor = None
 TotalCost = 0
 
+class RoundControl:
+    def __init__(self):
+        self.last_level = 0
+        self.repeat_count = 0
+
+    def can_continue(self, level):
+        level = int(level)
+        if level > self.last_level:
+            self.repeat_count = 0
+            self.last_level = level
+            return True
+        elif level == self.last_level:
+            self.repeat_count += 1
+            if self.repeat_count >= 3:
+                return False
+            else:
+                return True
+        else:
+            self.last_level = level
+            return False
+
+    def reset(self):
+        self.last_level = 0
+        self.repeat_count = 0
+
 class weipaiThread(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
@@ -101,15 +126,27 @@ class weipaiThread(threading.Thread):
             logger.info('I will start weipai at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
         cnt = 1
+        first_time = True
+        rc = RoundControl()
         while True:
             try:
                 ml = self.get_max_level(Type)
-                if int(ml) >= MaxLevel:
-                    msg = 'Weipai reach max level %s, TotalCost %d'%(ml, TotalCost)
-                    logger.info(msg)
-                    util.notify(msg)
-                    break
+                if first_time:
+                    first_time = False
+                else:
+                    if int(ml) >= MaxLevel:
+                        msg = 'Weipai reach max level %s, TotalCost %d'%(ml, TotalCost)
+                        logger.info(msg)
+                        util.notify(msg)
+                        break
                 logger.info('Type:%s MaxLevel:%s'%(Type, ml))
+                if not rc.can_continue(ml):
+                    rc.reset()
+                    gi = GeneralInfo()
+                    sp = gi.get_weipai_CDTime() - gi.get_serverTime() - 10
+                    logger.info('Break by RoundControl, Next round weipai will start at ' + util.next_time(sp))
+                    time.sleep(sp)
+                    continue
                 res = self.do_weipai(Type, ml)
                 if res[0].has_key('exception'):
                     msg = res[0]['exception']['message']
@@ -121,6 +158,7 @@ class weipaiThread(threading.Thread):
                         time.sleep(sp)
                         continue
                     else:
+                        logger.info('Exit for Exception %s'%(msg))
                         break
                 try:
                     eq = res[1]['resArr']['userEquip']
@@ -129,7 +167,12 @@ class weipaiThread(threading.Thread):
                     if int(eq['type']['color']) <= SellColor:
                         self.sell(eq['id'], price)
                     else:
-                        logger.info('I will keep it')
+                        if int(eq['type']['color']) > 5:
+                            msg = 'Got Equip %s %s/%s, TotalCost %d'%(eq['type']['name'], eq['currPiece'], eq['maxPiece'], TotalCost)
+                            logger.info(msg)
+                            util.notify(msg)
+                        else:
+                            logger.info('I will keep it')
                 except:
                     pass
                 logger.info('finished %d time, TotalCost %d'%(cnt, TotalCost))
