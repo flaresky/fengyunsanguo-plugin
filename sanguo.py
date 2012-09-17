@@ -323,6 +323,32 @@ class Sanguo:
         logger.info('upgradeEquip eid=%s'%(str(eid)))
         return res
 
+    def downgradeEquip(self, eid):
+        self.login()
+        data = {
+                'id' : eid,
+                'op' : 1005,
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        logger.info('downgradeEquip eid=%s'%(str(eid)))
+        return res
+
+    def sellEquip(self, eid):
+        self.login()
+        data = {
+                'id' : eid,
+                'op' : 1023,
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        logger.info('sellEquip eid=%s'%(str(eid)))
+        return res
+
     def get_sucen(self):
         data = {
                 'op' : 323,
@@ -364,14 +390,15 @@ if __name__ == '__main__':
     #res = sanguo.zengfu('xinye', 'yingzi')
     #stime = sanguo.login()
     #res = sanguo.tongsang('jianjianbiaoxie')
-    #res = sanguo.jianzhu('minju9')
-    res = sanguo.keji('jiwen')
+    #res = sanguo.jianzhu('zuceng')
+    #res = sanguo.keji('jiwen')
     #res = sanguo.getNpcInfo('huangjia80')
     #res = sanguo.soukuang('limoges')
     #res = sanguo.test()
     #res = sanguo.get_general_info()
     #res = sanguo.getUserInfo('64308127')
     #res = sanguo.upgradeEquip('115863', 56, 0)
+    res = sanguo.sellEquip('836243')
     #res = sanguo.tufei('guanyu')
     #res = sanguo.get_hero('zaoyun')
     #print 'magic='+str(res)
