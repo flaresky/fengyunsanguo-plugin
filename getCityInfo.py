@@ -46,7 +46,8 @@ class CityThread(threading.Thread):
             userId = user['userId']
             userName = user['userName']
             level = user['level']
-            print ('\tUid=%s level=%s Name=%s'%(userId, level, userName)).decode('utf-8')
+            elevel = user['enmityLevel']
+            print ('\tUid=%s level=%s enmityLevel=%s Name=%s'%(userId, level, elevel, userName)).decode('utf-8')
         #print json.dumps(users, sort_keys = False, indent = 4)
 
 def parsearg():
