@@ -228,11 +228,12 @@ class Sanguo:
 
     def getCityInfo(self, city_id, zoneid):
         self.login()
-        data = '\x00\x26\x02\x59\x00\x22\x7b\x22\x63\x69\x74\x79\x49\x64\x22\x3a'
-        data = data + CITY_ID[city_id]
-        data = data + '\x2c\x22\x7a\x6f\x6e\x65\x49\x64\x22\x3a'
-        data = data + str(zoneid)
-        data = data + '\x2c\x22\x6f\x70\x22\x3a\x36\x30\x31\x7d'
+        data = {
+                'cityId' : str(CITY_ID[city_id]),
+                'zoneId' : int(zoneid),
+                'op' : 601,
+            }
+        data = self.compose_data(data)
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
         res = self.decode(res)
@@ -386,7 +387,7 @@ if __name__ == '__main__':
     stime = sanguo.login()
     #res = sanguo.kuangzan()
     #res = sanguo.zuanpan()
-    #res = sanguo.getCityInfo('xinye', '5')
+    res = sanguo.getCityInfo('xinye', '5')
     #res = sanguo.zengfu('xinye', 'yingzi')
     #stime = sanguo.login()
     #res = sanguo.tongsang('jianjianbiaoxie')
@@ -398,7 +399,7 @@ if __name__ == '__main__':
     #res = sanguo.get_general_info()
     #res = sanguo.getUserInfo('64308127')
     #res = sanguo.upgradeEquip('115863', 56, 0)
-    res = sanguo.sellEquip('836243')
+    #res = sanguo.sellEquip('836243')
     #res = sanguo.tufei('guanyu')
     #res = sanguo.get_hero('zaoyun')
     #print 'magic='+str(res)
