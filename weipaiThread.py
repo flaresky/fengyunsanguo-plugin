@@ -24,6 +24,7 @@ class RoundControl:
         self.repeat_count = 0
 
     def can_continue(self, level):
+        #return True
         level = int(level)
         if level > self.last_level:
             self.repeat_count = 0
@@ -61,7 +62,7 @@ class weipaiThread(threading.Thread):
                         '1' : 10000,
                         '2' : 18000,
                         '3' : 30000,
-                        '4' : 40000,
+                        '4' : 60000,
                     },
             }
         try:
