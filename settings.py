@@ -23,6 +23,8 @@ UID = {
         'zuge' : '51181',
         'mateng' : '51475',
         'jiayu' : '51934',
+        'liubang' : '52474',
+        'hanxin' : '52491',
 }
 
 PEOPLE_ID = {
@@ -65,6 +67,7 @@ CITY_ID = {
         'wan' : '208',
         'wuling' : '311',
         'sangyong' : '308',
+        'beiping' : '201',
 }
 
 TRAINING_HOUR_TO_MODE = {
