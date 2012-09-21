@@ -99,10 +99,11 @@ def get_user(uid):
             sanguo.close()
             if not data:
                 raise Exception()
-            else:
-                return data
+            if not data.has_key('protectTime'):
+                raise Exception('No protectTime')
+            return data
         except:
-            time.sleep(2)
+            time.sleep(2 * t)
             t += 1
 
 def sync_time():
@@ -217,7 +218,7 @@ def decode_data(dl):
     return ret
 
 if __name__ == '__main__':
-    notify('magic is 22%')
+    #notify('magic is 22%')
     #print intlen_2_hexstr(15)
     #t1 = time.time()
     #t1 = datetime.datetime.today().replace(hour=20)
@@ -231,4 +232,6 @@ if __name__ == '__main__':
             #'type' : '3',
     #    }
     #res = send_data(data)
-    #print json.dumps(res, sort_keys = False, indent = 4)
+    #res = get_user('66702307')
+    res = get_user('67201307')
+    print json.dumps(res, sort_keys = False, indent = 4)
