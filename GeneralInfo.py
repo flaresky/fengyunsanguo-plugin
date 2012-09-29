@@ -103,6 +103,9 @@ class GeneralInfo:
     def get_salary_collected(self):
         return int(self.data['userExtend']['salaryCollected'])
 
+    def get_userReceiveCaravan(self):
+        return int(self.data['userExtend']['userReceiveCaravan'])
+
     def get_serverTime(self):
         return int(self.data['serverTime'])
 
@@ -184,6 +187,7 @@ class GeneralInfo:
         print '\tFree Appoint Remain: %d'%(self.get_freeappoint_num())
         print '\tTurntable Remain: %d'%(self.get_turntable_time())
         print '\tSalary Remain: %d'%(1-self.get_salary_collected())
+        print '\tReceiveCaravan: %d'%(self.get_userReceiveCaravan())
         print '\tServerTime: %s'%(util.format_time(self.get_serverTime()))
         print '\tNext Jianzhu CD Time: %s'%(util.format_time(self.get_next_CDTime()))
         print '\tTax CD Time: %s'%(util.format_time(self.get_tax_CDTime()))

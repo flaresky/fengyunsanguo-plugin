@@ -44,6 +44,8 @@ PEOPLE_ID = {
         'zaozilong' : '66543199',
         # for tongsang
         'jianjianbiaoxie' : '64862103',
+        'jbvcduj' : '66933947',
+        'wangcencen' : '67115191',
         'lolo' : '66290987',
         'wangdaiman' : '63771615',
         'daofeiwang' : '66284359',
@@ -62,12 +64,22 @@ NPC_ID = {
 }
 
 CITY_ID = {
-        'xinye' : '309',
+        'jianye' : '102',
         'jiangxia' : '107',
-        'wan' : '208',
-        'wuling' : '311',
-        'sangyong' : '308',
+        'jiangling' : '108',
+        'runan' : '109',
         'beiping' : '201',
+        'nanpi' : '202',
+        'wan' : '208',
+        'xuzou' : '210',
+        'zitong' : '305',
+        'tiansui' : '306',
+        'hanzong' : '307',
+        'sangyong' : '308',
+        'xinye' : '309',
+        'xiangyang' : '310',
+        'wuling' : '311',
+        'test' : '209',
 }
 
 TRAINING_HOUR_TO_MODE = {
@@ -137,10 +149,11 @@ JIANZHU = {
         'minju10' : '123',  
 }
 JIANZHU_LIST = [
+        #'zuceng',
         'junji',
-        'sangdian',
         'jiaocang',
         'jiaocang2',
+        'sangdian',
         'zangfang',
         'zubicang',
         'minju1',
@@ -265,5 +278,12 @@ LEVEL_EXP_MAP = {
         100 : 936000,
         101 : 972000,
         102 : 1008000,
-        103 : 1044000,#
+        103 : 1044000,
+        104 : 1080000,
+        105 : 1116000,
+        106 : 1152000,
+        107 : 1188000,
+        108 : 1224000,
+        109 : 1260000,
+        110 : 1296000,
 }

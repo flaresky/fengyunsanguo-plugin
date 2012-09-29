@@ -6,9 +6,12 @@ import Logger
 logger = Logger.getLogger()
 
 users = [
-        'vmao',
+        #'jianjianbiaoxie',
+        'wangcencen',
         'nihongxiuse',
-        'wangdaiman',
+        'jbvcduj',#120
+        #'vmao',
+        #'wangdaiman',
         'daofeiwang',
 ]
 

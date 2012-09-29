@@ -64,7 +64,9 @@ class UpgradeThread(threading.Thread):
                 goldnum = ei.get_magic_needgold()
                 res = self.do_upgrade(Eid, magic)
                 self.do_degrade(Eid)
-            time.sleep(278)
+                time.sleep(278)
+            else:
+                time.sleep(598)
 
 def parsearg():
     global Delay_Time, Times, Ename, Eid, NeedGold, Auto_Upgrade

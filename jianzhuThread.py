@@ -16,8 +16,8 @@ Delay_Time = 0
 Jianzhu_List = []
 Times = 0
 Sleep_Time = 60 # minutes
-Max_zuceng_level = 111
-Auto_Upgrade_Zuceng = True # will auto upgrade zuceng if all other jianzhu is up to max level
+Max_zuceng_level = 114
+Auto_Upgrade_Zuceng = False # will auto upgrade zuceng if all other jianzhu is up to max level
 
 class JianzhuThread(threading.Thread):
     def __init__(self):
