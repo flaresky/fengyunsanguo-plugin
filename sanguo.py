@@ -365,6 +365,14 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def touzi(self, cityid='309', thrive=3):
+        data = {
+                'op' : 907,
+                'cityId' : str(cityid),
+                'thrive' : int(thrive),
+            }
+        return self.sendData(data)
+
     def sendData(self, data):
         self.login()
         data = self.compose_data(data)
@@ -403,6 +411,7 @@ if __name__ == '__main__':
     #res = sanguo.tufei('guanyu')
     #res = sanguo.get_hero('zaoyun')
     #print 'magic='+str(res)
+    res = sanguo.touzi(309, 2)
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())

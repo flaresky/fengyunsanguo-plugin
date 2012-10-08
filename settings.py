@@ -118,6 +118,7 @@ KEJI = {
         'ff' : '208',
         'jiwen' : '209',
         'hudun' : '211',
+        'chengqiang' : '213',
         'tousi' : '214',
 }
 KEJI_LIST = [
