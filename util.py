@@ -51,7 +51,7 @@ def get_next_refresh_time(Server_Time):
     return int(time.mktime(res.timetuple())) 
 
 def notify(msg):
-    msg = USERNAME + ' --- ' + msg
+    msg = USER_INFO[DEFAULT_USER]['USERNAME'] + ' --- ' + msg
     es = EmailSender()
     es.send_mail(msg, '')
     logger.info('Send an email: "%s"'%(msg))
