@@ -158,6 +158,12 @@ class weipaiThread(threading.Thread):
                         logger.info('Next round weipai will start at ' + util.next_time(sp))
                         time.sleep(sp)
                         continue
+                    elif msg == 'maintenance':
+                        logger.info('Got Exception %s'%(msg))
+                        sp = 3600
+                        logger.info('Next round weipai will start at ' + util.next_time(sp))
+                        time.sleep(sp)
+                        continue
                     else:
                         logger.info('Exit for Exception %s'%(msg))
                         break

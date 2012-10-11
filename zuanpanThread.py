@@ -49,12 +49,12 @@ class ZuanpanThread(threading.Thread):
                 sanguo.login()
                 data = sanguo.zuanpan()
                 sanguo.close()
-                if len(data) < 20 :
+                if not data:
                     logger.error('zuanpan failed. data len %d'%(len(data)))
                     raise Exception()
                 else:
                     logger.info('zuanpan succeed. data len %d'%(len(data)))
-                return
+                return data
             except:
                 logger.info('do_zuanpan failed, will sleep %d seconds'%(t*2))
                 logger.debug(traceback.format_exc())
@@ -83,4 +83,7 @@ def parsearg():
 if __name__ == '__main__':
     parsearg()
     thread = ZuanpanThread()
-    thread.start()
+    #thread.start()
+    res = thread.do_zuanpan()
+    import json
+    print json.dumps(res, sort_keys = False, indent = 4)
