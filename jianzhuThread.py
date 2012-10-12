@@ -102,7 +102,10 @@ class JianzhuThread(threading.Thread):
                     logger.error('Got Exception "%s", will exit'%(msg))
                     if msg == 'CDTimeNotCool':
                         continue
-                    if msg == 'noBuildTeamUsable':
+                    elif msg == 'noBuildTeamUsable':
+                        continue
+                    elif msg == 'maintenance':
+                        time.sleep(2000)
                         continue
                     return
                 time.sleep(2)
