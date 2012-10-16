@@ -1,4 +1,4 @@
-from PyWapFetion import *
+#from PyWapFetion import *
 import datetime
 import time
 from sanguo import Sanguo
