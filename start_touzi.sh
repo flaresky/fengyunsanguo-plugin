@@ -1,1 +1,1 @@
-pgrep -U tianqi -f "python touziThread.py" || python touziThread.py &
+pgrep -U `id -u` -f "python touziThread.py" || python touziThread.py &

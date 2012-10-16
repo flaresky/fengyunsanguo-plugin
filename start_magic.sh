@@ -1,1 +1,1 @@
-pgrep -U tianqi -f "python magicThread.py" || python magicThread.py &
+pgrep -U `id -u` -f "python magicThread.py" || python magicThread.py &
