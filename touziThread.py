@@ -66,6 +66,8 @@ class TouziThread(threading.Thread):
                 logger.error('Got Exception "%s", will exit'%(msg))
                 if msg == 'CDTimeNotCool':
                     continue
+                elif msg == 'in invest CD':
+                    continue
                 return
             times += 1
             logger.info('Succeed touzi %d times'%(times))
