@@ -240,6 +240,34 @@ class Sanguo:
         logger.info('getCityInfo CITY_ID=%s zoneid=%s'%(city_id, str(zoneid)))
         return res
 
+    def getYinkuangInfo(self, city_id, zoneid):
+        self.login()
+        data = {
+                'cityId' : str(CITY_ID[city_id]),
+                'zoneId' : int(zoneid),
+                'op' : 603,
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        logger.info('getYinkuangInfo CITY_ID=%s zoneid=%s'%(city_id, str(zoneid)))
+        return res
+
+    def attackYinkuang(self, zoneid, position):
+        self.login()
+        data = {
+                'zoneId' : int(zoneid),
+                'position' : int(position),
+                'op' : 609,
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        logger.info('attackYinkuang zoneid=%s position=%s'%(str(zoneid), str(position)))
+        return res
+
     def getUserInfo(self, uid):
         self.login()
         data = '\x00\x22\x02\x71\x00\x1e\x7b\x22\x75\x73\x65\x72\x49\x64\x22\x3a\x22'
@@ -396,6 +424,8 @@ if __name__ == '__main__':
     #res = sanguo.kuangzan()
     #res = sanguo.zuanpan()
     #res = sanguo.getCityInfo('xinye', '5')
+    #res = sanguo.getYinkuangInfo('xinye', 1)
+    res = sanguo.attackYinkuang(1, 16)
     #res = sanguo.zengfu('xinye', 'yingzi')
     #stime = sanguo.login()
     #res = sanguo.tongsang('jianjianbiaoxie')
@@ -411,7 +441,7 @@ if __name__ == '__main__':
     #res = sanguo.tufei('guanyu')
     #res = sanguo.get_hero('zaoyun')
     #print 'magic='+str(res)
-    res = sanguo.touzi(309, 2)
+    #res = sanguo.touzi(309, 2)
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())

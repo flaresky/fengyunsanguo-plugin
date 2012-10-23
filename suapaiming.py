@@ -54,7 +54,7 @@ class UpgradeThread(threading.Thread):
     def run(self):
         logger.info('suapaiming start, will upgrade %d times'%(Times))
         if Delay_Time > 0:
-            logger.info('I will start upgrade at ' + util.next_time(Delay_Time))
+            logger.info('I will start suapaiming at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
         while True:
             ei = EquipInfo()
@@ -73,7 +73,7 @@ def parsearg():
     parser = argparse.ArgumentParser(description='upgrade equip')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay')
     parser.add_argument('-n', '--equip_name', required=False, type=str, help='equip name')
-    parser.add_argument('-i', '--equip_id', required=False, type=str, default='642951', help='equip id')
+    parser.add_argument('-i', '--equip_id', required=False, type=str, default='937717', help='equip id')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:

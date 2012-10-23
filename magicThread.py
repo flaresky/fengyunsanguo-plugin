@@ -16,6 +16,7 @@ logger = Logger.getLogger()
 Local_Server_Diff = 0
 Server_Time = 0
 Min_Magic = 98
+Auto_Upgrade = False
 
 class MagicThread(threading.Thread):
     def __init__(self):
@@ -34,10 +35,18 @@ class MagicThread(threading.Thread):
         logger.info('next half hour is %s'%(str(last_time)))
         Server_Time = int(time.mktime(last_time.timetuple())) 
 
+    def do_upgrade(self):
+        if Auto_Upgrade:
+            import os
+            cmd = 'cd /home/tianqi/psg; python upgradeEquip.py -i 749122 -g; sh ./start_tax.sh'
+            logger.info('run command "%s"'%(cmd))
+            os.system(cmd)
+
     def notify(self, magic):
         if magic >= Min_Magic:
             title = 'Magic Value is %d%%'%(magic)
             util.notify(title)
+            self.do_upgrade()
     
     def run(self):
         global Local_Server_Diff,Server_Time
@@ -60,11 +69,13 @@ class MagicThread(threading.Thread):
                 time.sleep(60)
 
 def parsearg():
-    global Min_Magic
+    global Min_Magic, Auto_Upgrade
     parser = argparse.ArgumentParser(description='Get magic')
     parser.add_argument('-m', '--magic', required=False, type=int, default=95, help='the min magic will notify')
+    parser.add_argument('-u', '--auto_upgrade', required=False, action='store_true', help='auto upgrade equip')
     res = parser.parse_args()
     Min_Magic = res.magic
+    Auto_Upgrade = res.auto_upgrade
             
 if __name__ == '__main__':
     parsearg()
