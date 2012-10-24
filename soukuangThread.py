@@ -57,7 +57,7 @@ def parsearg():
     global Delay_Time, Plantation_List, Times
     parser = argparse.ArgumentParser(description='Kuangzan')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay before first round')
-    parser.add_argument('-p', '--plantations', type=str, nargs='*', default=['xuzou', 'yuzou'], help='plantation id will soukuang')
+    parser.add_argument('-p', '--plantations', type=str, nargs='*', default=['yuzou'], help='plantation id will soukuang')
     parser.add_argument('-t', '--times', type=int, default=10, help='soukuang times')
     res = parser.parse_args()
     dlist = res.delay.split(':')
