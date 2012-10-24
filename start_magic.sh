@@ -1,1 +1,1 @@
-pgrep -U `id -u` -f "python magicThread.py" || python magicThread.py &
+pgrep -U flaresky1 -f "python magicThread.py" || python magicThread.py &
