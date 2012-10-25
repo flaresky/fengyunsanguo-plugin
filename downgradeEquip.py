@@ -63,9 +63,6 @@ def parsearg():
     parser.add_argument('-t', '--times', required=False, type=int, default=1, help='downgrade times')
     res = parser.parse_args()
     dlist = res.delay.split(':')
-    if len(dlist) == 1:
-        Delay_Time = int(dlist[0]) * 60
-    elif len(dlist) == 2:
         Delay_Time = int(dlist[0]) * 3600 + int(dlist[1]) * 60
     Times = res.times
     Eid = res.equip_id

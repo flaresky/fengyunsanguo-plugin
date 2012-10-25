@@ -83,6 +83,8 @@ PEOPLE_ID = {
         'daofeiwang' : '66284359',
         'nihongxiuse' : '65642323',
         'vmao' : '64726651',
+        'senniu' : '64401019',
+        'bohe' : '69681303',
 }
 
 ARMY_ID = {
@@ -96,6 +98,7 @@ NPC_ID = {
 }
 
 CITY_ID = {
+        'wu' : '101',
         'jianye' : '102',
         'jiangxia' : '107',
         'jiangling' : '108',

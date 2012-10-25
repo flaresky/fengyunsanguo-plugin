@@ -9,11 +9,13 @@ users = [
         #'jianjianbiaoxie',
         'suidaran',
         'wangcencen',
-        'nihongxiuse',
+        #'nihongxiuse',
         'jbvcduj',#120
         #'vmao',
         #'wangdaiman',
         #'daofeiwang',
+        'senniu',
+        'bohe',
 ]
 
 def tongsang(uname):
