@@ -52,6 +52,7 @@ class EnforcelevyThread(threading.Thread):
                     logger.error('Got Exception "%s"'%(res['exception']['message']))
                     return
                 logger.info('qiangzeng %d times'%(i+1))
+                time.sleep(2)
             except:
                 pass
 
