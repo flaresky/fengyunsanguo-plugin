@@ -102,7 +102,7 @@ def parsearg():
     parser = argparse.ArgumentParser(description='Get attack')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to attack')
     parser.add_argument('-t', '--times', type=int, default=1, help='times would attack')
-    parser.add_argument('-p', '--peoples', type=str, nargs='*', default=['cenyufeng'], help='people list will attack')
+    parser.add_argument('-p', '--peoples', type=str, nargs='*', default=['saoxianduiyuan'], help='people list will attack')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:

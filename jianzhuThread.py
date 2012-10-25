@@ -16,7 +16,7 @@ Delay_Time = 0
 Jianzhu_List = []
 Times = 0
 Sleep_Time = 60 # minutes
-Max_zuceng_level = 120
+Max_zuceng_level = 80
 Auto_Upgrade_Zuceng = True # will auto upgrade zuceng if all other jianzhu is up to max level
 
 class JianzhuThread(threading.Thread):
@@ -102,7 +102,10 @@ class JianzhuThread(threading.Thread):
                     logger.error('Got Exception "%s", will exit'%(msg))
                     if msg == 'CDTimeNotCool':
                         continue
-                    if msg == 'noBuildTeamUsable':
+                    elif msg == 'noBuildTeamUsable':
+                        continue
+                    elif msg == 'maintenance':
+                        time.sleep(2000)
                         continue
                     return
                 time.sleep(2)

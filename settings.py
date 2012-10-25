@@ -6,9 +6,8 @@ PORT = 8313
 
 LOGFILE = './log'
 LOGFORMAT = "%(asctime)s %(filename)s [%(levelname)s] %(message)s"
-#USERNAME = '虽大然'
 
-DEFAULT_USER = 'flaresky'
+DEFAULT_USER = 'flaresky2'
 
 USER_INFO = {
             'flaresky' : {
@@ -17,27 +16,41 @@ USER_INFO = {
                         },
             'flaresky1' : {
                         'USERNAME' : '隋大然',
-                        'LOGIN_DATA' : '\x00\x54\x00\x05\x00\x03\x6e\x69\x6c\x00\x08\x39\x39\x37\x39\x32\x39\x33\x31\x00\x01\x30\x00\x00\x00\x3c\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x31\x39\x38\x33\x30\x38\x30\x39\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x66\x6c\x61\x72\x65\x73\x6b\x79\x31\x40\x31\x36\x33\x2e\x63\x6f\x6d\x22\x7d'
+                        'LOGIN_DATA' :     '\x00\x54\x00\x05\x00\x03\x6e\x69\x6c\x00\x08\x39\x39\x37\x39\x32\x39\x33\x31\x00\x01\x30\x00\x00\x00\x3c\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x31\x39\x38\x33\x30\x38\x30\x39\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x66\x6c\x61\x72\x65\x73\x6b\x79\x31\x40\x31\x36\x33\x2e\x63\x6f\x6d\x22\x7d',
+                        },
+            'flaresky2' : {
+                        'USERNAME' : '随大然',
+                        'LOGIN_DATA' : '\x00\x55\x00\x05\x00\x03\x6e\x69\x6c\x00\x09\x31\x30\x32\x34\x31\x36\x34\x38\x37\x00\x01\x30\x00\x00\x00\x3c\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x31\x39\x38\x33\x30\x38\x30\x39\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x66\x6c\x61\x72\x65\x73\x6b\x79\x32\x40\x31\x36\x33\x2e\x63\x6f\x6d\x22\x7d',
+                        },
+            'yansideyu' : {
+                        'USERNAME' : '淹死的鱼',
+                        'LOGIN_DATA' : '\x00\x51\x00\x05\x00\x03\x6e\x69\x6c\x00\x08\x36\x37\x34\x33\x35\x33\x31\x35\x00\x01\x30\x00\x00\x00\x39\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x32\x33\x35\x36\x38\x39\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x33\x36\x30\x32\x34\x36\x35\x37\x30\x40\x71\x71\x2e\x63\x6f\x6d\x22\x7d',
+                        },
+            'xiaotianya' : {
+                        'USERNAME' : '萧天涯',
+                        'LOGIN_DATA' :    '\x00\x4c\x00\x05\x00\x03\x6e\x69\x6c\x00\x08\x37\x31\x34\x39\x36\x30\x38\x33\x00\x01\x30\x00\x00\x00\x34\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x6a\x70\x6a\x70\x6a\x70\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x70\x70\x40\x73\x69\x6e\x61\x2e\x63\x6f\x6d\x22\x7d',
+                        },
+            'zilong2' : {
+                        'USERNAME' : '紫龙2',
+                        'LOGIN_DATA' :
+                        '\x00\x4e\x00\x05\x00\x03\x6e\x69\x6c\x00\x08\x39\x39\x34\x30\x35\x36\x30\x33\x00\x01\x30\x00\x00\x00\x36\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x6a\x70\x6a\x70\x6a\x70\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x70\x70\x70\x70\x40\x73\x69\x6e\x61\x2e\x63\x6f\x6d\x22\x7d',
+                        },
+            'zilong3' : {
+                        'USERNAME' : '紫龙3',
+                        'LOGIN_DATA' :
+                        '\x00\x4f\x00\x05\x00\x03\x6e\x69\x6c\x00\x08\x39\x39\x34\x30\x35\x39\x33\x31\x00\x01\x30\x00\x00\x00\x37\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x6a\x70\x6a\x70\x6a\x70\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x70\x70\x70\x70\x70\x40\x73\x69\x6e\x61\x2e\x63\x6f\x6d\x22\x7d',
                         },
     }
 
 UID = {
-        'huatuo' : '41978',
-        'xusu' : '44791',
-        'yuanshao' : '44918',
-        'zangfei' : '47845',
-        'lvbu' : '49088',
-        'sunsangxiang' : '46227',
-        'guanping' : '41546',
-        'caiyan' : '40991',
-        'zaoyun' : '50107',
-        'jiangwei' : '50497',
-        'guanyu' : '50630',
-        'zuge' : '51181',
-        'mateng' : '51475',
-        'jiayu' : '51934',
-        'liubang' : '52474',
-        'hanxin' : '52491',
+        'liqing' : '52685',
+        'liyong' : '52794',
+        'huaxiong' : '52797',
+        'guanping' : '52834',
+        'caiyan' : '52851',
+        'xusu' : '52855',
+        'yuanshao' : '52886',
+        'yuansu' : '52900',
 }
 
 PEOPLE_ID = {
@@ -55,7 +68,13 @@ PEOPLE_ID = {
         'yingzi' : '65706331',
         'yanhuangdiguo' : '66574259',
         'zaozilong' : '66543199',
+        'saoxianduiyuan' : '66867787',
+        'wujiangbieji' : '66628971',
+        'lili' : '66024279',
+        'xuanyuankuahai' : '66727315',
+        'wuhandiwu' : '66072771',
         # for tongsang
+        'suidaran' : '67201307',
         'jianjianbiaoxie' : '64862103',
         'jbvcduj' : '66933947',
         'wangcencen' : '67115191',
@@ -119,24 +138,25 @@ KEJI = {
         'ff' : '208',
         'jiwen' : '209',
         'hudun' : '211',
+        'chengqiang' : '213',
         'tousi' : '214',
 }
 KEJI_LIST = [
-        ('jiwen', 2),
+        #('jiwen', 2),
         ('pg', 1),
-        ('pf', 1),
-        ('zf', 1),
-        ('hudun', 2),
-        ('zg', 1),
-        ('ff', 1),
-        ('lingqi', 2),
-        ('bingfu', 1),
+        #('hudun', 2),
+        #('zg', 1),
+        #('ff', 1),
+        #('lingqi', 2),
         #('yanxing', 5),
         #('cuxing', 5),
-        #('cangse', 5),
+        ('cangse', 5),
         #('yanyue', 5),
-        #('yulin', 5),
+        ('yulin', 5),
         #('fengsi', 5),
+        ('pf', 1),
+        ('zf', 1),
+        ('bingfu', 1),
 ]
 
 JIANZHU = {
@@ -163,24 +183,24 @@ JIANZHU = {
 }
 JIANZHU_LIST = [
         #'zuceng',
-        'junji',
         'jiaocang',
-        'jiaocang2',
         'sangdian',
-        'zangfang',
-        'zubicang',
-        'minju1',
-        'minju2',  
-        'minju3',  
-        'minju4',  
-        'minju5',  
-        'minju6',  
-        'minju7',  
-        'minju8',  
-        'minju9',  
-        'minju10',  
-        'qianzuang',
+        'junji',
+        #'jiaocang2',
+        #'zangfang',
+        #'zubicang',
         'yinku',
+        #'minju1',
+        #'minju2',  
+        #'minju3',  
+        #'minju4',  
+        #'minju5',  
+        #'minju6',  
+        #'minju7',  
+        #'minju8',  
+        #'minju9',  
+        #'minju10',  
+        #'qianzuang',
 ]
 
 PLANTATION = {

@@ -1,1 +1,1 @@
-ps aux|grep -v grep|grep tianqi|grep --color=auto python
+ps aux|grep -v grep|grep flaresky|grep --color=auto python

@@ -125,7 +125,12 @@ class HeroInfo:
             if self.get_nextUpgrade_by_id(hid) <> '0':
                 print '\tNextUpgrade: %s'%(util.format_time(self.get_nextUpgrade_by_id(hid)))
 
+    def print_for_setting(self):
+        for hid in self.get_hero_ids():
+            print "'%s' : '%s',"%(self.get_name_by_id(hid), str(hid))
+
 if __name__ == '__main__':
     hi = HeroInfo()
     hi.format_print()
     #hi.raw_print()
+    #hi.print_for_setting()

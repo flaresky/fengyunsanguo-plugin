@@ -65,7 +65,11 @@ class TaxThread(threading.Thread):
             if res.has_key('exception'):
                 logger.error('Got Exception "%s"'%(res['exception']['message']))
                 if 'beyondMaxSilver' == res['exception']['message']:
-                    return
+                    sp = 7200
+                    logger.info('I will tax at %s'%(util.next_time(sp)))
+                    time.sleep(sp)
+                    continue
+                    #return
                 time.sleep(60)
             time.sleep(1)
 
