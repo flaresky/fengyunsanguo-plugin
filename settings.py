@@ -7,7 +7,7 @@ PORT = 8313
 LOGFILE = './log'
 LOGFORMAT = "%(asctime)s %(filename)s [%(levelname)s] %(message)s"
 
-DEFAULT_USER = 'flaresky'
+DEFAULT_USER = 'senjianfeng'
 
 USER_INFO = {
             'flaresky' : {
