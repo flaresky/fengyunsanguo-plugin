@@ -125,6 +125,17 @@ class Sanguo:
         logger.info('Tax one time')
         return res
 
+    def enforce_levy(self):
+        #self.login()
+        data = {
+                'op' : 311,
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        return res
+
     def keji(self, kid):
         self.login()
         data = '\x00\x1e\x04\x6d\x00\x1a\x7b\x22\x74\x79\x70\x65\x49\x64\x22\x3a\x22'
@@ -224,20 +235,6 @@ class Sanguo:
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
         res = self.decode(res)
-        return res
-
-    def getCityInfo(self, city_id, zoneid):
-        self.login()
-        data = {
-                'cityId' : str(CITY_ID[city_id]),
-                'zoneId' : int(zoneid),
-                'op' : 601,
-            }
-        data = self.compose_data(data)
-        self.tcpClientSock.send(data)
-        res = self.tcpClientSock.recv(BUFSIZE)
-        res = self.decode(res)
-        logger.info('getCityInfo CITY_ID=%s zoneid=%s'%(city_id, str(zoneid)))
         return res
 
     def getYinkuangInfo(self, city_id, zoneid):
