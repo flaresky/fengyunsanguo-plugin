@@ -79,6 +79,9 @@ class GeneralInfo:
     def get_levy_times(self):
         return int(self.data['userExtend']['levyTimes'])
 
+    def get_enforce_levy_times(self):
+        return int(self.data['userExtend']['enforceLevyTimes'])
+
     def get_freeappoint_num(self):
         return int(self.data['userExtend']['freeAppoint'])
 
@@ -185,6 +188,7 @@ class GeneralInfo:
         print '\tLevel: %d'%(self.get_level())
         print '\tTraining Status: %d/%d'%(self.get_training_hero_num(), self.get_max_training_hero_num())
         print '\tLevy Status: %d/%d'%(self.get_levy_times(), self.get_levy_times()+self.get_levy_remain())
+        print '\tEnforce Levy Times: %d'%(self.get_enforce_levy_times())
         print '\tDaily Task Status: %d/6'%(self.get_task_finish_num())
         print '\tSilver Status: %d/%d'%(self.get_cur_silver(), self.get_max_silver())
         print '\tMobility Status: %d/%d'%(self.get_cur_mobility(), self.get_max_mobility())
