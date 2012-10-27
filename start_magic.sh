@@ -1,1 +1,1 @@
-pgrep -U tianqi -f "python magicThread.py" || python magicThread.py &
+pgrep -U xiaotianya -f "/usr/local/bin/python magicThread.py" || /usr/local/bin/python magicThread.py &

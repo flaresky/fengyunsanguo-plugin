@@ -1,1 +1,1 @@
-pgrep -U tianqi -f "python.*"$1 |xargs kill -9
+pgrep -U xiaotianya -f "python.*"$1 |xargs kill -9

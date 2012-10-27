@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 import threading
 from sanguo import Sanguo
 import time
