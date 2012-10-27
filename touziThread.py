@@ -48,29 +48,34 @@ class TouziThread(threading.Thread):
 
         times = 0
         while True:
-            gi = GeneralInfo()
-            next_touzi_cd = gi.get_touzi_CDTime()
-            stime = gi.get_serverTime()
-            sp = 0
-            if next_touzi_cd > stime:
-                sp = next_touzi_cd - stime + 1
-            if sp > 0:
-                logger.info('I will start touzi %s at %s'%(CityName, util.next_time(sp)))
-                time.sleep(sp)
-            else:
-                logger.info('I will start touzi %s now'%(CityName))
+            try:
+                gi = GeneralInfo()
+                next_touzi_cd = gi.get_touzi_CDTime()
+                stime = gi.get_serverTime()
+                sp = 0
+                if next_touzi_cd > stime:
+                    sp = next_touzi_cd - stime + 1
+                if sp > 0:
+                    logger.info('I will start touzi %s at %s'%(CityName, util.next_time(sp)))
+                    time.sleep(sp)
+                else:
+                    logger.info('I will start touzi %s now'%(CityName))
 
-            res = self.do_touzi()
-            if res.has_key('exception'):
-                msg = res['exception']['message']
-                logger.error('Got Exception "%s", will exit'%(msg))
-                if msg == 'CDTimeNotCool':
-                    continue
-                elif msg == 'in invest CD':
-                    continue
-                return
-            times += 1
-            logger.info('Succeed touzi %d times'%(times))
+                res = self.do_touzi()
+                if res.has_key('exception'):
+                    msg = res['exception']['message']
+                    logger.error('Got Exception "%s", will exit'%(msg))
+                    if msg == 'CDTimeNotCool':
+                        continue
+                    elif msg == 'in invest CD':
+                        continue
+                    return
+                times += 1
+                logger.info('Succeed touzi %d times'%(times))
+            except:
+                import traceback
+                logger.error(traceback.format_exc())
+                time.sleep(100)
 
 def parsearg():
     global Delay_Time, CityName, Thrive

@@ -15,6 +15,7 @@ logger = Logger.getLogger()
 
 Delay_Time = 0 
 Times = 0 
+MaxSilverExit = False
 
 class TaxThread(threading.Thread):
     def __init__(self, count=18):
@@ -65,24 +66,28 @@ class TaxThread(threading.Thread):
             if res.has_key('exception'):
                 logger.error('Got Exception "%s"'%(res['exception']['message']))
                 if 'beyondMaxSilver' == res['exception']['message']:
-                    sp = 7200
-                    logger.info('I will tax at %s'%(util.next_time(sp)))
-                    time.sleep(sp)
-                    continue
-                    #return
+                    if MaxSilverExit:
+                        return
+                    else:
+                        sp = 7200
+                        logger.info('I will tax at %s'%(util.next_time(sp)))
+                        time.sleep(sp)
+                        continue
                 time.sleep(60)
             time.sleep(1)
 
 def parsearg():
-    global Delay_Time, Times
+    global Delay_Time, Times, MaxSilverExit
     parser = argparse.ArgumentParser(description='Get tax')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to tax')
+    parser.add_argument('-x', '--exit', required=False, action='store_true', help='exit when beyondMaxSilver')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:
         Delay_Time = int(dlist[0]) * 60
     elif len(dlist) == 2:
         Delay_Time = int(dlist[0]) * 3600 + int(dlist[1]) * 60
+    MaxSilverExit = res.exit
 
 if __name__ == '__main__':
     parsearg()

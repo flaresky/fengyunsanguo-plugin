@@ -125,6 +125,17 @@ class Sanguo:
         logger.info('Tax one time')
         return res
 
+    def enforce_levy(self):
+        #self.login()
+        data = {
+                'op' : 311,
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        return res
+
     def keji(self, kid):
         self.login()
         data = '\x00\x1e\x04\x6d\x00\x1a\x7b\x22\x74\x79\x70\x65\x49\x64\x22\x3a\x22'
@@ -226,18 +237,32 @@ class Sanguo:
         res = self.decode(res)
         return res
 
-    def getCityInfo(self, city_id, zoneid):
+    def getYinkuangInfo(self, city_id, zoneid):
         self.login()
         data = {
                 'cityId' : str(CITY_ID[city_id]),
                 'zoneId' : int(zoneid),
-                'op' : 601,
+                'op' : 603,
             }
         data = self.compose_data(data)
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
         res = self.decode(res)
-        logger.info('getCityInfo CITY_ID=%s zoneid=%s'%(city_id, str(zoneid)))
+        logger.info('getYinkuangInfo CITY_ID=%s zoneid=%s'%(city_id, str(zoneid)))
+        return res
+
+    def attackYinkuang(self, zoneid, position):
+        self.login()
+        data = {
+                'zoneId' : int(zoneid),
+                'position' : int(position),
+                'op' : 609,
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        logger.info('attackYinkuang zoneid=%s position=%s'%(str(zoneid), str(position)))
         return res
 
     def getUserInfo(self, uid):
@@ -396,6 +421,8 @@ if __name__ == '__main__':
     #res = sanguo.kuangzan()
     #res = sanguo.zuanpan()
     #res = sanguo.getCityInfo('xinye', '5')
+    #res = sanguo.getYinkuangInfo('xinye', 1)
+    res = sanguo.attackYinkuang(1, 16)
     #res = sanguo.zengfu('xinye', 'yingzi')
     #stime = sanguo.login()
     #res = sanguo.tongsang('jianjianbiaoxie')
@@ -411,7 +438,7 @@ if __name__ == '__main__':
     #res = sanguo.tufei('guanyu')
     #res = sanguo.get_hero('zaoyun')
     #print 'magic='+str(res)
-    res = sanguo.touzi(309, 2)
+    #res = sanguo.touzi(309, 2)
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())
