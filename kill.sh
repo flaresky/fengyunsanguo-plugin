@@ -1,1 +1,1 @@
-pgrep -U tianqi -f "python.*"$1 |xargs kill -9
+pgrep -U zilong2 -f "python.*"$1 |xargs kill -9

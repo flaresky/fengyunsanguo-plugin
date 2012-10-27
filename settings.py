@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 #encoding: utf-8
 HOST = '220.181.83.18'
 PORT = 8313
@@ -7,7 +7,7 @@ PORT = 8313
 LOGFILE = './log'
 LOGFORMAT = "%(asctime)s %(filename)s [%(levelname)s] %(message)s"
 
-DEFAULT_USER = 'flaresky'
+DEFAULT_USER = 'zilong2'
 
 USER_INFO = {
             'flaresky' : {
@@ -189,12 +189,13 @@ JIANZHU = {
 }
 JIANZHU_LIST = [
         #'zuceng',
-        'junji',
-        'jiaocang',
-        'jiaocang2',
-        'sangdian',
+        #'junji',
+        #'jiaocang',
+        #'jiaocang2',
+        #'sangdian',
+        'yinku',
         'zangfang',
-        'zubicang',
+        #'zubicang',
         'minju1',
         'minju2',  
         'minju3',  
@@ -205,8 +206,7 @@ JIANZHU_LIST = [
         'minju8',  
         'minju9',  
         'minju10',  
-        'qianzuang',
-        'yinku',
+        #'qianzuang',
 ]
 
 PLANTATION = {
