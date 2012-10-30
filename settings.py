@@ -134,6 +134,9 @@ PEOPLE_ID = {
         'zaozilong' : '66543199',
         # for tongsang
         'suidaran' : '67201307',
+        'zilong' : '65913859',
+        'wood' : '65201839',
+        'yufei' : '66302251',
         'jianjianbiaoxie' : '64862103',
         'jbvcduj' : '66933947',
         'wangcencen' : '67115191',
