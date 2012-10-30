@@ -237,6 +237,20 @@ class Sanguo:
         res = self.decode(res)
         return res
 
+    def getCityInfo(self, city_id, zoneid):
+        self.login()
+        data = {
+                'cityId' : str(CITY_ID[city_id]),
+                'zoneId' : int(zoneid),
+                'op' : 601,
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        logger.info('getCityInfo CITY_ID=%s zoneid=%s'%(city_id, str(zoneid)))
+        return res
+
     def getYinkuangInfo(self, city_id, zoneid):
         self.login()
         data = {
@@ -420,9 +434,9 @@ if __name__ == '__main__':
     stime = sanguo.login()
     #res = sanguo.kuangzan()
     #res = sanguo.zuanpan()
-    #res = sanguo.getCityInfo('xinye', '5')
+    res = sanguo.getCityInfo('xinye', '2')
     #res = sanguo.getYinkuangInfo('xinye', 1)
-    res = sanguo.attackYinkuang(1, 16)
+    #res = sanguo.attackYinkuang(1, 16)
     #res = sanguo.zengfu('xinye', 'yingzi')
     #stime = sanguo.login()
     #res = sanguo.tongsang('jianjianbiaoxie')
