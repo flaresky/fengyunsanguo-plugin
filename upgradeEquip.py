@@ -96,7 +96,7 @@ def parsearg():
     parser = argparse.ArgumentParser(description='upgrade equip')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay')
     parser.add_argument('-n', '--equip_name', required=False, type=str, help='equip name')
-    parser.add_argument('-i', '--equip_id', required=False, type=str, default='749122', help='equip id')
+    parser.add_argument('-i', '--equip_id', required=False, type=str, default='646979', help='equip id')
     parser.add_argument('-t', '--times', required=False, type=int, default=1, help='upgrade times')
     parser.add_argument('-g', '--needgold', required=False, action='store_true', help='use gold to upgrade')
     parser.add_argument('-a', '--auto_upgrade', required=False, action='store_true', help='auto upgrade mode')
