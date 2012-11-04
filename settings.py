@@ -6,7 +6,7 @@ PORT = 8313
 LOGFILE = './log'
 LOGFORMAT = "%(asctime)s %(filename)s [%(levelname)s] %(message)s"
 
-DEFAULT_USER = 'flaresky'
+DEFAULT_USER = 'flaresky4'
 
 USER_INFO = {
             'flaresky' : {
@@ -77,22 +77,9 @@ USER_INFO = {
     }
 
 UID = {
-        'huatuo' : '41978',
-        'xusu' : '44791',
-        'yuanshao' : '44918',
-        'zangfei' : '47845',
-        'lvbu' : '49088',
-        'sunsangxiang' : '46227',
-        'guanping' : '41546',
-        'caiyan' : '40991',
-        'zaoyun' : '50107',
-        'jiangwei' : '50497',
-        'guanyu' : '50630',
-        'zuge' : '51181',
-        'mateng' : '51475',
-        'jiayu' : '51934',
-        'liubang' : '52474',
-        'hanxin' : '52491',
+    'liqing' : '52687',
+    'liyong' : '53040',
+    'huaxiong' : '53043',
 }
 
 PEOPLE_ID = {
@@ -225,22 +212,22 @@ JIANZHU_LIST = [
         #'zuceng',
         'junji',
         'jiaocang',
-        'jiaocang2',
+        #'jiaocang2',
         'sangdian',
-        'zangfang',
-        'zubicang',
+        #'zangfang',
+        #'zubicang',
+        'yinku',
         'minju1',
         'minju2',  
         'minju3',  
         'minju4',  
         'minju5',  
-        'minju6',  
-        'minju7',  
-        'minju8',  
-        'minju9',  
-        'minju10',  
-        'qianzuang',
-        'yinku',
+        #'minju6',  
+        #'minju7',  
+        #'minju8',  
+        #'minju9',  
+        #'minju10',  
+        #'qianzuang',
 ]
 
 PLANTATION = {
