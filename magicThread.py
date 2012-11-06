@@ -38,7 +38,7 @@ class MagicThread(threading.Thread):
     def do_upgrade(self):
         if Auto_Upgrade:
             import os
-            cmd = 'cd /home/tianqi/psg; python upgradeEquip.py -t 4; sh ./start_tax.sh'
+            cmd = 'cd /home/tianqi/psg; sh ./upgrade.sh'
             logger.info('run command "%s"'%(cmd))
             os.system(cmd)
 
