@@ -6,7 +6,7 @@ PORT = 8313
 LOGFILE = './log'
 LOGFORMAT = "%(asctime)s %(filename)s [%(levelname)s] %(message)s"
 
-DEFAULT_USER = 'flaresky'
+DEFAULT_USER = 'flaresky5'
 
 USER_INFO = {
             'flaresky' : {
@@ -77,22 +77,9 @@ USER_INFO = {
     }
 
 UID = {
-        'huatuo' : '41978',
-        'xusu' : '44791',
-        'yuanshao' : '44918',
-        'zangfei' : '47845',
-        'lvbu' : '49088',
-        'sunsangxiang' : '46227',
-        'guanping' : '41546',
-        'caiyan' : '40991',
-        'zaoyun' : '50107',
-        'jiangwei' : '50497',
-        'guanyu' : '50630',
-        'zuge' : '51181',
-        'mateng' : '51475',
-        'jiayu' : '51934',
-        'liubang' : '52474',
-        'hanxin' : '52491',
+    'liqing' : '52688',
+    'liyong' : '53050',
+    'huaxiong' : '53053',
 }
 
 PEOPLE_ID = {
@@ -182,19 +169,19 @@ KEJI = {
         'tousi' : '214',
 }
 KEJI_LIST = [
-        ('jiwen', 2),
+        #('jiwen', 2),
+        ('cangse', 5),
+        ('yanyue', 5),
         ('pg', 1),
         ('pf', 1),
-        ('zf', 1),
-        ('hudun', 2),
-        ('zg', 1),
-        ('ff', 1),
-        ('lingqi', 2),
         ('bingfu', 1),
+        ('zf', 1),
+        #('hudun', 2),
+        #('zg', 1),
+        #('ff', 1),
+        #('lingqi', 2),
         #('yanxing', 5),
         #('cuxing', 5),
-        #('cangse', 5),
-        #('yanyue', 5),
         #('yulin', 5),
         #('fengsi', 5),
 ]
@@ -225,22 +212,22 @@ JIANZHU_LIST = [
         #'zuceng',
         'junji',
         'jiaocang',
-        'jiaocang2',
+        #'jiaocang2',
         'sangdian',
-        'zangfang',
-        'zubicang',
+        #'zangfang',
+        #'zubicang',
+        'yinku',
         'minju1',
         'minju2',  
         'minju3',  
         'minju4',  
         'minju5',  
-        'minju6',  
-        'minju7',  
-        'minju8',  
-        'minju9',  
-        'minju10',  
-        'qianzuang',
-        'yinku',
+        #'minju6',  
+        #'minju7',  
+        #'minju8',  
+        #'minju9',  
+        #'minju10',  
+        #'qianzuang',
 ]
 
 PLANTATION = {
