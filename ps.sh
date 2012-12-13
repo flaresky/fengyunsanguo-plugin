@@ -1,1 +1,1 @@
-ps u|grep -v grep|grep --color=auto python
+ps u|grep -v grep|grep --color=auto /usr/local/bin/python

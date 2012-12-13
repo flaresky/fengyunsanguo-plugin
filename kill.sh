@@ -1,1 +1,1 @@
-pgrep -U `id -u` -f "python.*"$1 |xargs kill -9
+pgrep -U `id -u` -f "/usr/local/bin/python.*"$1 |xargs kill -9
