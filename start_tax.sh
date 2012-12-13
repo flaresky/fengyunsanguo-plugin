@@ -1,1 +1,1 @@
-pgrep -U `id -u` -f "python taxThread.py" || python taxThread.py -x &
+pgrep -U `id -u` -f "/usr/local/bin/python taxThread.py" || /usr/local/bin/python taxThread.py -x &
