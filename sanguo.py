@@ -414,6 +414,25 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def get_jisi_info(self):
+        data = {
+                'op' : 2601,
+            }
+        return self.sendData(data)
+
+    def jisi(self, sid=4):
+        data = {
+                'op' : 2603,
+                'sacrificesId' : int(sid),
+            }
+        return self.sendData(data)
+
+    def get_arena_reward(self):
+        data = {
+                'op' : 2055,
+            }
+        return self.sendData(data)
+
     def sendData(self, data):
         self.login()
         data = self.compose_data(data)
@@ -436,7 +455,7 @@ if __name__ == '__main__':
     stime = sanguo.login()
     #res = sanguo.kuangzan()
     #res = sanguo.zuanpan()
-    res = sanguo.getCityInfo('xinye', '2')
+    #res = sanguo.getCityInfo('xinye', '2')
     #res = sanguo.getYinkuangInfo('xinye', 1)
     #res = sanguo.attackYinkuang(1, 16)
     #res = sanguo.zengfu('xinye', 'yingzi')
@@ -455,6 +474,9 @@ if __name__ == '__main__':
     #res = sanguo.get_hero('zaoyun')
     #print 'magic='+str(res)
     #res = sanguo.touzi(309, 2)
+    #res = sanguo.get_jisi_info()
+    #res = sanguo.jisi()
+    res = sanguo.get_arena_reward()
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())
