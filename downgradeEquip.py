@@ -59,7 +59,7 @@ def parsearg():
     global Delay_Time, Times, Eid
     parser = argparse.ArgumentParser(description='downgrade equip')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay')
-    parser.add_argument('-i', '--equip_id', required=False, type=str, default='579639', help='equip id')
+    parser.add_argument('-i', '--equip_id', required=False, type=str, default='471179', help='equip id')
     parser.add_argument('-t', '--times', required=False, type=int, default=1, help='downgrade times')
     res = parser.parse_args()
     dlist = res.delay.split(':')

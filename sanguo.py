@@ -95,6 +95,7 @@ class Sanguo:
         return res
     
     def training(self, hero, hour=2):
+        self.login()
         logger.info('Traning hero %s for %d hours'%(hero, hour))
         mode = TRAINING_HOUR_TO_MODE[hour]
         data = '\x00\x29\x04\x4f\x00\x25\x7b\x22\x68\x65\x72\x6f\x49\x64\x22\x3a\x22'
@@ -104,6 +105,7 @@ class Sanguo:
         data = data + '\x7d'
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
         return res
     
     def get_hero(self, hero):

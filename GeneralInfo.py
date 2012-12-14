@@ -106,6 +106,9 @@ class GeneralInfo:
     def get_salary_collected(self):
         return int(self.data['userExtend']['salaryCollected'])
 
+    def get_arenaReward(self):
+        return int(self.data['userExtend']['arenaReward'])
+
     def get_userReceiveCaravan(self):
         return int(self.data['userExtend']['userReceiveCaravan'])
 
@@ -171,6 +174,13 @@ class GeneralInfo:
                 res = min(res, int(ut['time']))
         return res
 
+    def get_block_CDTime(self):
+        res = 13409404500
+        for ut in self.data['userTimes']:
+            if ut['type'] == '22':
+                res = min(res, int(ut['time']))
+        return res
+
     def get_jianzu_level_by_jid(self, jid):
         #return int(self.data['userBuildings'][str(jid)]['level'])
         return int(self.building_dict[str(jid)]['level'])
@@ -198,6 +208,7 @@ class GeneralInfo:
         print '\tFree Appoint Remain: %d'%(self.get_freeappoint_num())
         print '\tTurntable Remain: %d'%(self.get_turntable_time())
         print '\tSalary Remain: %d'%(1-self.get_salary_collected())
+        print '\tArenaReward Remain: %d'%(1-self.get_arenaReward())
         print '\tReceiveCaravan: %d'%(self.get_userReceiveCaravan())
         print '\tServerTime: %s'%(util.format_time(self.get_serverTime()))
         print '\tNext Jianzhu CD Time: %s'%(util.format_time(self.get_next_CDTime()))
@@ -208,6 +219,7 @@ class GeneralInfo:
         print '\tWeipai CD Time: %s'%(util.format_time(self.get_weipai_CDTime()))
         print '\tZhuangbei CD Time: %s'%(util.format_time(self.get_zuangbei_CDTime()))
         print '\tTouzi CD Time: %s'%(util.format_time(self.get_touzi_CDTime()))
+        print '\tBlock CD Time: %s'%(util.format_time(self.get_block_CDTime()))
 
 if __name__ == '__main__':
     gi = GeneralInfo()
