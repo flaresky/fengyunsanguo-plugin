@@ -265,12 +265,12 @@ JIANZHU = {
 }
 JIANZHU_LIST = [
         #'zuceng',
-        'junji',
-        'jiaocang',
-        'jiaocang2',
-        'sangdian',
+        #'junji',
+        #'jiaocang',
+        #'jiaocang2',
+        #'sangdian',
         'zangfang',
-        'zubicang',
+        'yinku',
         'minju1',
         'minju2',  
         'minju3',  
@@ -281,8 +281,8 @@ JIANZHU_LIST = [
         'minju8',  
         'minju9',  
         'minju10',  
+        'zubicang',
         'qianzuang',
-        'yinku',
 ]
 
 PLANTATION = {
