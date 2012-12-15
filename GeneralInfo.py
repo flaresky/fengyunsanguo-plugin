@@ -181,6 +181,13 @@ class GeneralInfo:
                 res = min(res, int(ut['time']))
         return res
 
+    def get_husong_suaxin_CDTime(self):
+        res = 13409404500
+        for ut in self.data['userTimes']:
+            if ut['type'] == '23':
+                res = min(res, int(ut['time']))
+        return res
+
     def get_jianzu_level_by_jid(self, jid):
         #return int(self.data['userBuildings'][str(jid)]['level'])
         return int(self.building_dict[str(jid)]['level'])

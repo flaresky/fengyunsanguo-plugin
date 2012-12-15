@@ -433,6 +433,25 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def husong_suaxin(self):
+        data = {
+                'op' : 2703,
+            }
+        return self.sendData(data)
+
+    def husong_list(self):
+        data = {
+                'op' : 2701,
+            }
+        return self.sendData(data)
+
+    def lanjie(self, convoyId):
+        data = {
+                'op' : 2707,
+                'convoyId' : str(convoyId)
+            }
+        return self.sendData(data)
+
     def sendData(self, data):
         self.login()
         data = self.compose_data(data)
@@ -476,7 +495,9 @@ if __name__ == '__main__':
     #res = sanguo.touzi(309, 2)
     #res = sanguo.get_jisi_info()
     #res = sanguo.jisi()
-    res = sanguo.get_arena_reward()
+    #res = sanguo.husong_suaxin()
+    res = sanguo.husong_list()
+    #res = sanguo.get_arena_reward()
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())
