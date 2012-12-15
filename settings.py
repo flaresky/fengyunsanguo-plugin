@@ -100,6 +100,7 @@ UID = {
         'huatuo' : '41978',
         'xusu' : '44791',
         'yuanshao' : '44918',
+        'yuansu' : '45731',
         'zangfei' : '47845',
         'lvbu' : '49088',
         'sunsangxiang' : '46227',
