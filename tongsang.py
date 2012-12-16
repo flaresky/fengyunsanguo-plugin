@@ -6,15 +6,7 @@ import Logger
 logger = Logger.getLogger()
 
 users = [
-        #'jianjianbiaoxie',
         'suidaran',
-        'zilong',
-        'wood',
-        'yufei',
-        #'nihongxiuse',
-        #'vmao',
-        #'wangdaiman',
-        #'daofeiwang',
 ]
 
 def tongsang(uname):

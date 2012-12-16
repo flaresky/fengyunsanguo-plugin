@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 #encoding: utf-8
 from sanguo import Sanguo
 import time
