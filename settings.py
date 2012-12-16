@@ -248,10 +248,10 @@ JIANZHU = {
 }
 JIANZHU_LIST = [
         #'zuceng',
-        #'junji',
-        #'jiaocang',
-        #'jiaocang2',
-        #'sangdian',
+        'junji',
+        'jiaocang',
+        'jiaocang2',
+        'sangdian',
         'zangfang',
         'yinku',
         'minju1',
