@@ -82,12 +82,14 @@ class LanjieThread(threading.Thread):
 
     def find_lanjie_target(self, viewlist, servertime):
         min_reward = 36
+        min_beautyId = 5
         for view in viewlist:
             isnpc = int(view['isNPC'])
             reward = int(view['blockReward'])
+            beautyId = int(view['beautyId'])
             startTime = int(view['startTime'])
             endTime = int(view['endTime'])
-            if isnpc == 1 and reward >= min_reward and startTime <= servertime and servertime <= endTime:
+            if isnpc == 1 and beautyId >= min_beautyId and reward >= min_reward and startTime <= servertime and servertime <= endTime:
                 #print json.dumps(view, sort_keys = False, indent = 4)
                 logger.info('Will lanjie %s'%(view['userName']))
                 return view['id'] 
@@ -111,11 +113,14 @@ class LanjieThread(threading.Thread):
 
                 # get suaxin cd
                 gi = GeneralInfo()
-                lanjiecd = gi.get_husong_suaxin_CDTime()
+                lanjiecd = max(
+                                gi.get_husong_suaxin_CDTime(),
+                                gi.get_block_CDTime()
+                              )
                 if lanjiecd <> 0:
                     sp = lanjiecd - gi.get_serverTime() + 1
                     sp = max(sp , 0)
-                    logger.info('sleep husong cd, will start at %s'%(util.next_time(sp)))
+                    logger.info('sleep cd, will start at %s'%(util.next_time(sp)))
                     time.sleep(sp)
                 else:
                     time.sleep(2)
@@ -126,7 +131,7 @@ class LanjieThread(threading.Thread):
                 time.sleep(2)
             except:
                 logger.error(traceback.format_exc())
-                time.sleep(200)
+                time.sleep(1200)
 
 def parsearg():
     global Delay_Time, Times, People_List
