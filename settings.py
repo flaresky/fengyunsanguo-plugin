@@ -100,6 +100,7 @@ UID = {
         'huatuo' : '41978',
         'xusu' : '44791',
         'yuanshao' : '44918',
+        'yuansu' : '45731',
         'zangfei' : '47845',
         'lvbu' : '49088',
         'sunsangxiang' : '46227',
@@ -247,12 +248,12 @@ JIANZHU = {
 }
 JIANZHU_LIST = [
         #'zuceng',
-        'junji',
-        'jiaocang',
-        'jiaocang2',
-        'sangdian',
+        #'junji',
+        #'jiaocang',
+        #'jiaocang2',
+        #'sangdian',
         'zangfang',
-        'zubicang',
+        'yinku',
         'minju1',
         'minju2',  
         'minju3',  
@@ -263,8 +264,8 @@ JIANZHU_LIST = [
         'minju8',  
         'minju9',  
         'minju10',  
+        'zubicang',
         'qianzuang',
-        'yinku',
 ]
 
 PLANTATION = {
