@@ -41,7 +41,6 @@ def main():
     logger.info('tongsang suc list %s'%(unicode(suc_list)))
     if len(fail_list) > 0:
         msg = 'tongsang %s failed'%(unicode(fail_list))
-        util.notify(msg)
 
 
 if __name__ == '__main__':
