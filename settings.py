@@ -115,6 +115,8 @@ UID = {
         'liubang' : '52474',
         'hanxin' : '52491',
         'mengtian' : '53104',
+        'wangjian' : '53531',
+        'qsh' : '53597',
 }
 
 PEOPLE_ID = {
