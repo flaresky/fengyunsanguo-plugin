@@ -496,7 +496,7 @@ if __name__ == '__main__':
     #res = sanguo.get_jisi_info()
     #res = sanguo.jisi()
     #res = sanguo.husong_suaxin()
-    res = sanguo.husong_list()
+    #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
