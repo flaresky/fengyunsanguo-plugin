@@ -69,7 +69,8 @@ class TouziThread(threading.Thread):
                         continue
                     elif msg == 'in invest CD':
                         continue
-                    return
+                    time.sleep(3600)
+                    continue
                 times += 1
                 logger.info('Succeed touzi %d times'%(times))
             except:
