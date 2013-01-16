@@ -6,7 +6,7 @@ PORT = 8313
 LOGFILE = './log'
 LOGFORMAT = "%(asctime)s %(filename)s [%(levelname)s] %(message)s"
 
-DEFAULT_USER = 'xiaojianzi'
+DEFAULT_USER = 'casaobao'
 
 USER_INFO = {
             'flaresky' : {
@@ -282,8 +282,8 @@ JIANZHU_LIST = [
         #'jiaocang',
         #'jiaocang2',
         #'sangdian',
-        'zangfang',
         'yinku',
+        'zangfang',
         'minju1',
         'minju2',  
         'minju3',  
