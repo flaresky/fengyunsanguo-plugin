@@ -7,5 +7,5 @@
 
 16 2 * * * cd ~/psg; /usr/local/bin/python tongsang.py
 17 * * * * cd ~/psg; sh restart_tax.sh
-28 * * * * cd ~/psg; sh restart_touzi.sh
+28 */2 * * * cd ~/psg; sh restart_touzi.sh
 23 */4 * * * cd ~/psg; /usr/local/bin/python qiangzengThread.py -t 2
