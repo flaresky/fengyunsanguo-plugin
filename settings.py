@@ -305,7 +305,7 @@ JIANZHU_LIST = [
         'minju9',  
         'minju10',  
         'zubicang',
-        'qianzuang',
+        #'qianzuang',
 ]
 
 PLANTATION = {
