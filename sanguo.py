@@ -95,6 +95,7 @@ class Sanguo:
         return res
     
     def training(self, hero, hour=2):
+        self.login()
         logger.info('Traning hero %s for %d hours'%(hero, hour))
         mode = TRAINING_HOUR_TO_MODE[hour]
         data = '\x00\x29\x04\x4f\x00\x25\x7b\x22\x68\x65\x72\x6f\x49\x64\x22\x3a\x22'
@@ -104,6 +105,7 @@ class Sanguo:
         data = data + '\x7d'
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
         return res
     
     def get_hero(self, hero):
@@ -235,6 +237,20 @@ class Sanguo:
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
         res = self.decode(res)
+        return res
+
+    def getCityInfo(self, city_id, zoneid):
+        self.login()
+        data = {
+                'cityId' : str(CITY_ID[city_id]),
+                'zoneId' : int(zoneid),
+                'op' : 601,
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        logger.info('getCityInfo CITY_ID=%s zoneid=%s'%(city_id, str(zoneid)))
         return res
 
     def getYinkuangInfo(self, city_id, zoneid):
@@ -398,6 +414,44 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def get_jisi_info(self):
+        data = {
+                'op' : 2601,
+            }
+        return self.sendData(data)
+
+    def jisi(self, sid=4):
+        data = {
+                'op' : 2603,
+                'sacrificesId' : int(sid),
+            }
+        return self.sendData(data)
+
+    def get_arena_reward(self):
+        data = {
+                'op' : 2055,
+            }
+        return self.sendData(data)
+
+    def husong_suaxin(self):
+        data = {
+                'op' : 2703,
+            }
+        return self.sendData(data)
+
+    def husong_list(self):
+        data = {
+                'op' : 2701,
+            }
+        return self.sendData(data)
+
+    def lanjie(self, convoyId):
+        data = {
+                'op' : 2707,
+                'convoyId' : str(convoyId)
+            }
+        return self.sendData(data)
+
     def sendData(self, data):
         self.login()
         data = self.compose_data(data)
@@ -420,9 +474,9 @@ if __name__ == '__main__':
     stime = sanguo.login()
     #res = sanguo.kuangzan()
     #res = sanguo.zuanpan()
-    #res = sanguo.getCityInfo('xinye', '5')
+    #res = sanguo.getCityInfo('xinye', '2')
     #res = sanguo.getYinkuangInfo('xinye', 1)
-    res = sanguo.attackYinkuang(1, 16)
+    #res = sanguo.attackYinkuang(1, 16)
     #res = sanguo.zengfu('xinye', 'yingzi')
     #stime = sanguo.login()
     #res = sanguo.tongsang('jianjianbiaoxie')
@@ -439,6 +493,11 @@ if __name__ == '__main__':
     #res = sanguo.get_hero('zaoyun')
     #print 'magic='+str(res)
     #res = sanguo.touzi(309, 2)
+    #res = sanguo.get_jisi_info()
+    #res = sanguo.jisi()
+    #res = sanguo.husong_suaxin()
+    #res = sanguo.husong_list()
+    #res = sanguo.get_arena_reward()
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())

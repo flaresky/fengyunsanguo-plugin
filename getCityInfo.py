@@ -55,7 +55,7 @@ def parsearg():
     global City_Id, Zone_Id
     parser = argparse.ArgumentParser(description='upgrade keji')
     parser.add_argument('-c', '--cityid', required=False, type=str, default='xinye', help='city name')
-    parser.add_argument('-z', '--zoneid', required=False, type=str, default='5', help='zone id')
+    parser.add_argument('-z', '--zoneid', required=False, type=str, default='2', help='zone id')
     res = parser.parse_args()
     City_Id = res.cityid
     Zone_Id = res.zoneid

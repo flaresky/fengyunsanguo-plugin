@@ -19,8 +19,11 @@ def next_time(delay_sec):
 def format_time(sec):
     if int(sec) == 0:
         return '0'
-    dt = datetime.datetime.fromtimestamp(float(sec))
-    return dt.strftime('%m-%d %H:%M:%S')
+    try:
+        dt = datetime.datetime.fromtimestamp(float(sec))
+        return dt.strftime('%m-%d %H:%M:%S')
+    except:
+        return str(sec)
 
 def get_next_refresh_time(Server_Time):
     Server_Time = int(Server_Time)
