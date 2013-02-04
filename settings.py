@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 #encoding: utf-8
 HOST = '220.181.83.18'
 PORT = 8313
@@ -310,7 +310,7 @@ JIANZHU_LIST = [
         'minju9',  
         'minju10',  
         'zubicang',
-        'qianzuang',
+        #'qianzuang',
 ]
 
 PLANTATION = {
