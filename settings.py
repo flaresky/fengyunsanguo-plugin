@@ -6,7 +6,7 @@ PORT = 8313
 LOGFILE = './log'
 LOGFORMAT = "%(asctime)s %(filename)s [%(levelname)s] %(message)s"
 
-DEFAULT_USER = 'xiaojianzi'
+DEFAULT_USER = 'flaresky'
 
 USER_INFO = {
             'flaresky' : {
@@ -127,6 +127,7 @@ UID = {
         'mengtian' : '53104',
         'wangjian' : '53531',
         'qsh' : '53597',
+        'baiqi' : '53664',
 }
 
 PEOPLE_ID = {
