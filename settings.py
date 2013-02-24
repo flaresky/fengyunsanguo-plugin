@@ -231,6 +231,8 @@ KEJI_LIST = [
         ('ff', 1),
         ('lingqi', 2),
         ('bingfu', 1),
+        ('tousi', 2),
+        ('fg', 1),
         #('yanxing', 5),
         #('cuxing', 5),
         #('cangse', 5),

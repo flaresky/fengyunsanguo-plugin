@@ -1,9 +1,10 @@
 cd /home/tianqi/psg
-#python upgradeEquip.py -i 809359 -t 1 #huangfu
-#python upgradeEquip.py -i 398152 -t 2 #zifu1
+#python upgradeEquip.py -i 398152 -t 4 #zifu1
 #python huodongThread.py -g
-python upgradeEquip.py -i 1274986 -t 2 #hongpi2
+python upgradeEquip.py -i 1383220 -t 4 #hongpi3
+#python oneTimePerDay.py
+sh ./start_tax.sh
+python upgradeEquip.py -d 20 -i 1383220 -t 4 #hongpi3
+#python upgradeEquip.py -d 20 -i 398152 -t 4 #zifu1
 #sh ./start_tax.sh
-#python upgradeEquip.py -d 25 -i 1274986 -t 4 #hongpi2
-#python upgradeEquip.py -d 15 -i 809359 -t 1 #huangfu
 sh ./kill.sh magicThread.py
