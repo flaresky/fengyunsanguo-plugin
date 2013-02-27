@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 #encoding: utf-8
 HOST = '220.181.83.18'
 PORT = 8313
@@ -284,6 +284,7 @@ JIANZHU = {
         'minju9' : '122',  
         'minju10' : '123',  
 }
+JIANZHU_LIST = [
         #'jiaocang',
         #'sangdian',
         #'junji',
@@ -297,7 +298,6 @@ JIANZHU = {
         #'sangdian',
         'yinku',
         'zangfang',
->>>>>>> a89995f3f2be34a6d6e4fa16976598fef5f3a2a8
         'minju1',
         'minju2',  
         'minju3',  
