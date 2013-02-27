@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 #encoding: utf-8
 import threading
 from sanguo import Sanguo
