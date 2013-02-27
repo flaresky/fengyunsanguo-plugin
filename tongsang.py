@@ -6,15 +6,7 @@ import Logger
 logger = Logger.getLogger()
 
 users = [
-        #'jianjianbiaoxie',
-        'wangcencen',
-        #'nihongxiuse',
-        'jbvcduj',#120
-        #'vmao',
-        #'wangdaiman',
-        #'daofeiwang',
-        'senniu',
-        'bohe',
+        'suidaran',
 ]
 
 def tongsang(uname):
@@ -47,7 +39,7 @@ def main():
     logger.info('tongsang suc list %s'%(unicode(suc_list)))
     if len(fail_list) > 0:
         msg = 'tongsang %s failed'%(unicode(fail_list))
-        util.notify(msg)
+        #util.notify(msg)
 
 
 if __name__ == '__main__':
