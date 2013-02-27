@@ -5,6 +5,7 @@ from settings import *
 import Logger
 import zlib
 import json
+import time
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -445,6 +446,17 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def husong(self):
+        data = {
+                'op' : 2705,
+            }
+        self.sendData(data)
+        time.sleep(0.5)
+        data = {
+                'op' : 2713,
+            }
+        return self.sendData(data, False)
+
     def lanjie(self, convoyId):
         data = {
                 'op' : 2707,
@@ -452,8 +464,9 @@ class Sanguo:
             }
         return self.sendData(data)
 
-    def sendData(self, data):
-        self.login()
+    def sendData(self, data, login=True):
+        if login:
+            self.login()
         data = self.compose_data(data)
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
@@ -498,6 +511,7 @@ if __name__ == '__main__':
     #res = sanguo.husong_suaxin()
     #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
+    res = sanguo.husong()
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())
