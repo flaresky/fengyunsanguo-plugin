@@ -10,12 +10,19 @@ import sys
 import traceback
 from settings import *
 from HeroInfo import HeroInfo
+import traceback
 
 logger = Logger.getLogger()
 
 Delay_Time = 0
 Max_Level = 0
 Hero_List = []
+
+def get_time_by_level(level):
+    try:
+        return LEVEL_EXP_MAP[level]
+    except:
+        return 0
 
 class TrainingThread(threading.Thread):
     def __init__(self):
@@ -31,13 +38,16 @@ class TrainingThread(threading.Thread):
                 sanguo.login()
                 data = sanguo.training(hero)
                 sanguo.close()
-                if len(data) < 150:
-                    logger.error('Training failed. data len %d'%(len(data)))
+                if not data:
+                    logger.error('Training failed.')
                     raise Exception()
+                if data.has_key('exception'):
+                    logger.error('Training got exception: ' + data['exception']['message'])
                 else:
                     logger.info('Training %s succeed. data len %d'%(hero, len(data)))
-                return
+                return data
             except:
+                #logger.error(traceback.format_exc())
                 logger.info('do_training %s failed, will sleep %d seconds'%(hero, t*2))
                 time.sleep(t*2)
                 t += 1
@@ -70,17 +80,31 @@ class TrainingThread(threading.Thread):
                     max_level = Max_Level
                     if max_level <= 0 :
                         max_level = next_rebirth_level
-                    logger.info('Hero %s current level %d, max level %d'%(name, level, max_level))
                     if level >= int(hi.get_maxLevel_by_id(hid)):
-                        msg = 'Hero %s already reach maxLevel %d'%(name, level)
+                        msg = 'Hero %s already reach maxLevel %d, will exit'%(name, level)
                         logger.info(msg)
                         util.notify(msg)
                         return
                     if level >= max_level:
-                        msg = 'Hero %s already reach maxLevel %d'%(name, level)
+                        msg = 'Hero %s already reach maxLevel %d, will exit'%(name, level)
                         logger.info(msg)
                         util.notify(msg)
                         return
+                    else:
+                        total_exp = 0
+                        for l in range(level, max_level):
+                            total_exp += get_time_by_level(l)
+                        total_exp -= hi.calc_cur_exp_by_id(hid)
+                        exp_speed = hi.get_exp_speed_by_id(hid)
+                        t = total_exp / float(exp_speed)
+                        msg = 'Hero %s current level %d, max level %d, '%(name, level, max_level)
+                        if t > 24: 
+                            d = int(t / 24) 
+                            h = t - 24 * d 
+                            msg = msg + 'still need %d days %.1f hours'%(d, h)
+                        else:
+                            msg = msg + 'still need %.1f hours'%(t)
+                        logger.info(msg)
                     if level == max_level - 1:
                         if trainingEndTime > nextUpgrade:
                             logger.info('Hero %s will reach level %d in the end of this round'%(name, max_level))

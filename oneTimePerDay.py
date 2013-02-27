@@ -30,7 +30,28 @@ def zuanpan():
     zp = ZuanpanThread()
     zp.do_zuanpan()
 
+def get_arena_reward():
+    retry = 10
+    t = 1
+    while t <= retry:
+        try:
+            sanguo = Sanguo()
+            sanguo.login()
+            data = sanguo.get_arena_reward()
+            sanguo.close()
+            if not data:
+                logger.error('get_arena_reward failed')
+                raise Exception()
+            logger.info('get_arena_reward succeed')
+            return data
+        except:
+            logger.info('get_arena_reward failed, will sleep %d seconds'%(t*2))
+            time.sleep(t*2)
+            t += 1
+
 if __name__ == '__main__':
     salary()
     time.sleep(2)
     zuanpan()
+    time.sleep(2)
+    get_arena_reward()

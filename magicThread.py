@@ -1,4 +1,4 @@
-﻿#!/usr/local/bin/python
+﻿#!/usr/bin/python
 import threading
 from sanguo import Sanguo
 import time
@@ -38,7 +38,7 @@ class MagicThread(threading.Thread):
     def do_upgrade(self):
         if Auto_Upgrade:
             import os
-            cmd = 'cd /home/tianqi/psg; python upgradeEquip.py -i 749122 -g; sh ./start_tax.sh'
+            cmd = 'cd /home/tianqi/psg; sh ./upgrade.sh'
             logger.info('run command "%s"'%(cmd))
             os.system(cmd)
 
