@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #encoding: utf-8
-HOST = '220.181.83.18'
+HOST = '42.62.23.18'
 PORT = 8313
 
 LOGFILE = './log'
@@ -160,6 +160,7 @@ UID = {
         'mengtian' : '53104',
         'wangjian' : '53531',
         'qsh' : '53597',
+        'baiqi' : '53664',
 }
 
 PEOPLE_ID = {
@@ -261,6 +262,8 @@ KEJI_LIST = [
         ('ff', 1),
         ('lingqi', 2),
         ('bingfu', 1),
+        ('tousi', 2),
+        ('fg', 1),
         #('yanxing', 5),
         #('cuxing', 5),
         #('cangse', 5),
