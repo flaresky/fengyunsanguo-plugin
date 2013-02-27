@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 #encoding: utf-8
 import threading
 from sanguo import Sanguo
@@ -60,7 +60,7 @@ class UpgradeThread(threading.Thread):
             ei = EquipInfo()
             magic = ei.get_magic_value()
             logger.info('magic is %d'%(magic))
-            if magic > 71:
+            if magic > 77:
                 goldnum = ei.get_magic_needgold()
                 res = self.do_upgrade(Eid, magic)
                 self.do_degrade(Eid)

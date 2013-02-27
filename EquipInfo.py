@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 #encoding: utf-8
 from sanguo import Sanguo
 import time
@@ -89,6 +89,9 @@ class EquipInfo:
     def get_level_by_id(self, eid):
         return self.eid_dict[eid]['userEquip']['level']
 
+    def get_starLevel_by_id(self, eid):
+        return self.eid_dict[eid]['userEquip']['starLevel']
+
     def get_heroName_by_id(self, eid):
         return self.eid_dict[eid]['userEquip']['heroName']
 
@@ -123,7 +126,10 @@ class EquipInfo:
                                         self.Type_Dict[self.get_type_by_id(eid)],
                                         self.get_upValue_by_id(eid),
                                         )
-            print '\t\tLevel: %s'%(self.get_level_by_id(eid))
+            if int(self.get_starLevel_by_id(eid)) > 0:
+                print '\t\tLevel: %s\tStart: %s'%(self.get_level_by_id(eid), self.get_starLevel_by_id(eid))
+            else:
+                print '\t\tLevel: %s'%(self.get_level_by_id(eid))
             print '\t\tValue: %s'%(self.get_effectValue_by_id(eid))
             print '\t\tNeedCoin: %s'%(self.get_needCoin_by_id(eid))
             if self.get_heroName_by_id(eid):
