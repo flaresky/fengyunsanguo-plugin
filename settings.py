@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #encoding: utf-8
-HOST = '220.181.83.18'
+HOST = '42.62.23.18'
 PORT = 8313
 
 LOGFILE = './log'
@@ -140,14 +140,6 @@ USER_INFO = {
     }
 
 UID = {
-        'liqing' : '52685',
-        'liyong' : '52794',
-        'huaxiong' : '52797',
-        'guanping' : '52834',
-        'caiyan' : '52851',
-        'xusu' : '52855',
-        'yuanshao' : '52886',
-        'yuansu' : '52900',
 }
 
 PEOPLE_ID = {
@@ -247,10 +239,15 @@ KEJI = {
 KEJI_LIST = [
         #('jiwen', 2),
         ('pg', 1),
-        #('hudun', 2),
-        #('zg', 1),
-        #('ff', 1),
-        #('lingqi', 2),
+        ('pf', 1),
+        ('zf', 1),
+        ('hudun', 2),
+        ('zg', 1),
+        ('ff', 1),
+        ('lingqi', 2),
+        ('bingfu', 1),
+        ('tousi', 2),
+        ('fg', 1),
         #('yanxing', 5),
         #('cuxing', 5),
         ('cangse', 5),
