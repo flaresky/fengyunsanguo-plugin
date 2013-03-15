@@ -1,1 +1,1 @@
-pgrep -U `id -u` -f "/usr/local/bin/python magicThread.py" || /usr/local/bin/python magicThread.py &
+pgrep -U `id -u` -f "python magicThread.py" || python magicThread.py -u -m 95 &
