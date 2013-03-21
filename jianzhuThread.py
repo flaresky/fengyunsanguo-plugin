@@ -87,7 +87,7 @@ class JianzhuThread(threading.Thread):
                     logger.info('I will send notify at server time: ' + util.next_time(gi.get_next_CDTime()-gi.get_serverTime()))
                     time.sleep(max(0, gi.get_next_CDTime() - gi.get_serverTime()))
                     logger.info('All jianzu has upgraded to max level, will exit')
-                    util.notify('All jianzu has upgraded to max level')
+                    #util.notify('All jianzu has upgraded to max level')
                     break
                 if next_cd > stime:
                     sp = next_cd - stime + 1
