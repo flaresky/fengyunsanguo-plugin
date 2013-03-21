@@ -295,7 +295,7 @@ JIANZHU = {
         'minju10' : '123',  
 }
 JIANZHU_LIST = [
-        #'zuceng',
+        'zuceng',
         #'junji',
         #'jiaocang',
         #'jiaocang2',
