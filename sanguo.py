@@ -342,6 +342,12 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def attackBoss(self):
+        data = {
+                'op' : 2907,
+            }
+        return self.sendData(data)
+
     def getKejiInfo(self):
         self.login()
         data = '\x00\x0f\x04\x6b\x00\x0b\x7b\x22\x6f\x70\x22\x3a\x31\x31\x33\x31\x7d'

@@ -134,6 +134,8 @@ UID = {
         'qsh' : '53597',
         'baiqi' : '53664',
         'wangben' : '54258',
+        'guigu' : '54379',
+        'xisi' : '54432',
 }
 
 PEOPLE_ID = {
