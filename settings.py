@@ -133,6 +133,7 @@ UID = {
         'wangjian' : '53531',
         'qsh' : '53597',
         'baiqi' : '53664',
+        'wangben' : '54258',
 }
 
 PEOPLE_ID = {
@@ -172,6 +173,8 @@ ARMY_ID = {
 NPC_ID = {
         'huangjia80' : 1317,
         'xiangyuhuangjia' : 1427,
+        'qingjia' : 1930,
+        'goujian' : 1939,
 }
 
 CITY_ID = {
@@ -222,7 +225,6 @@ KEJI = {
         'tousi' : '214',
 }
 KEJI_LIST = [
-        ('jiwen', 2),
         ('pg', 1),
         ('pf', 1),
         ('zf', 1),
@@ -231,8 +233,9 @@ KEJI_LIST = [
         ('ff', 1),
         ('lingqi', 2),
         ('bingfu', 1),
-        ('tousi', 2),
         ('fg', 1),
+        ('jiwen', 2),
+        ('tousi', 2),
         #('yanxing', 5),
         #('cuxing', 5),
         #('cangse', 5),
@@ -265,10 +268,10 @@ JIANZHU = {
 }
 JIANZHU_LIST = [
         #'zuceng',
+        'sangdian',
         'junji',
         'jiaocang',
         'jiaocang2',
-        'sangdian',
         'zangfang',
         'zubicang',
         'minju1',
@@ -410,4 +413,10 @@ LEVEL_EXP_MAP = {
         117 : 1548000,
         118 : 1584000,
         119 : 1620000,
+        120 : 1656000,
+        121 : 1692000,
+        122 : 1728000,
+        123 : 1764000,
+        124 : 1800000,
+        125 : 1836000,
 }

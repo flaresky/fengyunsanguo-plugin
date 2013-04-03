@@ -39,6 +39,12 @@ def get_next_refresh_time(Server_Time):
     # 12:30
     elif off_seconds < 45000:
         res = zero_time.replace(hour=12, minute=30)
+    # 15:00
+    elif off_seconds < 54000:
+        res = zero_time.replace(hour=15)
+    # 17:00
+    elif off_seconds < 61200:
+        res = zero_time.replace(hour=17)
     # 19:00
     elif off_seconds < 68400:
         res = zero_time.replace(hour=19)

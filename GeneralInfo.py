@@ -188,6 +188,13 @@ class GeneralInfo:
                 res = min(res, int(ut['time']))
         return res
 
+    def get_xiongsou_CDTime(self):
+        res = 13409404500
+        for ut in self.data['userTimes']:
+            if ut['type'] == '24':
+                res = min(res, int(ut['time']))
+        return res
+
     def get_jianzu_level_by_jid(self, jid):
         #return int(self.data['userBuildings'][str(jid)]['level'])
         return int(self.building_dict[str(jid)]['level'])
@@ -227,6 +234,7 @@ class GeneralInfo:
         print '\tZhuangbei CD Time: %s'%(util.format_time(self.get_zuangbei_CDTime()))
         print '\tTouzi CD Time: %s'%(util.format_time(self.get_touzi_CDTime()))
         print '\tBlock CD Time: %s'%(util.format_time(self.get_block_CDTime()))
+        print '\tXiongsou CD Time: %s'%(util.format_time(self.get_xiongsou_CDTime()))
 
 if __name__ == '__main__':
     gi = GeneralInfo()
