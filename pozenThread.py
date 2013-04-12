@@ -108,9 +108,9 @@ class pozenThread(threading.Thread):
         for campaignid in Campaign:
             while True:
                 try:
-                    res = self.get_pozen_info(2)
-                    print json.dumps(res, sort_keys = False, indent = 4)
-                    return
+                    #res = self.get_pozen_info(2)
+                    #print json.dumps(res, sort_keys = False, indent = 4)
+                    #return
                     armyid = self.get_next_id(campaignid)
                     if armyid is None:
                         logger.info('pozen %d finished'%(campaignid))
