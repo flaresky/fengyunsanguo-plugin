@@ -17,6 +17,11 @@ Delay = 0
 Campaign=1
 
 black_list = (102, 208)
+op_config = {
+            115 : 3017,
+            210 : 3017,
+            219 : 3017,
+            }
 
 class pozenThread(threading.Thread):
     def __init__(self):
@@ -79,7 +84,11 @@ class pozenThread(threading.Thread):
             try:
                 sanguo = Sanguo()
                 sanguo.login()
-                data = sanguo.pozen(armyid)
+                data = None
+                if op_config.has_key(armyid):
+                    data = sanguo.pozen(armyid, op_config[armyid])
+                else:
+                    data = sanguo.pozen(armyid)
                 sanguo.close()
                 if not data:
                     logger.error('pozen failed, data None')
@@ -99,6 +108,9 @@ class pozenThread(threading.Thread):
         for campaignid in Campaign:
             while True:
                 try:
+                    res = self.get_pozen_info(2)
+                    print json.dumps(res, sort_keys = False, indent = 4)
+                    return
                     armyid = self.get_next_id(campaignid)
                     if armyid is None:
                         logger.info('pozen %d finished'%(campaignid))

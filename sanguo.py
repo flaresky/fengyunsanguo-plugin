@@ -480,13 +480,13 @@ class Sanguo:
         self.tcpClientSock.send(data)
         time.sleep(2)
         res = self.tcpClientSock.recv(BUFSIZE)
-        #res = self.decode(res)
-        res = util.decode_data(res)
+        res = self.decode(res)
+        #res = util.decode_data(res)
         return res
 
-    def pozen(self, armyid):
+    def pozen(self, armyid, op=3007):
         data = {
-                'op' : 3007,
+                'op' : int(op),
                 'armyId' : int(armyid)
             }
         return self.sendData(data)
@@ -539,8 +539,8 @@ if __name__ == '__main__':
     #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
     #res = sanguo.husong()
-    #res = sanguo.pozen_info(1)
-    res = sanguo.pozen(108)
+    res = sanguo.pozen_info(2)
+    #res = sanguo.pozen(108)
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())
