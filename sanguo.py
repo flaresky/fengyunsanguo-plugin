@@ -7,6 +7,7 @@ import zlib
 import json
 import time
 import sys
+#import util
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -470,6 +471,26 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def pozen_info(self, campaignid):
+        data = {
+                'op' : 3001,
+                'campaignId' : int(campaignid)
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(2)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        #res = self.decode(res)
+        res = util.decode_data(res)
+        return res
+
+    def pozen(self, armyid):
+        data = {
+                'op' : 3007,
+                'armyId' : int(armyid)
+            }
+        return self.sendData(data)
+
     def sendData(self, data, login=True):
         if login:
             self.login()
@@ -517,7 +538,9 @@ if __name__ == '__main__':
     #res = sanguo.husong_suaxin()
     #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
-    res = sanguo.husong()
+    #res = sanguo.husong()
+    #res = sanguo.pozen_info(1)
+    res = sanguo.pozen(108)
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())
