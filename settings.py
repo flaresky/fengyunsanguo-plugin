@@ -136,6 +136,7 @@ UID = {
         'wangben' : '54258',
         'guigu' : '54379',
         'xisi' : '54432',
+        'goujian' : '54496',
 }
 
 PEOPLE_ID = {

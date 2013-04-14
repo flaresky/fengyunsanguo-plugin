@@ -491,6 +491,13 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def zhuanshen(self, hero):
+        data = {
+                'op' : 1139,
+                'heroId' : UID[hero],
+            }
+        return self.sendData(data)
+
     def sendData(self, data, login=True):
         if login:
             self.login()
@@ -539,7 +546,8 @@ if __name__ == '__main__':
     #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
     #res = sanguo.husong()
-    res = sanguo.pozen_info(2)
+    #res = sanguo.pozen_info(2)
+    res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
