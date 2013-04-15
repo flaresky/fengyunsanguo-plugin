@@ -15,6 +15,7 @@ logger = Logger.getLogger()
 Type = None
 Delay = 0
 Campaign=1
+g_previous_armyid = 0
 
 black_list = (102, 208)
 op_config = {
@@ -27,6 +28,24 @@ class pozenThread(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.daemon = False
+
+    def bianzhen(self, keji):
+        retry = 10
+        t = 1 
+        while t <= retry:
+            try:
+                sanguo = Sanguo()
+                sanguo.login()
+                data = sanguo.bianzhen(keji)
+                sanguo.close()
+                if not data:
+                    logger.error('bianzhen failed, data None')
+                    raise Exception()
+                return data
+            except:
+                logger.info('bianzhen failed, will sleep %d seconds'%(t*2))
+                time.sleep(t*2)
+                t += 1
 
     def get_max_level(self, tpe):
         ret = 1
@@ -105,6 +124,8 @@ class pozenThread(threading.Thread):
         if Delay_Time > 0:
             logger.info('I will start pozen at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
+        self.bianzhen('yanxing')
+        time.sleep(2)
         for campaignid in Campaign:
             while True:
                 try:
@@ -115,6 +136,10 @@ class pozenThread(threading.Thread):
                     if armyid is None:
                         logger.info('pozen %d finished'%(campaignid))
                         break
+                    elif armyid == g_previous_armyid:
+                        logger.info('pozen %d falied, %d lose'%(campaignid,  armyid))
+                        return
+                    g_previous_armyid = armyid
                     time.sleep(2)
                     logger.info('pozen army %d'%(armyid))
                     res = self.do_pozen(armyid)

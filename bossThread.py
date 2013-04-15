@@ -21,6 +21,24 @@ class BossThread(threading.Thread):
         threading.Thread.__init__(self)
         self.daemon = False
         self.count = count
+
+    def bianzhen(self, keji):
+        retry = 10
+        t = 1 
+        while t <= retry:
+            try:
+                sanguo = Sanguo()
+                sanguo.login()
+                data = sanguo.bianzhen(keji)
+                sanguo.close()
+                if not data:
+                    logger.error('bianzhen failed, data None')
+                    raise Exception()
+                return data
+            except:
+                logger.info('bianzhen failed, will sleep %d seconds'%(t*2))
+                time.sleep(t*2)
+                t += 1
     
     def do_attack(self):
         retry = 10
@@ -46,12 +64,14 @@ class BossThread(threading.Thread):
         if Delay_Time > 0:
             logger.info('I will start attack at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
+        self.bianzhen('cangse')
+        time.sleep(2)
         times = 0
         while True:
             times += 1
             if times > Times:
                 logger.info('already attack %d times, exit'%(Times))
-                return
+                break
             gi = GeneralInfo()
             cd = gi.get_xiongsou_CDTime()
             stime = gi.get_serverTime()
@@ -66,9 +86,10 @@ class BossThread(threading.Thread):
                 logger.error('Got Exception "%s"'%(res['exception']['message']))
                 if 'beyondMaxSilver' == res['exception']['message']:
                     pass
-                return
+                break
             logger.info('attacked %d times'%(times))
             time.sleep(2)
+        self.bianzhen('yanxing')
 
 def parsearg():
     global Delay_Time, Times
