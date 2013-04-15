@@ -140,12 +140,16 @@ class TrainingThread(threading.Thread):
                             logger.info('Hero %s will reach level %d in the end of this round'%(name, max_level))
                             sp = util.get_sleep_time(nextUpgrade, localTime-serverTime)
                             time.sleep(sp)
-                            msg = 'Hero %s already reach maxLevel %d'%(name, level+1)
-                            logger.info(msg)
-                            util.notify(msg)
-                            tpsp = trainingEndTime - nextUpgrade + 1
                             if Auto_Rebirth:
                                 self.rebirth(Hero_List[i])
+                                msg = 'Hero %s already reach maxLevel %d, do rebirth'%(name, level+1)
+                                logger.info(msg)
+                                util.notify(msg)
+                            else:
+                                msg = 'Hero %s already reach maxLevel %d'%(name, level+1)
+                                logger.info(msg)
+                                util.notify(msg)
+                            tpsp = trainingEndTime - nextUpgrade + 1
                             continue
                     tpsp = trainingEndTime - serverTime + 1
                 except:
