@@ -498,6 +498,14 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def bianzhen(self, keji):
+        data = {
+                'isPvp' : False,
+                'op' : 1155,
+                'formationId' : KEJI[keji],
+            }
+        return self.sendData(data)
+
     def sendData(self, data, login=True):
         if login:
             self.login()
@@ -547,8 +555,9 @@ if __name__ == '__main__':
     #res = sanguo.get_arena_reward()
     #res = sanguo.husong()
     #res = sanguo.pozen_info(2)
-    res = sanguo.zhuanshen('goujian')
+    #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
+    res = sanguo.bianzhen('cangse')
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())

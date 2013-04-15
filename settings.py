@@ -178,6 +178,7 @@ NPC_ID = {
         'xiangyuhuangjia' : 1427,
         'qingjia' : 1930,
         'goujian' : 1939,
+        'mozi' : 2039,
 }
 
 CITY_ID = {
