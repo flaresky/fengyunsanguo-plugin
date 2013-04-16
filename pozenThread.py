@@ -17,7 +17,11 @@ Delay = 0
 Campaign=1
 g_previous_armyid = 0
 
-black_list = (102, 208)
+black_list = (
+                102, 
+                202, 
+                #208
+            )
 op_config = {
             115 : 3017,
             210 : 3017,
@@ -120,6 +124,7 @@ class pozenThread(threading.Thread):
                 t += 1
 
     def run(self):
+        global g_previous_armyid
         logger.info('pozen Thread start, will pozen campaign %s'%(str(Campaign)))
         if Delay_Time > 0:
             logger.info('I will start pozen at ' + util.next_time(Delay_Time))
@@ -150,6 +155,7 @@ class pozenThread(threading.Thread):
                             sp = util.get_sleep_time(gi.get_mobility_CDTime(), gi.get_localTime()-gi.get_serverTime())
                             logger.info('I will sleep for mobility CD to %s'%(util.next_time(sp)))
                             time.sleep(sp)
+                            g_previous_armyid = 0
                             continue
                         return
                     time.sleep(2)
