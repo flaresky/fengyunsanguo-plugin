@@ -34,6 +34,7 @@ class BossThread(threading.Thread):
                 if not data:
                     logger.error('bianzhen failed, data None')
                     raise Exception()
+                logger.info('bianzhen %s succeed'%(keji))
                 return data
             except:
                 logger.info('bianzhen failed, will sleep %d seconds'%(t*2))
