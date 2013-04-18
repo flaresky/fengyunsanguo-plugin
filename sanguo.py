@@ -557,7 +557,7 @@ if __name__ == '__main__':
     #res = sanguo.pozen_info(2)
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
-    res = sanguo.bianzhen('cangse')
+    res = sanguo.bianzhen('yanxing')
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())

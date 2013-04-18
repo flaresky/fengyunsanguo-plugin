@@ -67,12 +67,33 @@ class BossThread(threading.Thread):
             time.sleep(Delay_Time)
         self.bianzhen('cangse')
         time.sleep(2)
+
+        gi = GeneralInfo()
+        start_time = util.get_xiongsou_refresh_time(gi.get_serverTime())
+        ls_diff = gi.get_localTime() - gi.get_serverTime()
+        sp = util.get_sleep_time(start_time, ls_diff) + 1
+        if sp > 0:
+            logger.info('I will sleep till start time, will attack at %s'%(util.next_time(sp)))
+            time.sleep(sp)
+        else:
+            time.sleep(2)
+
         times = 0
         while True:
             times += 1
             if times > Times:
                 logger.info('already attack %d times, exit'%(Times))
                 break
+
+            res = self.do_attack()
+            if res.has_key('exception'):
+                logger.error('Got Exception "%s"'%(res['exception']['message']))
+                if 'attackCoolTime' == res['exception']['message']:
+                    times -= 1
+                else:
+                    break
+            logger.info('attacked %d times'%(times))
+
             gi = GeneralInfo()
             cd = gi.get_xiongsou_CDTime()
             stime = gi.get_serverTime()
@@ -82,14 +103,6 @@ class BossThread(threading.Thread):
                 time.sleep(sp)
             else:
                 time.sleep(2)
-            res = self.do_attack()
-            if res.has_key('exception'):
-                logger.error('Got Exception "%s"'%(res['exception']['message']))
-                if 'beyondMaxSilver' == res['exception']['message']:
-                    pass
-                break
-            logger.info('attacked %d times'%(times))
-            time.sleep(2)
         self.bianzhen('yanxing')
 
 def parsearg():

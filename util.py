@@ -59,6 +59,15 @@ def get_next_refresh_time(Server_Time):
         res = res + datetime.timedelta(days=1)
     return int(time.mktime(res.timetuple())) 
 
+def get_xiongsou_refresh_time(Server_Time):
+    Server_Time = int(Server_Time)
+    last_time = datetime.datetime.fromtimestamp(Server_Time)
+    zero_time = last_time.replace(hour=19, minute=0, second=0)
+    off_seconds = int(Server_Time) - int(time.mktime(zero_time.timetuple()))
+    if off_seconds >= 0:
+        zero_time = zero_time + datetime.timedelta(days=1)
+    return int(time.mktime(zero_time.timetuple())) 
+
 def notify(msg):
     msg = USER_INFO[DEFAULT_USER]['USERNAME'] + ' --- ' + msg
     es = EmailSender()
