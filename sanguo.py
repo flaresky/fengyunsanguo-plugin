@@ -7,6 +7,7 @@ import zlib
 import json
 import time
 import sys
+#import util
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -342,6 +343,12 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def attackBoss(self):
+        data = {
+                'op' : 2907,
+            }
+        return self.sendData(data)
+
     def getKejiInfo(self):
         self.login()
         data = '\x00\x0f\x04\x6b\x00\x0b\x7b\x22\x6f\x70\x22\x3a\x31\x31\x33\x31\x7d'
@@ -464,6 +471,41 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def pozen_info(self, campaignid):
+        data = {
+                'op' : 3001,
+                'campaignId' : int(campaignid)
+            }
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(2)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.decode(res)
+        #res = util.decode_data(res)
+        return res
+
+    def pozen(self, armyid, op=3007):
+        data = {
+                'op' : int(op),
+                'armyId' : int(armyid)
+            }
+        return self.sendData(data)
+
+    def zhuanshen(self, hero):
+        data = {
+                'op' : 1139,
+                'heroId' : UID[hero],
+            }
+        return self.sendData(data)
+
+    def bianzhen(self, keji):
+        data = {
+                'isPvp' : False,
+                'op' : 1155,
+                'formationId' : KEJI[keji],
+            }
+        return self.sendData(data)
+
     def sendData(self, data, login=True):
         if login:
             self.login()
@@ -511,7 +553,11 @@ if __name__ == '__main__':
     #res = sanguo.husong_suaxin()
     #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
-    res = sanguo.husong()
+    #res = sanguo.husong()
+    #res = sanguo.pozen_info(2)
+    #res = sanguo.zhuanshen('goujian')
+    #res = sanguo.pozen(108)
+    res = sanguo.bianzhen('yanxing')
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())

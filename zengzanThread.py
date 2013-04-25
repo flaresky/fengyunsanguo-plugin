@@ -82,7 +82,7 @@ class zengzanThread(threading.Thread):
             #logger.info('%s remain number %d, serverTime: %s'%(Npc_String, remain_times, util.format_time(ni.getServerTime())))
             if remain_times > 0:
                 time.sleep(2)
-                res = self.zengzan(Npc_String, remain_times)
+                res = self.zengzan(Npc_String, remain_times + 100)
                 if res.has_key('exception'):
                     msg = res['exception']['message']
                     logger.info('zengzan exception: %s'%(msg))
@@ -93,6 +93,10 @@ class zengzanThread(threading.Thread):
                         time.sleep(sp)
                         FirstTime = True
                         continue
+                    elif msg == 'waittingOrder':
+                        pass
+                    elif msg == 'lessMobility':
+                        return
                     else:
                         time.sleep(2)
                         FirstTime = True
@@ -106,7 +110,7 @@ def parsearg():
     global Delay_Time, Npc_String
     parser = argparse.ArgumentParser(description='zengzan')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to zengzan')
-    parser.add_argument('-n', '--npc_id', required=False, type=str, default='xiangyuhuangjia', help='npc string')
+    parser.add_argument('-n', '--npc_id', required=False, type=str, default='qingjia', help='npc string')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:

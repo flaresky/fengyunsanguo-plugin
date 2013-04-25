@@ -39,6 +39,12 @@ def get_next_refresh_time(Server_Time):
     # 12:30
     elif off_seconds < 45000:
         res = zero_time.replace(hour=12, minute=30)
+    # 15:00
+    elif off_seconds < 54000:
+        res = zero_time.replace(hour=15)
+    # 17:00
+    elif off_seconds < 61200:
+        res = zero_time.replace(hour=17)
     # 19:00
     elif off_seconds < 68400:
         res = zero_time.replace(hour=19)
@@ -52,6 +58,15 @@ def get_next_refresh_time(Server_Time):
         res = zero_time.replace(hour=5)
         res = res + datetime.timedelta(days=1)
     return int(time.mktime(res.timetuple())) 
+
+def get_xiongsou_refresh_time(Server_Time):
+    Server_Time = int(Server_Time)
+    last_time = datetime.datetime.fromtimestamp(Server_Time)
+    zero_time = last_time.replace(hour=19, minute=0, second=0)
+    off_seconds = int(Server_Time) - int(time.mktime(zero_time.timetuple()))
+    if off_seconds >= 3600:
+        zero_time = zero_time + datetime.timedelta(days=1)
+    return int(time.mktime(zero_time.timetuple())) 
 
 def notify(msg):
     msg = USER_INFO[DEFAULT_USER]['USERNAME'] + ' --- ' + msg
