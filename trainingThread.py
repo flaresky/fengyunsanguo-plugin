@@ -127,8 +127,9 @@ class TrainingThread(threading.Thread):
                             total_exp += get_time_by_level(l)
                         total_exp -= hi.calc_cur_exp_by_id(hid)
                         exp_speed = hi.get_exp_speed_by_id(hid)
+                        army = int(hi.get_currUnit_by_id(hid))
                         t = total_exp / float(exp_speed)
-                        msg = 'Hero %s current level %d, max level %d, '%(name, level, max_level)
+                        msg = 'Hero %s current level %d, army %d, max level %d, '%(name, level, army, max_level)
                         if t > 24: 
                             d = int(t / 24) 
                             h = t - 24 * d 
