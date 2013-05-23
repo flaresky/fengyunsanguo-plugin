@@ -62,7 +62,7 @@ def get_next_refresh_time(Server_Time):
 def get_xiongsou_refresh_time(Server_Time):
     Server_Time = int(Server_Time)
     last_time = datetime.datetime.fromtimestamp(Server_Time)
-    zero_time = last_time.replace(hour=19, minute=0, second=0)
+    zero_time = last_time.replace(hour=11, minute=0, second=0)
     off_seconds = int(Server_Time) - int(time.mktime(zero_time.timetuple()))
     if off_seconds >= 3600:
         zero_time = zero_time + datetime.timedelta(days=1)
