@@ -1,12 +1,27 @@
-#10,50 12 * * * cd ~/psg; python kuangzanThread.py -e
+30 11 * * * cd ~/psg; python kuangzanThread.py -e
+#50 11 * * * cd ~/psg; python soukuangThread.py
+10,50 12 * * * cd ~/psg; python kuangzanThread.py -e
 #30 12 * * * cd ~/psg; python soukuangThread.py
 
-#11 19 * * * cd ~/psg; python soukuangThread.py
-#10 21 * * * cd ~/psg; python soukuangThread.py
-2 4,12,23 * * * cd ~/psg; python oneTimePerDay.py
+#13 5 * * * cd ~/psg; sh start_magic.sh
+2 6 * * * cd ~/psg; python oneTimePerDay.py
 
-16 21 * * * cd ~/psg; python tongsang.py
-17,47 * * * * cd ~/psg; sh restart_tax.sh
-28 */2 * * * cd ~/psg; sh restart_touzi.sh
-23 */3 * * * cd ~/psg; python qiangzengThread.py -t 1
-#25 */2 * * * cd ~/psg; sh restart_jianzhu.sh
+#50 4 * * * cd ~/psg; ./kill.sh weipai
+7 21 * * * cd ~/psg; python tongsang.py
+9 21 * * * cd ~/psg; python lanjieThread.py
+12,25 21 * * * cd ~/psg; python husongThread.py
+11 21 * * * cd ~/psg; python pozenThread.py
+
+#50 19 * * * cd ~/psg; ./kill.sh weipai
+#15 21 * * * cd ~/psg; python weipaiThread.py
+
+0 11 * * * cd ~/psg; python bossThread.py -t 10
+
+#10 21 * * * cd ~/psg; sh start_tax.sh
+
+*/2 * * * * cd ~/psg; sh check_process.sh
+12 */2 * * * cd ~/psg; sh start_tax.sh
+#3 * * * * cd ~/psg; python soukuangThread.py
+
+#13 5 3 * * cd ~/psg; python zengzanThread.py -n goujian
+#50 15 3 * * cd ~/psg; ./kill.sh zengzan
