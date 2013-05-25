@@ -170,7 +170,7 @@ def parsearg():
     parser.add_argument('-e', '--heroes', type=str, nargs='*', default=['xusu', 'yuanshao', 'sunsangxiang'], help='hero list will training')
     parser.add_argument('-l', '--max_level', required=False, type=int, default=0, metavar=81 , help='if hero reach max level, will exit training')
     parser.add_argument('-a', '--auto_rebirth', required=False, action='store_true', help='auto rebirth mode')
-    parser.add_argument('-m', '--hour_mode', type=int, default=2, help='training hour mode')
+    parser.add_argument('-m', '--hour_mode', type=int, default=8, help='training hour mode')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:
