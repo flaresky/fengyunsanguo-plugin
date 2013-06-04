@@ -18,6 +18,7 @@ Delay_Time = 0
 Max_Level = 0
 Hero_List = []
 Auto_Rebirth = False
+Hour = 2
 
 def get_time_by_level(level):
     try:
@@ -60,7 +61,7 @@ class TrainingThread(threading.Thread):
             try:
                 sanguo = Sanguo()
                 sanguo.login()
-                data = sanguo.training(hero)
+                data = sanguo.training(hero, Hour)
                 sanguo.close()
                 if not data:
                     logger.error('Training failed.')
@@ -126,8 +127,9 @@ class TrainingThread(threading.Thread):
                             total_exp += get_time_by_level(l)
                         total_exp -= hi.calc_cur_exp_by_id(hid)
                         exp_speed = hi.get_exp_speed_by_id(hid)
+                        army = int(hi.get_currUnit_by_id(hid))
                         t = total_exp / float(exp_speed)
-                        msg = 'Hero %s current level %d, max level %d, '%(name, level, max_level)
+                        msg = 'Hero %s current level %d, army %d, max level %d, '%(name, level, army, max_level)
                         if t > 24: 
                             d = int(t / 24) 
                             h = t - 24 * d 
@@ -162,12 +164,13 @@ class TrainingThread(threading.Thread):
             time.sleep(max(tpsp, 0))
 
 def parsearg():
-    global Delay_Time, Hero_List, Max_Level, Auto_Rebirth
+    global Delay_Time, Hero_List, Max_Level, Auto_Rebirth, Hour
     parser = argparse.ArgumentParser(description='Training heroes')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to training')
     parser.add_argument('-e', '--heroes', type=str, nargs='*', default=['xusu', 'yuanshao', 'sunsangxiang'], help='hero list will training')
     parser.add_argument('-l', '--max_level', required=False, type=int, default=0, metavar=81 , help='if hero reach max level, will exit training')
     parser.add_argument('-a', '--auto_rebirth', required=False, action='store_true', help='auto rebirth mode')
+    parser.add_argument('-m', '--hour_mode', type=int, default=8, help='training hour mode')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:
@@ -180,6 +183,7 @@ def parsearg():
         logger.error('Hero list error: ' + ' '.join(Hero_List))
         sys.exit()
     Auto_Rebirth = res.auto_rebirth
+    Hour = res.hour_mode
             
 if __name__ == '__main__':
     parsearg()
