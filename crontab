@@ -1,7 +1,7 @@
 30 19 * * * cd /home/tianqi/psg; python kuangzanThread.py -e
-50 19 * * * cd /home/tianqi/psg; python soukuangThread.py
-10,50 20 * * * cd /home/tianqi/psg; python kuangzanThread.py -e
-30 20 * * * cd /home/tianqi/psg; python soukuangThread.py
+#50 19 * * * cd /home/tianqi/psg; python soukuangThread.py
+#10,50 20 * * * cd /home/tianqi/psg; python kuangzanThread.py -e
+#30 20 * * * cd /home/tianqi/psg; python soukuangThread.py
 
 10 5 * * * cd /home/tianqi/psg; python soukuangThread.py
 11 3 * * * cd /home/tianqi/psg; python soukuangThread.py
@@ -12,12 +12,12 @@
 7 5 * * * cd /home/tianqi/psg; python tongsang.py
 9 5 * * * cd /home/tianqi/psg; python lanjieThread.py
 12,25 5 * * * cd /home/tianqi/psg; python husongThread.py
-11 5 * * * cd /home/tianqi/psg; python pozenThread.py
+11 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 2
 
 #50 19 * * * cd /home/tianqi/psg; ./kill.sh weipai
 #15 21 * * * cd /home/tianqi/psg; python weipaiThread.py
 
-0 19 * * * cd /home/tianqi/psg; python bossThread.py -t 10
+57 18 * * * cd /home/tianqi/psg; python bossThread.py -t 10
 
 10 5 * * * cd /home/tianqi/psg; sh start_tax.sh
 #12 */2 * * * cd /home/tianqi/psg; sh start_tax.sh
