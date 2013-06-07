@@ -179,8 +179,9 @@ ARMY_ID = {
 NPC_ID = {
         'huangjia80' : 1317,
         'xiangyuhuangjia' : 1427,
-        'qingjia' : 1930,
+        'goujianjia' : 1930,
         'goujian' : 1939,
+        'yinlongjia' : 2038,
         'mozi' : 2039,
 }
 

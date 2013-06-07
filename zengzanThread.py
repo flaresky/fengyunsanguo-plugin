@@ -110,7 +110,7 @@ def parsearg():
     global Delay_Time, Npc_String
     parser = argparse.ArgumentParser(description='zengzan')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to zengzan')
-    parser.add_argument('-n', '--npc_id', required=False, type=str, default='qingjia', help='npc string')
+    parser.add_argument('-n', '--npc_id', required=False, type=str, default='yinlongjia', help='npc string')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:
