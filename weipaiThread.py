@@ -154,7 +154,7 @@ class weipaiThread(threading.Thread):
                     logger.info('got exception %s, TotalCost %d'%(msg, TotalCost))
                     if msg == 'CDTimeNotCool':
                         gi = GeneralInfo()
-                        sp = gi.get_weipai_CDTime() - gi.get_serverTime()
+                        sp = max(gi.get_weipai_CDTime() - gi.get_serverTime(), 0)
                         logger.info('Next round weipai will start at ' + util.next_time(sp))
                         time.sleep(sp)
                         continue
