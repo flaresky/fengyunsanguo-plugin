@@ -10,7 +10,7 @@
 7 21 * * * cd ~/psg; python tongsang.py
 9 21 * * * cd ~/psg; python lanjieThread.py
 12,25 21 * * * cd ~/psg; python husongThread.py
-11 21 * * * cd ~/psg; python pozenThread.py
+11 21 * * * cd ~/psg; python pozenThread.py -c 2
 
 #50 19 * * * cd ~/psg; ./kill.sh weipai
 #15 21 * * * cd ~/psg; python weipaiThread.py

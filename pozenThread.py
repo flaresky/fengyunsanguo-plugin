@@ -19,8 +19,8 @@ g_previous_armyid = 0
 
 black_list = (
                 102, 
-                202, 
-                #208
+                #202, 
+                208
             )
 op_config = {
             115 : 3017,
