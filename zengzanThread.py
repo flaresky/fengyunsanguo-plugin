@@ -19,6 +19,7 @@ Delay_Time = 0
 Npc_String = None
 Times = 100
 FirstTime = True
+global_times = 0
 
 class zengzanThread(threading.Thread):
     def __init__(self, count=18):
@@ -44,12 +45,17 @@ class zengzanThread(threading.Thread):
                 t += 1
 
     def zengzan(self, nstr, times=1):
+        global global_times
         res = None
         for i in range(times):
+            if global_times >= Times:
+                logger.info('zengzan %d times, exit'%(Times))
+                sys.exit()
             res = self.do_zengzan(nstr)
             if res.has_key('exception'):
                 return res
-            logger.info('zengzan %s succeed'%(nstr))
+            global_times += 1
+            logger.info('zengzan %s %d times'%(nstr, global_times))
             if i < times-1:
                 time.sleep(2)
         return res
@@ -74,7 +80,6 @@ class zengzanThread(threading.Thread):
     def run(self):
         global FirstTime, Times
         logger.info('zengzanThread start')
-        cnt = 0
         if Delay_Time > 0:
             logger.info('I will start zengzan at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
@@ -101,10 +106,7 @@ class zengzanThread(threading.Thread):
                     else:
                         time.sleep(2)
                         FirstTime = True
-                        cnt += 1
                         continue
-                else:
-                    cnt += 1
             nrt = util.get_next_refresh_time(ni.getServerTime())
             sp = util.get_sleep_time(nrt, ni.getLocalTime()-ni.getServerTime()) + 1
             logger.info('I will sleep till time %s'%(util.next_time(sp)))
