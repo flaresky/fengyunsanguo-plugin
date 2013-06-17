@@ -72,10 +72,14 @@ class TaskThread(threading.Thread):
             time.sleep(Delay_Time)
         task_list = self.get_task_list()
         #print json.dumps(task_list['eventInfos'], sort_keys = False, indent = 4)
+        fcount = 0
         for ei in task_list['eventInfos']:
             if ei['isfinish']:
                 time.sleep(2)
                 self.task_reward(ei)
+                fcount += 1
+        if fcount == 0:
+            logger.info('No finish tasks, exit')
 
 def parsearg():
     global Delay_Time, Times, MaxSilverExit
