@@ -477,10 +477,11 @@ class Sanguo:
                 'op' : 3001,
                 'campaignId' : int(campaignid)
             }
+        self.login()
         data = self.compose_data(data)
         self.tcpClientSock.send(data)
         time.sleep(2)
-        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.tcpClientSock.recv(4096)
         res = self.decode(res)
         #res = util.decode_data(res)
         return res
@@ -562,7 +563,7 @@ if __name__ == '__main__':
     #res = sanguo.keji('jiwen')
     #res = sanguo.getNpcInfo('huangjia80')
     #res = sanguo.soukuang('limoges')
-    res = sanguo.task_list()
+    #res = sanguo.task_list()
     #res = sanguo.get_general_info()
     #res = sanguo.getUserInfo('64308127')
     #res = sanguo.upgradeEquip('115863', 56, 0)
@@ -577,7 +578,7 @@ if __name__ == '__main__':
     #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
     #res = sanguo.husong()
-    #res = sanguo.pozen_info(2)
+    res = sanguo.pozen_info(3)
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
     #res = sanguo.bianzhen('yanxing')

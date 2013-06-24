@@ -21,11 +21,14 @@ black_list = (
                 102, 
                 202, 
                 #208
+                301, 
             )
 op_config = {
             115 : 3017,
             210 : 3017,
             219 : 3017,
+            310 : 3017,
+            320 : 3017,
             }
 
 class pozenThread(threading.Thread):
@@ -92,6 +95,8 @@ class pozenThread(threading.Thread):
     def get_next_id(self, campaignid):
         try:
             res = self.get_pozen_info(campaignid)
+            #print json.dumps(res, sort_keys = False, indent = 4)
+            #sys.exit()
             for info in res:
                 if info['status'] == 1:
                     armyid = int(info['armyId'])

@@ -140,6 +140,7 @@ UID = {
         'mozi' : '54525',
         'zangliang' : '54722',
         'xiangyu' : '54744',
+        'liubei' : '55043',
 }
 
 PEOPLE_ID = {
