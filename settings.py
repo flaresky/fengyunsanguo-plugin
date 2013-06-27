@@ -153,6 +153,9 @@ UID = {
 	'weiliao' : '54809',
 	'guigu' : '54886',
 	'xiangyu' : '54888',
+	'xisi' : '54921',
+	'goujian' : '54945',
+	'liubei' : '55039',
 }
 
 PEOPLE_ID = {

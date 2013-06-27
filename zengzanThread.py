@@ -84,8 +84,6 @@ class zengzanThread(threading.Thread):
             logger.info('I will start zengzan at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
         while True:
-            if cnt >= Times:
-                logger.info('reatch %d times, will exit'%(Times))
             ni = self.getNpcInfo()
             remain_times = ni.getNumber()
             if remain_times > 0:
