@@ -508,6 +508,12 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def pvp_baoming(self):
+        data = {
+                'op' : 3301,
+            }
+        return self.sendData(data)
+
     def sendData(self, data, login=True):
         if login:
             self.login()
@@ -578,7 +584,8 @@ if __name__ == '__main__':
     #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
     #res = sanguo.husong()
-    res = sanguo.pozen_info(3)
+    #res = sanguo.pozen_info(3)
+    res = sanguo.pvp_baoming()
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
     #res = sanguo.bianzhen('yanxing')
