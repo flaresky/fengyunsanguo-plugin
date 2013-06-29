@@ -54,6 +54,9 @@ def get_next_refresh_time(Server_Time):
     # 21:30
     elif off_seconds < 77400:
         res = zero_time.replace(hour=21, minute=30)
+    # 22:30
+    elif off_seconds < 81000:
+        res = zero_time.replace(hour=22, minute=30)
     else:
         res = zero_time.replace(hour=5)
         res = res + datetime.timedelta(days=1)

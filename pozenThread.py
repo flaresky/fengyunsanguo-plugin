@@ -20,12 +20,15 @@ g_previous_armyid = 0
 black_list = (
                 102, 
                 #202, 
-                208
+                208,
+                301, 
             )
 op_config = {
             115 : 3017,
             210 : 3017,
             219 : 3017,
+            310 : 3017,
+            320 : 3017,
             }
 
 class pozenThread(threading.Thread):
@@ -92,6 +95,8 @@ class pozenThread(threading.Thread):
     def get_next_id(self, campaignid):
         try:
             res = self.get_pozen_info(campaignid)
+            #print json.dumps(res, sort_keys = False, indent = 4)
+            #sys.exit()
             for info in res:
                 if info['status'] == 1:
                     armyid = int(info['armyId'])
@@ -167,7 +172,7 @@ def parsearg():
     global Delay_Time, Campaign
     parser = argparse.ArgumentParser(description='pozen')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to pozen')
-    parser.add_argument('-c', '--campagins', type=int, nargs='*', default=[1, 2], help='')
+    parser.add_argument('-c', '--campagins', type=int, nargs='*', default=[1,2], help='')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:
