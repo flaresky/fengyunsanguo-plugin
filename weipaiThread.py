@@ -24,7 +24,7 @@ class RoundControl:
         self.repeat_count = 0
 
     def can_continue(self, level):
-        #return True
+        return True
         level = int(level)
         if level > self.last_level:
             self.repeat_count = 0
@@ -193,7 +193,7 @@ def parsearg():
     global Delay_Time, Type, MaxLevel, SellColor
     parser = argparse.ArgumentParser(description='weipai')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to weipai')
-    parser.add_argument('-t', '--type', required=False, type=str, default='ma', help='weipai type')
+    parser.add_argument('-t', '--type', required=False, type=str, default='pi', help='weipai type')
     parser.add_argument('-l', '--max_level', required=False, type=int, default=5, help='got max level will exit')
     parser.add_argument('-s', '--sell_color', required=False, type=int, default=6, help='will sell all color less or equal')
     res = parser.parse_args()

@@ -153,6 +153,10 @@ UID = {
 	'zangliang' : '54648',
 	'xisi' : '54696',
 	'xiangyu' : '54742',
+	'diaocan' : '54856',
+	'mozi' : '54961',
+	'liubei' : '55058',
+	'qinsihuang' : '55209',
 }
 
 PEOPLE_ID = {
