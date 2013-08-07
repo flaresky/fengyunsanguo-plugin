@@ -145,6 +145,7 @@ UID = {
 	'zaoyun' : '49041',
 	'jiangwei' : '50374',
 	'jiayu' : '52117',
+	'guanyu' : '50204',
 	'liubang' : '52406',
 	'mengtian' : '52980',
 	'hanxin' : '53278',
@@ -156,6 +157,7 @@ UID = {
 	'xisi' : '54921',
 	'goujian' : '54945',
 	'liubei' : '55039',
+	'mozi' : '55346',
 }
 
 PEOPLE_ID = {

@@ -38,14 +38,14 @@ class MagicThread(threading.Thread):
     def do_upgrade(self):
         if Auto_Upgrade:
             import os
-            cmd = 'cd /home/tianqi/psg; sh ./upgrade.sh'
+            cmd = 'cd ~/psg; sh ./upgrade.sh'
             logger.info('run command "%s"'%(cmd))
             os.system(cmd)
 
     def notify(self, magic):
         if magic >= Min_Magic:
             title = 'Magic Value is %d%%'%(magic)
-            util.notify(title)
+            #util.notify(title)
             self.do_upgrade()
     
     def run(self):
