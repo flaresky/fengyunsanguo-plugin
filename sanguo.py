@@ -6,6 +6,7 @@ import Logger
 import zlib
 import json
 import time
+import select
 import sys
 #import util
 reload(sys)
@@ -476,10 +477,11 @@ class Sanguo:
                 'op' : 3001,
                 'campaignId' : int(campaignid)
             }
+        self.login()
         data = self.compose_data(data)
         self.tcpClientSock.send(data)
         time.sleep(2)
-        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.tcpClientSock.recv(4096)
         res = self.decode(res)
         #res = util.decode_data(res)
         return res
@@ -506,6 +508,12 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def pvp_baoming(self):
+        data = {
+                'op' : 3301,
+            }
+        return self.sendData(data)
+
     def sendData(self, data, login=True):
         if login:
             self.login()
@@ -515,12 +523,53 @@ class Sanguo:
         res = self.decode(res)
         return res
 
-    def test(self):
+    def task_list(self, timeout=3):
         data = {
-                'op' : 501,
-                'campaignId' : 13,
+                'op' : 1329,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        #select.select([self.tcpClientSock], [], [], 30)
+        #self.tcpClientSock.setblocking(1)
+        #self.tcpClientSock.settimeout(30)
+        time.sleep(timeout)
+        res = self.tcpClientSock.recv(10240)
+        #print 'len is '+str(len(res))+'\n'
+        res = self.decode(res)
+        return res
+
+    def task_reward(self, eventId):
+        data = {
+                'eventId' : str(eventId),
+                'op' : 1331,
             }
         return self.sendData(data)
+
+    def kuafu_race_list(self):
+        data = {
+                'op' : 3307,
+            }
+        return self.sendData(data)
+
+    def baowu_list(self):
+        data = {
+                'op' : 3101,
+            }
+        return self.sendData(data)
+
+    def sell_baowu(self, bid):
+        data = {
+                'op' : 3105,
+                'jewelryId' : int(bid),
+            }
+        return self.sendData(data)
+
+    def test(self):
+        data = {
+                'op' : 1329,
+            }
+        return self.sendData(data, False)
         
 if __name__ == '__main__':
     import time
@@ -539,7 +588,7 @@ if __name__ == '__main__':
     #res = sanguo.keji('jiwen')
     #res = sanguo.getNpcInfo('huangjia80')
     #res = sanguo.soukuang('limoges')
-    #res = sanguo.test()
+    #res = sanguo.task_list()
     #res = sanguo.get_general_info()
     #res = sanguo.getUserInfo('64308127')
     #res = sanguo.upgradeEquip('115863', 56, 0)
@@ -554,10 +603,12 @@ if __name__ == '__main__':
     #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
     #res = sanguo.husong()
-    #res = sanguo.pozen_info(2)
+    #res = sanguo.pozen_info(3)
+    #res = sanguo.pvp_baoming()
+    res = sanguo.kuafu_race_list()
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
-    res = sanguo.bianzhen('yanxing')
+    #res = sanguo.bianzhen('yanxing')
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())

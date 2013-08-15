@@ -95,6 +95,8 @@ class pozenThread(threading.Thread):
     def get_next_id(self, campaignid):
         try:
             res = self.get_pozen_info(campaignid)
+            #print json.dumps(res, sort_keys = False, indent = 4)
+            #sys.exit()
             for info in res:
                 if info['status'] == 1:
                     armyid = int(info['armyId'])

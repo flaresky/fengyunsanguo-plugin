@@ -11,6 +11,7 @@
 9 21 * * * cd ~/psg; python lanjieThread.py
 12,25 21 * * * cd ~/psg; python husongThread.py
 21 21 * * * cd ~/psg; python pozenThread.py -c 3
+50 15 * * * cd ~/psg; python taskThread.py
 
 #50 19 * * * cd ~/psg; ./kill.sh weipai
 #15 21 * * * cd ~/psg; python weipaiThread.py
