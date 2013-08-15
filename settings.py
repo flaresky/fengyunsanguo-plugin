@@ -157,6 +157,8 @@ UID = {
 	'mozi' : '54961',
 	'liubei' : '55058',
 	'qinsihuang' : '55209',
+	'zangfei' : '46404',
+	'guanyu' : '49286',
 }
 
 PEOPLE_ID = {
