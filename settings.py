@@ -141,6 +141,7 @@ UID = {
         'zangliang' : '54722',
         'xiangyu' : '54744',
         'liubei' : '55043',
+        'menghuo' : '55360',
 }
 
 PEOPLE_ID = {

@@ -546,6 +546,25 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def kuafu_race_list(self):
+        data = {
+                'op' : 3307,
+            }
+        return self.sendData(data)
+
+    def baowu_list(self):
+        data = {
+                'op' : 3101,
+            }
+        return self.sendData(data)
+
+    def sell_baowu(self, bid):
+        data = {
+                'op' : 3105,
+                'jewelryId' : int(bid),
+            }
+        return self.sendData(data)
+
     def test(self):
         data = {
                 'op' : 1329,
@@ -586,6 +605,7 @@ if __name__ == '__main__':
     #res = sanguo.husong()
     #res = sanguo.pozen_info(3)
     #res = sanguo.pvp_baoming()
+    res = sanguo.kuafu_race_list()
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
     #res = sanguo.bianzhen('yanxing')
