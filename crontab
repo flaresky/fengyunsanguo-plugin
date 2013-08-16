@@ -7,19 +7,21 @@
 11 3 * * * cd /home/tianqi/psg; python soukuangThread.py
 13 5 * * * cd /home/tianqi/psg; sh start_magic.sh
 2 2 * * * cd /home/tianqi/psg; python oneTimePerDay.py
+40 4 * * * cd /home/tianqi/psg; python taskThread.py
 
 #50 4 * * * cd /home/tianqi/psg; ./kill.sh weipai
 7 5 * * * cd /home/tianqi/psg; python tongsang.py
 9 5 * * * cd /home/tianqi/psg; python lanjieThread.py
 12,25 5 * * * cd /home/tianqi/psg; python husongThread.py
-11 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 2
+40 23 * * * cd /home/tianqi/psg; python pvpBaoming.py
+#21 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 3
 
 #50 19 * * * cd /home/tianqi/psg; ./kill.sh weipai
 #15 21 * * * cd /home/tianqi/psg; python weipaiThread.py
 
-57 18 * * * cd /home/tianqi/psg; python bossThread.py -t 10
+57 18 * * * cd /home/tianqi/psg; python bossThread.py -t 3
 
-10 5 * * * cd /home/tianqi/psg; sh start_tax.sh
+#10 5 * * * cd /home/tianqi/psg; sh start_tax.sh
 #12 */2 * * * cd /home/tianqi/psg; sh start_tax.sh
 #3 * * * * cd /home/tianqi/psg; python soukuangThread.py
 #0 10 * * 5 cd /home/tianqi/billiards/billiards/ && /usr/local/bin/scrapy crawl espn > log &2>&1
