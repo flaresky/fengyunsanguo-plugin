@@ -22,6 +22,7 @@ black_list = (
                 202, 
                 #208
                 301, 
+                401, 
             )
 op_config = {
             115 : 3017,
@@ -29,6 +30,8 @@ op_config = {
             219 : 3017,
             310 : 3017,
             320 : 3017,
+            411 : 3017,
+            420 : 3017,
             }
 
 class pozenThread(threading.Thread):
