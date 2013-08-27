@@ -1,10 +1,45 @@
 cd /home/tianqi/psg
-eid=2164142 #qingpi
-python upgradeEquip.py -i $eid -t 4
-#python oneTimePerDay.py
-#sh ./start_tax.sh
-#python downgradeEquip.py -i 1383220 -t 100
-python upgradeEquip.py -d 20 -i $eid -t 4
-#sh ./start_tax.sh
-#python downgradeEquip.py -i 1383220 -t 100
-#sh ./kill.sh magicThread.py
+
+eid=2103247 #qingjia
+#eid=1230096
+
+did=1274986
+
+tax=0
+quit=0
+
+downgradeEquip()
+{
+    if [[ -n "$did" ]]; then
+        python downgradeEquip.py -i $did -t 100
+    fi
+}
+
+upgradeEquip()
+{
+    if [[ -n "$eid" ]]; then
+        python upgradeEquip.py -d $1 -i $eid -t $2
+    fi
+}
+
+tax()
+{
+    if [[ "$tax" -gt 0 ]]; then
+        sh ./start_tax.sh
+    fi
+}
+
+
+downgradeEquip
+upgradeEquip 0 4
+downgradeEquip
+tax
+upgradeEquip 20 3
+downgradeEquip
+tax
+upgradeEquip 5 2
+downgradeEquip
+
+if [[ "$quit" -gt 0 ]]; then
+    sh ./kill.sh magicThread.py
+fi
