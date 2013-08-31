@@ -1,12 +1,11 @@
 cd /home/tianqi/psg
 
-eid=2103247 #qingjia
-#eid=1230096
+eid=2254678
 
-did=1274986
+#did=1274986
 
 tax=0
-quit=0
+quit=1
 
 downgradeEquip()
 {
