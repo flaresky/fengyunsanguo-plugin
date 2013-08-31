@@ -13,10 +13,13 @@
 21 21 * * * cd ~/psg; python pozenThread.py -c 3
 50 15 * * * cd ~/psg; python taskThread.py
 
+40 18,19,20 30,31 * * cd ~/psg; python pozenThread.py -c 2
+50 20 * * * cd ~/psg; python taskThread.py
+
 #50 19 * * * cd ~/psg; ./kill.sh weipai
 #15 21 * * * cd ~/psg; python weipaiThread.py
 
-55 10 * * * cd ~/psg; python bossThread.py -t 100
+55 10 * * * cd ~/psg; python bossThread.py -t 1
 
 #10 21 * * * cd ~/psg; sh start_tax.sh
 
