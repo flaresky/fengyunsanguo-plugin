@@ -40,7 +40,7 @@ class tttThread(threading.Thread):
             except:
                 logger.info('do_ttt failed, will sleep %d seconds'%(t*2))
                 time.sleep(t*2)
-                t += 1
+                #t += 1
 
     def run(self):
         global Times
@@ -61,7 +61,7 @@ def parsearg():
     global Delay_Time, Times, MaxSilverExit
     parser = argparse.ArgumentParser(description='Get ttt')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to ttt')
-    parser.add_argument('-t', '--times', required=False, type=int, default=10, help='fail times')
+    parser.add_argument('-t', '--times', required=False, type=int, default=200, help='fail times')
     parser.add_argument('-x', '--exit', required=False, action='store_true', help='exit when beyondMaxSilver')
     res = parser.parse_args()
     dlist = res.delay.split(':')
