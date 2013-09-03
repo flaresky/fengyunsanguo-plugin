@@ -14,7 +14,7 @@
 9 5 * * * cd /home/tianqi/psg; python lanjieThread.py
 12,25 5 * * * cd /home/tianqi/psg; python husongThread.py
 40 23 * * * cd /home/tianqi/psg; python pvpBaoming.py
-21 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 4
+21 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 4 3
 
 #50 19 * * * cd /home/tianqi/psg; ./kill.sh weipai
 #15 21 * * * cd /home/tianqi/psg; python weipaiThread.py
