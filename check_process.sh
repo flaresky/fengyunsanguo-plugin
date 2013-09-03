@@ -4,7 +4,7 @@
 #pgrep -u `id -u` -f sunsangxiang || python trainingThread.py -a -e sunsangxiang -m 8 &
 #pgrep -u `id -u` -f "trainingThread.py -e xiangyu" || python trainingThread.py -e xiangyu -l 130 &
 #pgrep -u `id -u` -f goujian || python trainingThread.py -a -e goujian -m 8 &
-#pgrep -u `id -u` -f guigu || python trainingThread.py -a -e guigu -m 8 &
+pgrep -u `id -u` -f zuge || python trainingThread.py -a -e zuge -m 8 &
 pgrep -u `id -u` -f mengtian || python trainingThread.py -a -e mengtian -m 8 &
 pgrep -u `id -u` -f guanyu || python trainingThread.py -a -e guanyu -m 8 &
 pgrep -u `id -u` -f mozi || python trainingThread.py -a -e mozi -m 8 &

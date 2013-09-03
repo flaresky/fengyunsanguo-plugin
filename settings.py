@@ -146,6 +146,7 @@ UID = {
 	'jiangwei' : '50374',
 	'jiayu' : '52117',
 	'guanyu' : '50204',
+	'zuge' : '50278',
 	'liubang' : '52406',
 	'mengtian' : '52980',
 	'hanxin' : '53278',
