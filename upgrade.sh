@@ -4,8 +4,8 @@ eid=2254678
 
 #did=1274986
 
-tax=0
-quit=1
+tax=1
+quit=0
 
 downgradeEquip()
 {
