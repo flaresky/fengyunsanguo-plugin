@@ -73,11 +73,19 @@ class BaowuInfo:
     def get_heroid_by_id(self, hid):
         return int(self.hid_dict[hid]['heroId'])
 
+    def get_quality_by_id(self, hid):
+        return int(self.hid_dict[hid]['quality'])
+
 if __name__ == '__main__':
     bi = BaowuInfo()
+    #bi.raw_print()
+    #sys.exit()
+    cnt = 0
     for bid in bi.get_hero_ids():
         heroid = bi.get_heroid_by_id(bid)
-        if heroid == 0:
+        quality = bi.get_quality_by_id(bid)
+        if heroid == 0 and quality < 3:
             time.sleep(2)
             sell_baowu(bid)
-    logger.info("all baowu sold")
+            cnt += 1
+    logger.info("all baowu sold, total %d"%(cnt))

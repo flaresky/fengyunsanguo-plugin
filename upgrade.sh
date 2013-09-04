@@ -1,16 +1,44 @@
 cd /home/zilong/psg
+
 eid=1365073
-did=963214   #hongjia
-python upgradeEquip.py -i $eid -t 4
-#python oneTimePerDay.py
-sh ./start_tax.sh
-#python downgradeEquip.py -i $did -t 100
-#python upgradeEquip.py -d 20 -i 1105394 -t 4 #zifu2
-#python upgradeEquip.py -d 20 -i 1777505 -t 4 #qingjia
-#python upgradeEquip.py -d 20 -i 809359 #huangfu
-#python upgradeEquip.py -d 20 -i 698158 -t 4 #zifu
-#python upgradeEquip.py -d 20 -i 1230096 -t 4 #cuizi
-python upgradeEquip.py -d 20 -i $eid -t 4
-sh ./start_tax.sh
-#python downgradeEquip.py -i $did -t 100
-#sh ./kill.sh magicThread.py
+
+#did=1274986
+
+tax=1
+quit=0
+
+downgradeEquip()
+{
+    if [[ -n "$did" ]]; then
+        python downgradeEquip.py -i $did -t 100
+    fi
+}
+
+upgradeEquip()
+{
+    if [[ -n "$eid" ]]; then
+        python upgradeEquip.py -d $1 -i $eid -t $2
+    fi
+}
+
+tax()
+{
+    if [[ "$tax" -gt 0 ]]; then
+        sh ./start_tax.sh
+    fi
+}
+
+
+downgradeEquip
+upgradeEquip 0 4
+downgradeEquip
+tax
+upgradeEquip 20 3
+downgradeEquip
+tax
+upgradeEquip 5 2
+downgradeEquip
+
+if [[ "$quit" -gt 0 ]]; then
+    sh ./kill.sh magicThread.py
+fi

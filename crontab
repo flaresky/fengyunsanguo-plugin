@@ -14,13 +14,6 @@
 40 15 * * * cd ~/psg; python pvpBaoming.py
 50 20 * * * cd ~/psg; python taskThread.py
 
-#50 19 * * * cd ~/psg; ./kill.sh weipai
-#15 21 * * * cd ~/psg; python weipaiThread.py
-
-0 11 * * * cd ~/psg; python bossThread.py -t 10
-
-#10 21 * * * cd ~/psg; sh start_tax.sh
-
 */2 * * * * cd ~/psg; sh check_process.sh
 12 */2 * * * cd ~/psg; sh start_tax.sh
 #3 * * * * cd ~/psg; python soukuangThread.py
