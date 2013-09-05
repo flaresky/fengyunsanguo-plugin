@@ -55,6 +55,7 @@ class tttThread(threading.Thread):
             if res['result'] == 2:
                 t += 1
                 if t >= Times:
+                    logger.info('ttt exit')
                     sys.exit()
 
 def parsearg():
