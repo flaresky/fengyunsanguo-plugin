@@ -80,10 +80,10 @@ if __name__ == '__main__':
     bi = BaowuInfo()
     #bi.raw_print()
     #sys.exit()
+    cnt = 0
     for bid in bi.get_hero_ids():
         heroid = bi.get_heroid_by_id(bid)
         quality = bi.get_quality_by_id(bid)
-        cnt = 0
         if heroid == 0 and quality < 3:
             time.sleep(2)
             sell_baowu(bid)

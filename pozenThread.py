@@ -19,16 +19,21 @@ g_previous_armyid = 0
 
 black_list = (
                 102, 
+                #107, 
                 202, 
                 #208,
                 301, 
+                401, 
             )
 op_config = {
+            106 : 3017,
             115 : 3017,
             210 : 3017,
             219 : 3017,
             310 : 3017,
             320 : 3017,
+            411 : 3017,
+            420 : 3017,
             }
 
 class pozenThread(threading.Thread):
@@ -94,9 +99,9 @@ class pozenThread(threading.Thread):
 
     def get_next_id(self, campaignid):
         try:
-            res = self.get_pozen_info(campaignid)
+            #res = self.get_pozen_info(campaignid)
             #print json.dumps(res, sort_keys = False, indent = 4)
-            #sys.exit()
+            sys.exit()
             for info in res:
                 if info['status'] == 1:
                     armyid = int(info['armyId'])
@@ -134,7 +139,7 @@ class pozenThread(threading.Thread):
         if Delay_Time > 0:
             logger.info('I will start pozen at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
-        self.bianzhen('yanxing')
+        #self.bianzhen('yanxing')
         time.sleep(2)
         for campaignid in Campaign:
             while True:

@@ -1,22 +1,44 @@
 cd /home/tianqi/psg
-#python huodongThread.py -g
-#python upgradeEquip.py -i 1105394 -t 4 #zifu2
-#python upgradeEquip.py -i 1777505 -t 4 #qingjia
-#python upgradeEquip.py -i 749122 -t 4 #qingma
-#python upgradeEquip.py -i 1401340 #jian
-#python upgradeEquip.py -i 809359 #huangfu
-#python upgradeEquip.py -i 698158 -t 4 #zifu
-#python upgradeEquip.py -i 1230096 -t 4 #cuizi
-python upgradeEquip.py -i 1839863 -t 4 #hongpi
-#python oneTimePerDay.py
-sh ./start_tax.sh
-#python downgradeEquip.py -i 839243 -t 100
-#python upgradeEquip.py -d 20 -i 1105394 -t 4 #zifu2
-#python upgradeEquip.py -d 20 -i 1777505 -t 4 #qingjia
-#python upgradeEquip.py -d 20 -i 809359 #huangfu
-#python upgradeEquip.py -d 20 -i 698158 -t 4 #zifu
-#python upgradeEquip.py -d 20 -i 1230096 -t 4 #cuizi
-python upgradeEquip.py -d 20 -i 1839863 -t 4 #hongpi
-sh ./start_tax.sh
-#python downgradeEquip.py -i 839243 -t 100
-#sh ./kill.sh magicThread.py
+
+eid=2254678
+
+#did=1274986
+
+tax=1
+quit=0
+
+downgradeEquip()
+{
+    if [[ -n "$did" ]]; then
+        python downgradeEquip.py -i $did -t 100
+    fi
+}
+
+upgradeEquip()
+{
+    if [[ -n "$eid" ]]; then
+        python upgradeEquip.py -d $1 -i $eid -t $2
+    fi
+}
+
+tax()
+{
+    if [[ "$tax" -gt 0 ]]; then
+        sh ./start_tax.sh
+    fi
+}
+
+
+downgradeEquip
+upgradeEquip 0 4
+downgradeEquip
+tax
+upgradeEquip 20 3
+downgradeEquip
+tax
+upgradeEquip 5 2
+downgradeEquip
+
+if [[ "$quit" -gt 0 ]]; then
+    sh ./kill.sh magicThread.py
+fi
