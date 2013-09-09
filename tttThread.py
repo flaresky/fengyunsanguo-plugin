@@ -79,6 +79,7 @@ class tttThread(threading.Thread):
                 if t >= Times:
                     time.sleep(3)
                     self.bianzhen('yanxing')
+                    logger.info('ttt exit')
                     sys.exit()
                 rem = (t / ChangeFormationGap) % len(Formations)
                 if self.formation != rem:
