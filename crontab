@@ -17,7 +17,7 @@
 #50 19 * * * cd ~/psg; ./kill.sh weipai
 #15 21 * * * cd ~/psg; python weipaiThread.py
 
-55 10 * * * cd ~/psg; python bossThread.py -t 3
+55 10 * * * cd ~/psg; python bossThread.py -t 1
 
 #10 21 * * * cd ~/psg; sh start_tax.sh
 
