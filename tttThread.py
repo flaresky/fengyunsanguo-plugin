@@ -13,7 +13,8 @@ from GeneralInfo import GeneralInfo
 
 logger = Logger.getLogger()
 
-Formations = ['yanxing', 'cangse']
+#Formations = ['yanxing', 'cangse']
+Formations = ['jiugong']
 ChangeFormationGap = 50
 Delay_Time = 0 
 Times = 0 
@@ -77,8 +78,8 @@ class tttThread(threading.Thread):
             if res['result'] == 2:
                 t += 1
                 if t >= Times:
-                    time.sleep(3)
-                    self.bianzhen('yanxing')
+                    #time.sleep(3)
+                    #self.bianzhen('yanxing')
                     logger.info('ttt exit')
                     sys.exit()
                 rem = (t / ChangeFormationGap) % len(Formations)
