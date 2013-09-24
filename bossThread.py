@@ -103,7 +103,7 @@ class BossThread(threading.Thread):
                 time.sleep(sp)
             else:
                 time.sleep(2)
-        self.bianzhen('yanxing')
+        #self.bianzhen('yanxing')
 
 def parsearg():
     global Delay_Time, Times

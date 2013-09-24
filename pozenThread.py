@@ -139,7 +139,7 @@ class pozenThread(threading.Thread):
         if Delay_Time > 0:
             logger.info('I will start pozen at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
-        self.bianzhen('yanxing')
+        #self.bianzhen('yanxing')
         time.sleep(2)
         for campaignid in Campaign:
             while True:
