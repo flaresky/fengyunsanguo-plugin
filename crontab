@@ -16,8 +16,8 @@
 40 23 * * * cd /home/tianqi/psg; python pvpBaoming.py
 21 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 4 3
 51 5 * * * cd /home/tianqi/psg; python tttThread.py -t 500
-#21 1 * * * cd /home/tianqi/psg; python tttThread.py -t 1500
-40 1,2,3,4 24 * * cd /home/tianqi/psg; python pozenThread.py -c 3
+21 1 * * * cd /home/tianqi/psg; python tttThread.py -t 1000
+#40 1,2,3,4 24 * * cd /home/tianqi/psg; python pozenThread.py -c 3
 
 #50 19 * * * cd /home/tianqi/psg; ./kill.sh weipai
 #15 21 * * * cd /home/tianqi/psg; python weipaiThread.py
