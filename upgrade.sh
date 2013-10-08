@@ -1,10 +1,11 @@
 cd /home/tianqi/psg
 
-eid=2222187
+#eid=2222187
+eid=2336089
 
-#did=1274986
+#did=1230096
 
-tax=0
+tax=1
 quit=0
 
 downgradeEquip()
