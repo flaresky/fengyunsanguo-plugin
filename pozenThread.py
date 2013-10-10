@@ -19,8 +19,8 @@ g_previous_armyid = 0
 
 black_list = (
                 102, 
-                #202, 
-                208,
+                202, 
+                #208,
                 301, 
                 401, 
             )
@@ -138,7 +138,6 @@ class pozenThread(threading.Thread):
         if Delay_Time > 0:
             logger.info('I will start pozen at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
-        self.bianzhen('yanxing')
         time.sleep(2)
         for campaignid in Campaign:
             while True:
@@ -176,7 +175,7 @@ def parsearg():
     global Delay_Time, Campaign
     parser = argparse.ArgumentParser(description='pozen')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to pozen')
-    parser.add_argument('-c', '--campagins', type=int, nargs='*', default=[1,2,3], help='')
+    parser.add_argument('-c', '--campagins', type=int, nargs='*', default=[1,2,3,4], help='')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:

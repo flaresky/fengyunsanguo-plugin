@@ -159,6 +159,11 @@ UID = {
 	'goujian' : '54945',
 	'liubei' : '55039',
 	'mozi' : '55346',
+	'spangtong' : '55472',
+	'sweiyan' : '55493',
+	'shuangzong' : '55524',
+	'szaoyun' : '55539',
+	'smacao' : '55540',
 }
 
 PEOPLE_ID = {

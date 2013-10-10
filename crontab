@@ -10,9 +10,12 @@
 7 21 * * * cd ~/psg; python tongsang.py
 9 21 * * * cd ~/psg; python lanjieThread.py
 25,45 21 * * * cd ~/psg; python husongThread.py
-11 21 * * * cd ~/psg; python pozenThread.py
+11 21 * * * cd ~/psg; python pozenThread.py -c 3 2 4 1
 40 15 * * * cd ~/psg; python pvpBaoming.py
 50 20 * * * cd ~/psg; python taskThread.py
+51 21 * * * cd ~/psg; python tttThread.py -t 300
+
+55 10 * * * cd ~/psg; python bossThread.py -t 100
 
 */2 * * * * cd ~/psg; sh check_process.sh
 12 */2 * * * cd ~/psg; sh start_tax.sh

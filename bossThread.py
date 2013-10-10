@@ -65,7 +65,6 @@ class BossThread(threading.Thread):
         if Delay_Time > 0:
             logger.info('I will start attack at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
-        #self.bianzhen('cangse')
         time.sleep(2)
 
         gi = GeneralInfo()
@@ -103,7 +102,6 @@ class BossThread(threading.Thread):
                 time.sleep(sp)
             else:
                 time.sleep(2)
-        self.bianzhen('yanxing')
 
 def parsearg():
     global Delay_Time, Times
