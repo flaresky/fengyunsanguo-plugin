@@ -98,17 +98,20 @@ class pozenThread(threading.Thread):
                 t += 1
 
     def get_next_id(self, campaignid):
-        try:
-            res = self.get_pozen_info(campaignid)
-            #print json.dumps(res, sort_keys = False, indent = 4)
-            #sys.exit()
-            for info in res:
-                if info['status'] == 1:
-                    armyid = int(info['armyId'])
-                    if armyid not in black_list:
-                        return armyid
-        except:
-            return None
+        retry=10
+        while retry > 0:
+            retry -= 1
+            try:
+                res = self.get_pozen_info(campaignid)
+                #print json.dumps(res, sort_keys = False, indent = 4)
+                #sys.exit()
+                for info in res:
+                    if info['status'] == 1:
+                        armyid = int(info['armyId'])
+                        if armyid not in black_list:
+                            return armyid
+            except:
+                time.sleep(2)
 
     def do_pozen(self, armyid):
         retry = 10

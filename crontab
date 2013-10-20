@@ -9,19 +9,20 @@
 #50 4 * * * cd ~/psg; ./kill.sh weipai
 7 21 * * * cd ~/psg; python tongsang.py
 9 21 * * * cd ~/psg; python lanjieThread.py
-12,25 21 * * * cd ~/psg; python husongThread.py
-21 21 * * * cd ~/psg; python pozenThread.py -c 3
+#12,25 21 * * * cd ~/psg; python husongThread.py
+21 21 * * * cd ~/psg; python pozenThread.py -c 4
 50 20 * * * cd ~/psg; python taskThread.py
-51 21 * * * cd ~/psg; python tttThread.py -t 300
+5 8 * * * cd ~/psg; python taskThread.py
+#51 21 * * * cd ~/psg; python tttThread.py -t 300
 
 #50 19 * * * cd ~/psg; ./kill.sh weipai
 #15 21 * * * cd ~/psg; python weipaiThread.py
 
-55 10 * * * cd ~/psg; python bossThread.py -t 1
+55 10 * * * cd ~/psg; python bossThread.py -t 3
 
 #10 21 * * * cd ~/psg; sh start_tax.sh
 
-*/2 * * * * cd ~/psg; sh check_process.sh
+#*/2 * * * * cd ~/psg; sh check_process.sh
 #12 */2 * * * cd ~/psg; sh start_tax.sh
 #3 * * * * cd ~/psg; python soukuangThread.py
 
