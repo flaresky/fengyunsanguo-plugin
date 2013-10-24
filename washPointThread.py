@@ -50,19 +50,30 @@ class WashPointThread(threading.Thread):
         print_old_point = True
         fields_num = 3
         times = 0
+        accepted = False
         while True:
             try:
-                times += 1
                 wash_res = util.send_command('washHero', Hero)
                 if wash_res.has_key('exception'):
-                    logger.error('Got exception %s, exit'%(wash_res['exception']['message']))
+                    exp = wash_res['exception']['message']
+                    if exp == 'previousChangPointNotFinish':
+                        time.sleep(2)
+                        if accepted:
+                            util.send_command('acceptWash', Hero)
+                            print_old_point = True
+                        else:
+                            util.send_command('refuseWash', Hero)
+                            print_old_point = False
+                        continue
+                    logger.error('Got exception %s, exit'%(exp))
                     return
+                times += 1
                 hero = wash_res['hero']
                 oldfs = [int(hero[i]) for i in fields]
-                oldfs = [oldfs[i]-INIT_POINT[i] for i in range(fields_num)]
+                oldfs = [oldfs[i]-INIT_POINT[Hero][i] for i in range(fields_num)]
                 oldmean = self.get_harmonic_mean(oldfs)
                 tmpfs = [int(hero[i]) for i in temp_fields]
-                tmpfs = [tmpfs[i]-INIT_POINT[i] for i in range(fields_num)]
+                tmpfs = [tmpfs[i]-INIT_POINT[Hero][i] for i in range(fields_num)]
                 tmpmean = self.get_harmonic_mean(tmpfs)
                 if print_old_point:
                     msg = ['%s=%d'%(fields[i], oldfs[i]) for i in range(fields_num)]
@@ -72,13 +83,16 @@ class WashPointThread(threading.Thread):
                 msg = ['%s=%d'%(temp_fields[i], tmpfs[i]) for i in range(fields_num)]
                 msg.append('mean=%.4f'%(tmpmean))
                 msg = ', '.join(msg)
-                accepted = tmpmean >= oldmean
+                accepted = False
+                if tmpmean >= oldmean:
+                    accepted = True
                 if accepted:
                     msg = '[Accept][' + str(times) + '] ' + msg
                 else:
                     msg = '[Refuse][' + str(times) + '] ' + msg
                 logger.info(msg)
                 curmean = 50
+                time.sleep(2)
                 if accepted:
                     util.send_command('acceptWash', Hero)
                     print_old_point = True
@@ -90,6 +104,7 @@ class WashPointThread(threading.Thread):
                 if curmean >= Max_Mean:
                     logger.info('current mean is %.4f, will exit', curmean)
                     return
+                time.sleep(2)
             except:
                 logger.error(traceback.format_exc())
                 time.sleep(2)
