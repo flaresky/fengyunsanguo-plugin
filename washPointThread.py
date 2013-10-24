@@ -49,8 +49,10 @@ class WashPointThread(threading.Thread):
             time.sleep(Delay_Time)
         print_old_point = True
         fields_num = 3
+        times = 0
         while True:
             try:
+                times += 1
                 wash_res = util.send_command('washHero', Hero)
                 if wash_res.has_key('exception'):
                     logger.error('Got exception %s, exit'%(wash_res['exception']['message']))
@@ -72,9 +74,9 @@ class WashPointThread(threading.Thread):
                 msg = ', '.join(msg)
                 accepted = tmpmean >= oldmean
                 if accepted:
-                    msg = '[Accept] ' + msg
+                    msg = '[Accept][' + str(times) + '] ' + msg
                 else:
-                    msg = '[Refuse] ' + msg
+                    msg = '[Refuse][' + str(times) + '] ' + msg
                 logger.info(msg)
                 curmean = 50
                 if accepted:
