@@ -17,7 +17,6 @@ logger = Logger.getLogger()
 Delay_Time = 0
 Max_Mean = 40
 Hero= None
-Orig_Point = None
 fields = ('leadership', 'tactics', 'magic')
 temp_fields = ('tempLeadership', 'tempTactics', 'tempMagic')
 
@@ -39,6 +38,12 @@ class WashPointThread(threading.Thread):
         logger.info('WashPointThread start, hero is %s'%(Hero))
         if Hero is None:
             return
+        if not UID.has_key(Hero):
+            logger.error('can not found %s in UID'%(Hero))
+            return
+        if not INIT_POINT.has_key(Hero):
+            logger.error('can not found %s in INIT_POINT'%(Hero))
+            return
         if Delay_Time > 0:
             logger.info('I will start training at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
@@ -52,10 +57,10 @@ class WashPointThread(threading.Thread):
                     return
                 hero = wash_res['hero']
                 oldfs = [int(hero[i]) for i in fields]
-                oldfs = [oldfs[i]-Orig_Point[i] for i in range(fields_num)]
+                oldfs = [oldfs[i]-INIT_POINT[i] for i in range(fields_num)]
                 oldmean = self.get_harmonic_mean(oldfs)
                 tmpfs = [int(hero[i]) for i in temp_fields]
-                tmpfs = [tmpfs[i]-Orig_Point[i] for i in range(fields_num)]
+                tmpfs = [tmpfs[i]-INIT_POINT[i] for i in range(fields_num)]
                 tmpmean = self.get_harmonic_mean(tmpfs)
                 if print_old_point:
                     msg = ['%s=%d'%(fields[i], oldfs[i]) for i in range(fields_num)]
@@ -88,11 +93,10 @@ class WashPointThread(threading.Thread):
                 time.sleep(2)
 
 def parsearg():
-    global Delay_Time, Hero, Max_Mean, Orig_Point
+    global Delay_Time, Hero, Max_Mean
     parser = argparse.ArgumentParser(description='WashPoint for hero')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to training')
     parser.add_argument('-e', '--hero', type=str, help='hero you want to wash point')
-    parser.add_argument('-i', '--init_point', type=int, nargs=3, help='hero init points, eg. 90 90 100')
     parser.add_argument('-m', '--max_mean', type=int, default=40, help='max harmonic mean')
     res = parser.parse_args()
     dlist = res.delay.split(':')
@@ -102,9 +106,6 @@ def parsearg():
         Delay_Time = int(dlist[0]) * 3600 + int(dlist[1]) * 60
     Hero= res.hero
     Max_Mean = res.max_mean
-    Orig_Point = res.init_point
-    if len(Orig_Point) != 3:
-        sys.exit()
             
 if __name__ == '__main__':
     parsearg()
