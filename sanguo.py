@@ -592,6 +592,7 @@ class Sanguo:
         self.login()
         data = self.compose_data(data)
         self.tcpClientSock.send(data)
+        time.sleep(1)
         res = self.tcpClientSock.recv(BUFSIZE)
         res = self.multiDecode(res)
         for rp in res:
@@ -605,6 +606,15 @@ class Sanguo:
                 'heroId' : UID[hero],
                 'op' : op,
             }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
         return self.sendData(data)
 
     def refuseWash(self, hero):
@@ -613,6 +623,15 @@ class Sanguo:
                 'heroId' : UID[hero],
                 'op' : op,
             }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
         return self.sendData(data)
 
     def test(self):

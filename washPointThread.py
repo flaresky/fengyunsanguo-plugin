@@ -57,6 +57,11 @@ class WashPointThread(threading.Thread):
                 if wash_res.has_key('exception'):
                     exp = wash_res['exception']['message']
                     if exp == 'previousChangPointNotFinish':
+                        if accepted:
+                            flag = 'Accept'
+                        else:
+                            flag = 'Refuse'
+                        logger.info('Repost[%s]'%(flag))
                         time.sleep(2)
                         if accepted:
                             util.send_command('acceptWash', Hero)
@@ -64,6 +69,7 @@ class WashPointThread(threading.Thread):
                         else:
                             util.send_command('refuseWash', Hero)
                             print_old_point = False
+                        time.sleep(2)
                         continue
                     logger.error('Got exception %s, exit'%(exp))
                     return
@@ -92,12 +98,13 @@ class WashPointThread(threading.Thread):
                     msg = '[Refuse][' + str(times) + '] ' + msg
                 logger.info(msg)
                 curmean = 50
-                time.sleep(2)
                 if accepted:
+                    time.sleep(3)
                     util.send_command('acceptWash', Hero)
                     print_old_point = True
                     curmean = tmpmean
                 else:
+                    time.sleep(2)
                     util.send_command('refuseWash', Hero)
                     print_old_point = False
                     curmean = oldmean
