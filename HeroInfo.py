@@ -132,5 +132,5 @@ class HeroInfo:
 if __name__ == '__main__':
     hi = HeroInfo()
     hi.format_print()
-    #hi.raw_print()
+    hi.raw_print()
     hi.print_for_setting()

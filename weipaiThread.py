@@ -149,6 +149,7 @@ class weipaiThread(threading.Thread):
                     time.sleep(sp)
                     continue
                 res = self.do_weipai(Type, ml)
+                #res = util.send_command('weipai', Type, ml)
                 if res[0].has_key('exception'):
                     msg = res[0]['exception']['message']
                     logger.info('got exception %s, TotalCost %d'%(msg, TotalCost))
