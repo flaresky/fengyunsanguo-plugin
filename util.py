@@ -238,6 +238,26 @@ def decode_data(dl):
         idx += length + 2
     return ret
 
+def send_command(cmd, *args):
+    retry = 10
+    t = 1
+    while t <= retry:
+        try:
+            sanguo = Sanguo()
+            sanguo.login()
+            function = getattr(sanguo, cmd)
+            res = function(*args)
+            sanguo.close()
+            if res == None:
+                raise Exception()
+            return res
+        except:
+            time.sleep(2)
+            t += 1
+
+def pretty_print(res):
+    print json.dumps(res, sort_keys = False, indent = 4)
+
 if __name__ == '__main__':
     #notify('magic is 22%')
     #print intlen_2_hexstr(15)
@@ -254,5 +274,5 @@ if __name__ == '__main__':
     #    }
     #res = send_data(data)
     #res = get_user('66702307')
-    res = get_user('67201307')
+    res = send_command('washHero', 'wangben')
     print json.dumps(res, sort_keys = False, indent = 4)

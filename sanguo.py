@@ -47,6 +47,17 @@ class Sanguo:
         except:
             return None
 
+    def multiDecode(self, data):
+        ret = []
+        idx = 0
+        while idx < len(data):
+            slen = int(data[idx:idx+2].encode('hex'), 16)
+            if slen > 0:
+                tpdata = data[idx:idx+slen+2]
+                ret.append(self.decode(tpdata))
+            idx += slen + 2
+        return ret
+
     def compose_data(self, data):
         opcode = data['op']
         data = json.dumps(data)
@@ -571,6 +582,39 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def washHero(self, hero):
+        op = 1117
+        data = {
+                'heroId' : UID[hero],
+                'type' : 1,
+                'op' : op,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+
+    def acceptWash(self, hero):
+        op = 1119
+        data = {
+                'heroId' : UID[hero],
+                'op' : op,
+            }
+        return self.sendData(data)
+
+    def refuseWash(self, hero):
+        op = 1121
+        data = {
+                'heroId' : UID[hero],
+                'op' : op,
+            }
+        return self.sendData(data)
+
     def test(self):
         data = {
                 'op' : 1329,
@@ -599,7 +643,7 @@ if __name__ == '__main__':
     #res = sanguo.getUserInfo('64308127')
     #res = sanguo.upgradeEquip('115863', 56, 0)
     #res = sanguo.sellEquip('965347')
-    res = sanguo.tufei('guanyu')
+    #res = sanguo.tufei('guanyu')
     #res = sanguo.get_hero('zaoyun')
     #print 'magic='+str(res)
     #res = sanguo.touzi(309, 2)
@@ -612,7 +656,8 @@ if __name__ == '__main__':
     #res = sanguo.pozen_info(3)
     #res = sanguo.pvp_baoming()
     #res = sanguo.kuafu_race_list()
-    res = sanguo.tongtianta()
+    #res = sanguo.tongtianta()
+    res = sanguo.washHero('wangben')
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
     #res = sanguo.bianzhen('yanxing')
