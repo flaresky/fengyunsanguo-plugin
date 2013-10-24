@@ -582,6 +582,24 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def weipai(self, tpe, level):
+        op = 1021
+        data = {
+                'level' : str(level),
+                'op' : op,
+                'type' : str(tpe),
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(1)
+        res = self.tcpClientSock.recv(4*BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+
     def washHero(self, hero):
         op = 1117
         data = {
