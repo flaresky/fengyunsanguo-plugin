@@ -14,7 +14,7 @@
 9 5 * * * cd /home/tianqi/psg; python lanjieThread.py
 12,25 5 * * * cd /home/tianqi/psg; python husongThread.py
 40 23 * * * cd /home/tianqi/psg; python pvpBaoming.py
-21 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 4 3
+14 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 4 3
 51 5 * * * cd /home/tianqi/psg; python tttThread.py -t 500
 21 1 * * * cd /home/tianqi/psg; python tttThread.py -t 1000
 #40 1,2,3,4 24 * * cd /home/tianqi/psg; python pozenThread.py -c 3
@@ -22,7 +22,7 @@
 #50 19 * * * cd /home/tianqi/psg; ./kill.sh weipai
 #15 21 * * * cd /home/tianqi/psg; python weipaiThread.py
 
-57 18 * * * cd /home/tianqi/psg; python bossThread.py -t 4
+57 18 * * * cd /home/tianqi/psg; python bossThread.py -t 1
 
 #10 5 * * * cd /home/tianqi/psg; sh start_tax.sh
 #12 */2 * * * cd /home/tianqi/psg; sh start_tax.sh
@@ -31,3 +31,19 @@
 
 #13 5 3 * * cd /home/tianqi/psg; python zengzanThread.py -n goujian
 #50 15 3 * * cd /home/tianqi/psg; ./kill.sh zengzan
+
+
+
+
+30 19 * * * cd /home/tianqi/psg.siyu; python kuangzanThread.py -e
+
+2 14 * * * cd /home/tianqi/psg.siyu; python oneTimePerDay.py
+50 4 * * * cd /home/tianqi/psg.siyu; python taskThread.py
+
+8 5 * * * cd /home/tianqi/psg.siyu; python tongsang.py
+9 5 * * * cd /home/tianqi/psg.siyu; python lanjieThread.py
+12,25 5 * * * cd /home/tianqi/psg.siyu; python husongThread.py
+40 23 * * * cd /home/tianqi/psg.siyu; python pvpBaoming.py
+14 5 * * * cd /home/tianqi/psg.siyu; python pozenThread.py -c 4
+21 1 * * * cd /home/tianqi/psg.siyu; python tttThread.py -t 1000
+57 18 * * * cd /home/tianqi/psg.siyu; python bossThread.py -t 1
