@@ -1,11 +1,10 @@
 cd /home/tianqi/psg
 
 eid=2220238 #pifeng
-#eid=2258338
 
 #did=1230096
 
-tax=1
+tax=0
 quit=0
 up_magic=92
 
