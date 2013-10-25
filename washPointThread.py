@@ -122,6 +122,7 @@ def parsearg():
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to training')
     parser.add_argument('-e', '--hero', type=str, help='hero you want to wash point')
     parser.add_argument('-m', '--max_mean', type=int, default=40, help='max harmonic mean')
+    parser.add_argument('-i', '--init_point', type=int, nargs=3, help='init point to calc')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:
@@ -130,6 +131,10 @@ def parsearg():
         Delay_Time = int(dlist[0]) * 3600 + int(dlist[1]) * 60
     Hero= res.hero
     Max_Mean = res.max_mean
+    if res.init_point is not None:
+        thread = WashPointThread()
+        print thread.get_harmonic_mean(res.init_point)
+        sys.exit()
             
 if __name__ == '__main__':
     parsearg()
