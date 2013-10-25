@@ -61,6 +61,7 @@ class WashPointThread(threading.Thread):
                 if wash_res.has_key('exception'):
                     exp = wash_res['exception']['message']
                     if exp == 'previousChangPointNotFinish':
+                        accepted = False
                         if accepted:
                             flag = 'Accept'
                         else:
