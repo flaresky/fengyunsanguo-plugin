@@ -26,13 +26,18 @@ class WashPointThread(threading.Thread):
         self.daemon = False
 
     def get_harmonic_mean(self, args):
+        factor = (1.5, 1.0, 1.0)
         sum = 0
+        fs = 0
+        idx = 0
         for v in args:
             v = int(v)
             if v == 0:
                 v = 0.1
-            sum += 1.0 / v
-        return 1.0 / sum
+            sum += factor[idx] / v
+            fs += factor[idx]
+            idx += 1
+        return fs / sum
 
     def run(self):
         logger.info('WashPointThread start, hero is %s'%(Hero))

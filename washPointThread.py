@@ -15,8 +15,9 @@ import traceback
 logger = Logger.getLogger()
 
 Delay_Time = 0
-Max_Mean = 40
-Hero= None
+Max_Mean = 0
+Hero = None
+Weight = None
 fields = ('leadership', 'tactics', 'magic')
 temp_fields = ('tempLeadership', 'tempTactics', 'tempMagic')
 
@@ -26,13 +27,16 @@ class WashPointThread(threading.Thread):
         self.daemon = False
 
     def get_harmonic_mean(self, args):
+        fields_num = 3
         sum = 0
-        for v in args:
-            v = int(v)
+        fs = 0
+        for i in range(fields_num):
+            v = int(args[i])
             if v == 0:
                 v = 0.1
-            sum += 1.0 / v
-        return 1.0 / sum
+            sum += 1.0 * Weight[i] / v
+            fs += Weight[i]
+        return 1.0 * fs / sum
 
     def run(self):
         logger.info('WashPointThread start, hero is %s'%(Hero))
@@ -117,11 +121,12 @@ class WashPointThread(threading.Thread):
                 time.sleep(2)
 
 def parsearg():
-    global Delay_Time, Hero, Max_Mean
+    global Delay_Time, Hero, Max_Mean, Weight
     parser = argparse.ArgumentParser(description='WashPoint for hero')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to training')
     parser.add_argument('-e', '--hero', type=str, help='hero you want to wash point')
-    parser.add_argument('-m', '--max_mean', type=int, default=40, help='max harmonic mean')
+    parser.add_argument('-m', '--max_mean', type=int, default=120, help='max harmonic mean')
+    parser.add_argument('-w', '--weight', type=float, nargs=3, default=[1.0, 1.0, 1.0], help='weight of 3 fields')
     parser.add_argument('-i', '--init_point', type=int, nargs=3, help='init point to calc')
     res = parser.parse_args()
     dlist = res.delay.split(':')
@@ -131,6 +136,7 @@ def parsearg():
         Delay_Time = int(dlist[0]) * 3600 + int(dlist[1]) * 60
     Hero= res.hero
     Max_Mean = res.max_mean
+    Weight = res.weight
     if res.init_point is not None:
         thread = WashPointThread()
         print thread.get_harmonic_mean(res.init_point)
