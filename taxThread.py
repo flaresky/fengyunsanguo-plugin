@@ -15,6 +15,7 @@ logger = Logger.getLogger()
 
 Delay_Time = 0 
 Times = 0 
+Remain = 0
 MaxSilverExit = False
 
 class TaxThread(threading.Thread):
@@ -49,8 +50,8 @@ class TaxThread(threading.Thread):
             time.sleep(Delay_Time)
         while True:
             gi = GeneralInfo()
-            if gi.get_levy_remain() <= 0:
-                logger.info('Tax remain time is 0, will exit')
+            if gi.get_levy_remain() <= Remain:
+                logger.info('Tax remain time is %d, will exit'%(Remain))
                 return
             else:
                 logger.info('Tax remain %d times'%(gi.get_levy_remain()))
@@ -69,7 +70,7 @@ class TaxThread(threading.Thread):
                     if MaxSilverExit:
                         return
                     else:
-                        sp = 7200
+                        sp = 1800
                         logger.info('I will tax at %s'%(util.next_time(sp)))
                         time.sleep(sp)
                         continue
@@ -77,9 +78,10 @@ class TaxThread(threading.Thread):
             time.sleep(1)
 
 def parsearg():
-    global Delay_Time, Times, MaxSilverExit
+    global Delay_Time, Times, MaxSilverExit, Remain
     parser = argparse.ArgumentParser(description='Get tax')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to tax')
+    parser.add_argument('-r', '--remain', required=False, type=int, default=0, help='tax remain times')
     parser.add_argument('-x', '--exit', required=False, action='store_true', help='exit when beyondMaxSilver')
     res = parser.parse_args()
     dlist = res.delay.split(':')
@@ -88,6 +90,7 @@ def parsearg():
     elif len(dlist) == 2:
         Delay_Time = int(dlist[0]) * 3600 + int(dlist[1]) * 60
     MaxSilverExit = res.exit
+    Remain = res.remain
 
 if __name__ == '__main__':
     parsearg()

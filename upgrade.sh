@@ -5,8 +5,8 @@ eid=2220238 #pifeng
 #did=1230096
 
 tax=0
-quit=0
-up_magic=92
+quit=1
+up_magic=93
 
 downgradeEquip()
 {
