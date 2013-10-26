@@ -65,7 +65,6 @@ class BossThread(threading.Thread):
         if Delay_Time > 0:
             logger.info('I will start attack at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
-        time.sleep(2)
 
         gi = GeneralInfo()
         start_time = util.get_xiongsou_refresh_time(gi.get_serverTime())

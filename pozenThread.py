@@ -98,7 +98,7 @@ class pozenThread(threading.Thread):
                 t += 1
 
     def get_next_id(self, campaignid):
-        retry=10
+        retry = 10
         while retry > 0:
             retry -= 1
             try:
@@ -111,7 +111,7 @@ class pozenThread(threading.Thread):
                         if armyid not in black_list:
                             return armyid
             except:
-                time.sleep(2)
+                time.sleep(3)
 
     def do_pozen(self, armyid):
         retry = 10

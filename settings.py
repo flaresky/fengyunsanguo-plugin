@@ -163,6 +163,10 @@ UID = {
 	'wangben' : '55373',
 }
 
+INIT_POINT = {
+        'wangben' : (83, 85, 101),
+}
+
 PEOPLE_ID = {
         'temp' : '63771615',
         'wangjiang': '65960391',

@@ -13,6 +13,9 @@ from GeneralInfo import GeneralInfo
 
 logger = Logger.getLogger()
 
+#Formations = ['yanxing', 'cangse']
+Formations = ['jiugong']
+ChangeFormationGap = 50
 Delay_Time = 0 
 Times = 0 
 MaxSilverExit = False
@@ -22,6 +25,26 @@ class tttThread(threading.Thread):
         threading.Thread.__init__(self)
         self.daemon = False
         self.count = count
+        self.formation = 0
+
+    def bianzhen(self, keji):
+        retry = 10
+        t = 1 
+        while t <= retry:
+            try:
+                sanguo = Sanguo()
+                sanguo.login()
+                data = sanguo.bianzhen(keji)
+                sanguo.close()
+                if not data:
+                    logger.error('bianzhen failed, data None')
+                    raise Exception()
+                logger.info('bianzhen %s succeed'%(keji))
+                return data
+            except:
+                logger.info('bianzhen failed, will sleep %d seconds'%(t*2))
+                time.sleep(t*2)
+                t += 1
     
     def do_ttt(self):
         retry = 10
@@ -55,8 +78,15 @@ class tttThread(threading.Thread):
             if res['result'] == 2:
                 t += 1
                 if t >= Times:
+                    #time.sleep(3)
+                    #self.bianzhen('yanxing')
                     logger.info('ttt exit')
                     sys.exit()
+                rem = (t / ChangeFormationGap) % len(Formations)
+                if self.formation != rem:
+                    time.sleep(3)
+                    self.bianzhen(Formations[rem])
+                    self.formation = rem
 
 def parsearg():
     global Delay_Time, Times, MaxSilverExit

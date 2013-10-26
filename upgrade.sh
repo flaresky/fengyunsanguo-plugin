@@ -1,11 +1,12 @@
 cd /home/tianqi/psg
 
-eid=2254678
+eid=2220238 #pifeng
 
-#did=1274986
+#did=1230096
 
-tax=1
-quit=0
+tax=0
+quit=1
+up_magic=93
 
 downgradeEquip()
 {
@@ -29,16 +30,18 @@ tax()
 }
 
 
-downgradeEquip
-upgradeEquip 0 4
-downgradeEquip
-tax
-upgradeEquip 20 3
-downgradeEquip
-tax
-upgradeEquip 5 2
-downgradeEquip
+if [[ "$1" -ge "$up_magic" ]]; then
+    downgradeEquip
+    upgradeEquip 0 4
+    downgradeEquip
+    tax
+    upgradeEquip 20 3
+    downgradeEquip
+    tax
+    upgradeEquip 5 2
+    downgradeEquip
 
-if [[ "$quit" -gt 0 ]]; then
-    sh ./kill.sh magicThread.py
+    if [[ "$quit" -gt 0 ]]; then
+        sh ./kill.sh magicThread.py
+    fi
 fi
