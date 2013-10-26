@@ -51,7 +51,7 @@ class TaxThread(threading.Thread):
         while True:
             gi = GeneralInfo()
             if gi.get_levy_remain() <= Remain:
-                logger.info('Tax remain time is %d, will exit'%(Remain))
+                logger.info('Tax remain time is %d, will exit'%(gi.get_levy_remain()))
                 return
             else:
                 logger.info('Tax remain %d times'%(gi.get_levy_remain()))
