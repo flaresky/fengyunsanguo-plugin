@@ -10,10 +10,11 @@
 7 21 * * * cd ~/psg; python tongsang.py
 9 21 * * * cd ~/psg; python lanjieThread.py
 25,45 21 * * * cd ~/psg; python husongThread.py
-11 21 * * * cd ~/psg; python pozenThread.py -c 3 2 4 1
+11 21 * * * cd ~/psg; python pozenThread.py -c 4 3 2
 40 15 * * * cd ~/psg; python pvpBaoming.py
 50 20 * * * cd ~/psg; python taskThread.py
 51 21 * * * cd ~/psg; python tttThread.py -t 300
+1 17 * * * cd ~/psg; python tttThread.py -t 1500
 
 55 10 * * * cd ~/psg; python bossThread.py -t 100
 

@@ -4,11 +4,11 @@
 #pgrep -u `id -u` -f sunsangxiang || python trainingThread.py -a -e sunsangxiang -m 8 &
 #pgrep -u `id -u` -f "trainingThread.py -e xiangyu" || python trainingThread.py -e xiangyu -l 130 &
 #pgrep -u `id -u` -f goujian || python trainingThread.py -a -e goujian -m 8 &
-pgrep -u `id -u` -f spangtong || python trainingThread.py -a -e spangtong -m 8 &
+#pgrep -u `id -u` -f syanliang || python trainingThread.py -a -e syanliang -m 8 &
 pgrep -u `id -u` -f shuangzong || python trainingThread.py -a -e shuangzong -m 8 &
 #pgrep -u `id -u` -f guanyu || python trainingThread.py -a -e guanyu -m 8 &
 #pgrep -u `id -u` -f mozi || python trainingThread.py -a -e mozi -m 8 &
-pgrep -u `id -u` -f sweiyan || python trainingThread.py -a -e sweiyan -m 8 &
+#pgrep -u `id -u` -f sweiyan || python trainingThread.py -a -e sweiyan -m 8 &
 pgrep -u `id -u` -f szaoyun || python trainingThread.py -a -e szaoyun -m 8 &
 pgrep -u `id -u` -f smacao || python trainingThread.py -a -e smacao -m 8 &
 #pgrep -u `id -u` -f mulu || python trainingThread.py -a -e mulu -m 8 &
