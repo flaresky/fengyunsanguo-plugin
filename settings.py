@@ -165,6 +165,8 @@ UID = {
 	'szaoyun' : '55539',
 	'smacao' : '55540',
 	'syanliang' : '55669',
+	'szangfei' : '55681',
+	'sguanyu' : '55683',
 }
 
 PEOPLE_ID = {
