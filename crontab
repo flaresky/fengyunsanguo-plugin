@@ -1,4 +1,0 @@
-30 11 * * * cd ~/psg; python kuangzanThread.py -e
-#50 11 * * * cd ~/psg; python soukuangThread.py
-#10,50 12 * * * cd ~/psg; python kuangzanThread.py -e
-#30 12 * * * cd ~/psg; python soukuangThread.py
