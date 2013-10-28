@@ -70,10 +70,8 @@ class WashPointThread(threading.Thread):
                         time.sleep(2)
                         if accepted:
                             util.send_command('acceptWash', Hero)
-                            print_old_point = True
                         else:
                             util.send_command('refuseWash', Hero)
-                            print_old_point = False
                         time.sleep(2)
                         continue
                     logger.error('Got exception %s, exit'%(exp))
