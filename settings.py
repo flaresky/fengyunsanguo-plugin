@@ -161,10 +161,12 @@ UID = {
 	'guanyu' : '49286',
 	'menghuo' : '55326',
 	'wangben' : '55373',
+    'szangfei' : '55685',
 }
 
 INIT_POINT = {
         'wangben' : (83, 85, 101),
+        'szangfei' : (110, 93, 96),
 }
 
 PEOPLE_ID = {
