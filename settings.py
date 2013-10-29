@@ -145,10 +145,12 @@ UID = {
         'sweiyan' : '55522',
         'syanliang' : '55581',
         'slvbu' : '55582',
+        'szangfei' : '55706',
 }
 
 INIT_POINT = {
         'wangben' : (83, 85, 101),
+        'szangfei' : (110, 93, 96),
 }
 
 PEOPLE_ID = {
