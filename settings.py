@@ -148,6 +148,7 @@ UID = {
         'szangfei' : '55706',
         'sguanyu' : '55712',
         'smacao' : '55713',
+        'szaoyun' : '55714',
 }
 
 INIT_POINT = {
