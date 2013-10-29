@@ -44,7 +44,7 @@ class TaxThread(threading.Thread):
                 t += 1
 
     def run(self):
-        logger.info('TaxThread start')
+        logger.info('TaxThread start, will tax till remain %d times'%(Remain))
         if Delay_Time > 0:
             logger.info('I will start tax at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
