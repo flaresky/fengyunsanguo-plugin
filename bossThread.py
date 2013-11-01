@@ -69,7 +69,7 @@ class BossThread(threading.Thread):
         gi = GeneralInfo()
         start_time = util.get_xiongsou_refresh_time(gi.get_serverTime())
         ls_diff = gi.get_localTime() - gi.get_serverTime()
-        sp = util.get_sleep_time(start_time, ls_diff) + 1
+        sp = util.get_sleep_time(start_time, ls_diff) + 4
         if sp > 0:
             logger.info('I will sleep till start time, will attack at %s'%(util.next_time(sp)))
             time.sleep(sp)
