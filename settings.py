@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #encoding: utf-8
-HOST = '42.62.23.18'
+HOST = '42.62.23.171'
 PORT = 8313
 
 LOGFILE = './log'
