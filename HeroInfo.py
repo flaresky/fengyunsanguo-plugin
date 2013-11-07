@@ -53,6 +53,9 @@ class HeroInfo:
     def get_exp_speed_by_id(self, hid):
         return int(self.hid_dict[hid]['expSpeed'])
 
+    def get_expMulti_by_id(self, hid):
+        return float(self.hid_dict[hid]['expMulti'])
+
     def get_exp_speed(self):
         res = 100000000000
         for hid in self.get_hero_ids():
@@ -132,5 +135,5 @@ class HeroInfo:
 if __name__ == '__main__':
     hi = HeroInfo()
     hi.format_print()
-    #hi.raw_print()
+    hi.raw_print()
     hi.print_for_setting()
