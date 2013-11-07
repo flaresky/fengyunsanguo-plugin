@@ -85,6 +85,12 @@ class GeneralInfo:
     def get_freeappoint_num(self):
         return int(self.data['userExtend']['freeAppoint'])
 
+    def get_jewelryPoint(self):
+        return int(self.data['userExtend']['jewelryPoint'])
+
+    def get_battleTimes(self):
+        return int(self.data['userExtend']['battleTimes'])
+
     def get_cur_mobility(self):
         return int(self.data['user']['currMobility'])
 
@@ -212,13 +218,15 @@ class GeneralInfo:
         print '\tLevel: %d'%(self.get_level())
         print '\tTraining Status: %d/%d'%(self.get_training_hero_num(), self.get_max_training_hero_num())
         print '\tLevy Status: %d/%d'%(self.get_levy_times(), self.get_levy_times()+self.get_levy_remain())
-        print '\tEnforce Levy Times: %d'%(self.get_enforce_levy_times())
+        print '\tEnforce Levy Times: %d, Total Times: %d'%(self.get_enforce_levy_times(), self.get_levy_times()+self.get_enforce_levy_times())
         print '\tDaily Task Status: %d/6'%(self.get_task_finish_num())
         print '\tSilver Status: %d/%d'%(self.get_cur_silver(), self.get_max_silver())
         print '\tMobility Status: %d/%d'%(self.get_cur_mobility(), self.get_max_mobility())
+        print '\tBattle Times: %d'%(self.get_battleTimes())
         print '\tGoldCoin: %d'%(self.get_gold_num())
         print '\tExploit: %d'%(self.get_exploit())
         print '\tRepute: %d'%(self.get_repute())
+        print '\tJewelryPoint: %d'%(self.get_jewelryPoint())
         print '\tFree Appoint Remain: %d'%(self.get_freeappoint_num())
         print '\tTurntable Remain: %d'%(self.get_turntable_time())
         print '\tSalary Remain: %d'%(1-self.get_salary_collected())
