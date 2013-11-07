@@ -62,7 +62,7 @@ def get_training_time():
     else:
         if Hero:
             hid = UID[Hero]
-            exp_speed = hi.get_exp_speed_by_id(hid)
+            exp_speed = hi.get_exp_speed_by_id(hid) * (1 + hi.get_expMulti_by_id(hid))
             if not From:
                 From = int(hi.get_level_by_id(hid))
             if not To:
