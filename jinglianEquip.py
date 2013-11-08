@@ -11,6 +11,7 @@ import util
 import traceback
 import json
 from EquipInfo import EquipInfo
+from GeneralInfo import GeneralInfo
 
 logger = Logger.getLogger()
 
@@ -33,10 +34,23 @@ class jinglianThread(threading.Thread):
         while level < Level:
             res = util.send_command('jinglianEquip', Eid)
             if res is not None:
+                sp = 298
                 if res.has_key('exception'):
                     msg = res['exception']['message']
                     if msg == 'upFail':
                         logger.info('jinglian fail')
+                    elif msg == 'CDTimeNotCool':
+                        time.sleep(2)
+                        gi = GeneralInfo()
+                        cd = gi.get_jinglian_CDTime()
+                        stime = gi.get_serverTime()
+                        if cd > stime:
+                            sp = cd - stime + 1
+                            logger.info('I will sleep CD to %s'%(util.next_time(sp)))
+                            time.sleep(sp)
+                        else:
+                            time.sleep(2)
+                        continue
                     else:
                         logger.info('got Exception %s, exit'%(msg))
                         sys.exit()
@@ -45,8 +59,12 @@ class jinglianThread(threading.Thread):
                     logger.info('jinglian to level %d'%(level))
                     if level >= Level:
                         sys.exit()
-                sp = 300
+                    sp = 2
                 logger.info('next round will start at ' + util.next_time(sp))
+                time.sleep(sp)
+            else:
+                sp = 2
+                logger.info('network error, will start at ' + util.next_time(sp))
                 time.sleep(sp)
 
 def parsearg():

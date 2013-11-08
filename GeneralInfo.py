@@ -159,6 +159,13 @@ class GeneralInfo:
                 res = min(res, int(ut['time']))
         return res
 
+    def get_jinglian_CDTime(self):
+        res = 13409404500
+        for ut in self.data['userTimes']:
+            if ut['type'] == '19':
+                res = min(res, int(ut['time']))
+        return res
+
     def get_zuangbei_CDTime(self):
         res = 13409404500
         for ut in self.data['userTimes']:
