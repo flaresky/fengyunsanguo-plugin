@@ -398,6 +398,23 @@ class Sanguo:
         logger.info('downgradeEquip eid=%s'%(str(eid)))
         return res
 
+    def jinglianEquip(self, eid):
+        op = 1035
+        data = {
+                'id' : eid,
+                'op' : 1035,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(0.3)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+
     def sellEquip(self, eid):
         self.login()
         data = {
@@ -694,7 +711,8 @@ if __name__ == '__main__':
     #res = sanguo.pvp_baoming()
     #res = sanguo.kuafu_race_list()
     #res = sanguo.tongtianta()
-    res = sanguo.washHero('wangben')
+    #res = sanguo.washHero('wangben')
+    res = sanguo.jinglianEquip(2391732)
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
     #res = sanguo.bianzhen('yanxing')
