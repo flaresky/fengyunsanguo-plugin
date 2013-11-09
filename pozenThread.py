@@ -110,6 +110,7 @@ class pozenThread(threading.Thread):
                         armyid = int(info['armyId'])
                         if armyid not in black_list:
                             return armyid
+                return -1
             except:
                 time.sleep(3)
 
@@ -152,6 +153,10 @@ class pozenThread(threading.Thread):
                     #return
                     armyid = self.get_next_id(campaignid)
                     if armyid is None:
+                        logger.info('pozen network error')
+                        time.sleep(2)
+                        continue
+                    elif armyid == -1:
                         logger.info('pozen %d finished'%(campaignid))
                         break
                     elif armyid == g_previous_armyid:

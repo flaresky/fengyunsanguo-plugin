@@ -407,7 +407,7 @@ class Sanguo:
         self.login()
         data = self.compose_data(data)
         self.tcpClientSock.send(data)
-        time.sleep(0.3)
+        time.sleep(1)
         res = self.tcpClientSock.recv(BUFSIZE)
         res = self.multiDecode(res)
         for rp in res:
