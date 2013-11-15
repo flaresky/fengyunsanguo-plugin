@@ -669,6 +669,19 @@ class Sanguo:
         return None
         return self.sendData(data)
 
+    def getBoxList(self):
+        data = {
+                'op' : 2407,
+            }
+        return self.sendData(data)
+
+    def openBox(self, id):
+        data = {
+                'op' : 2405,
+                'id' : str(id),
+            }
+        return self.sendData(data)
+
     def test(self):
         data = {
                 'op' : 1329,
@@ -712,7 +725,9 @@ if __name__ == '__main__':
     #res = sanguo.kuafu_race_list()
     #res = sanguo.tongtianta()
     #res = sanguo.washHero('wangben')
-    res = sanguo.jinglianEquip(2391732)
+    #res = sanguo.jinglianEquip(2391732)
+    #res = sanguo.getBoxList()
+    res = sanguo.openBox(83606)
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
     #res = sanguo.bianzhen('yanxing')
