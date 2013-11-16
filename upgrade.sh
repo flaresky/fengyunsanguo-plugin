@@ -6,7 +6,7 @@ eid=2220238 #pifeng
 
 tax=0
 quit=1
-up_magic=93
+up_magic=95
 
 downgradeEquip()
 {
