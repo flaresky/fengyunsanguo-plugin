@@ -157,6 +157,7 @@ UID = {
         'szuge' : '55755',
         'shuangzong' : '55764',
         'syuji' : '55787',
+	'syueying' : '55794',
 }
 
 INIT_POINT = {
