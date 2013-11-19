@@ -1,7 +1,6 @@
 30 19 * * * cd /home/tianqi/psg; python kuangzanThread.py -e
-#50 19 * * * cd /home/tianqi/psg; python soukuangThread.py
 
-13 5 * * * cd /home/tianqi/psg; sh start_magic.sh
+#13 5 * * * cd /home/tianqi/psg; sh start_magic.sh
 2 2 * * * cd /home/tianqi/psg; python oneTimePerDay.py
 50 4 * * * cd /home/tianqi/psg; python taskThread.py
 
@@ -9,11 +8,13 @@
 9 5 * * * cd /home/tianqi/psg; python lanjieThread.py
 12,25 5 * * * cd /home/tianqi/psg; python husongThread.py
 40 23 * * * cd /home/tianqi/psg; python pvpBaoming.py
-14 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 4 3
-51 5 * * * cd /home/tianqi/psg; python tttThread.py -t 500
-21 1 * * * cd /home/tianqi/psg; python tttThread.py -t 1000
+14 5 * * * cd /home/tianqi/psg; python pozenThread.py -c 4
+#51 5 * * * cd /home/tianqi/psg; python tttThread.py -t 500
+1 1 * * * cd /home/tianqi/psg; python tttThread.py -t 2000
 
 57 18 * * * cd /home/tianqi/psg; python bossThread.py -t 4
+
+#8 5 * * * cd /home/tianqi/psg; python taxThread.py
 
 #--------------------------------siyu--------------------------------------------------
 
@@ -24,8 +25,8 @@
 
 8 5 * * * cd /home/tianqi/psg.siyu; python tongsang.py
 9 5 * * * cd /home/tianqi/psg.siyu; python lanjieThread.py
-#12,25 5 * * * cd /home/tianqi/psg.siyu; python husongThread.py
-40 23 * * * cd /home/tianqi/psg.siyu; python pvpBaoming.py
 14 5 * * * cd /home/tianqi/psg.siyu; python pozenThread.py -c 4
-21 1 * * * cd /home/tianqi/psg.siyu; python tttThread.py -t 1000
+1 1 * * * cd /home/tianqi/psg.siyu; python tttThread.py -t 2000
 57 18 * * * cd /home/tianqi/psg.siyu; python bossThread.py -t 4
+
+#8 5 * * * cd /home/tianqi/psg.siyu; python taxThread.py

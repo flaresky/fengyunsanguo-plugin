@@ -1,11 +1,13 @@
 cd /home/tianqi/psg
 
-eid=2220238 #pifeng
+eid=2438797 #hongfu
+#eid=2391732 #pi
 
-#did=1230096
+#did=1758407 #zifu
 
-tax=0
-quit=1
+enable=1
+tax=1
+quit=0
 up_magic=95
 
 downgradeEquip()
@@ -29,19 +31,25 @@ tax()
     fi
 }
 
+main()
+{
+    if [[ "$1" -ge "$up_magic" ]]; then
+        downgradeEquip
+        upgradeEquip 0 4
+        downgradeEquip
+        tax
+        upgradeEquip 20 3
+        downgradeEquip
+        tax
+        upgradeEquip 5 2
+        downgradeEquip
 
-if [[ "$1" -ge "$up_magic" ]]; then
-    downgradeEquip
-    upgradeEquip 0 4
-    downgradeEquip
-    tax
-    upgradeEquip 20 3
-    downgradeEquip
-    tax
-    upgradeEquip 5 2
-    downgradeEquip
-
-    if [[ "$quit" -gt 0 ]]; then
-        sh ./kill.sh magicThread.py
+        if [[ "$quit" -gt 0 ]]; then
+            sh ./kill.sh magicThread.py
+        fi
     fi
+}
+
+if [[ "$enable" -gt 0 ]]; then
+    main
 fi
