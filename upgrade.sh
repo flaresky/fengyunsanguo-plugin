@@ -1,14 +1,14 @@
 cd /home/tianqi/psg
 
-eid=2438797 #hongfu
-#eid=2391732 #pi
+eid=2332498 #qingwu
+#eid=1979715 #qingma
 
 #did=1758407 #zifu
 
 enable=1
-tax=1
+tax=0
 quit=0
-up_magic=95
+up_magic=90
 
 downgradeEquip()
 {
