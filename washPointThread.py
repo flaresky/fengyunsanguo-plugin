@@ -15,8 +15,10 @@ import traceback
 logger = Logger.getLogger()
 
 Delay_Time = 0
-Max_Mean = 40
-Hero= None
+Max_Mean = 0
+Hero = None
+Weight = None
+Lower_Limit = None
 fields = ('leadership', 'tactics', 'magic')
 temp_fields = ('tempLeadership', 'tempTactics', 'tempMagic')
 
@@ -26,18 +28,16 @@ class WashPointThread(threading.Thread):
         self.daemon = False
 
     def get_harmonic_mean(self, args):
-        factor = (1.5, 1.0, 1.0)
+        fields_num = 3
         sum = 0
         fs = 0
-        idx = 0
-        for v in args:
-            v = int(v)
+        for i in range(fields_num):
+            v = int(args[i])
             if v == 0:
                 v = 0.1
-            sum += factor[idx] / v
-            fs += factor[idx]
-            idx += 1
-        return fs / sum
+            sum += 1.0 * Weight[i] / v
+            fs += Weight[i]
+        return 1.0 * fs / sum
 
     def run(self):
         logger.info('WashPointThread start, hero is %s'%(Hero))
@@ -62,6 +62,7 @@ class WashPointThread(threading.Thread):
                 if wash_res.has_key('exception'):
                     exp = wash_res['exception']['message']
                     if exp == 'previousChangPointNotFinish':
+                        accepted = False
                         if accepted:
                             flag = 'Accept'
                         else:
@@ -70,10 +71,8 @@ class WashPointThread(threading.Thread):
                         time.sleep(2)
                         if accepted:
                             util.send_command('acceptWash', Hero)
-                            print_old_point = True
                         else:
                             util.send_command('refuseWash', Hero)
-                            print_old_point = False
                         time.sleep(2)
                         continue
                     logger.error('Got exception %s, exit'%(exp))
@@ -97,6 +96,11 @@ class WashPointThread(threading.Thread):
                 accepted = False
                 if tmpmean >= oldmean:
                     accepted = True
+                # lower limit check
+                for i in range(fields_num):
+                    if tmpfs[i] < Lower_Limit[i]:
+                        accepted = False
+                        break
                 if accepted:
                     msg = '[Accept][' + str(times) + '] ' + msg
                 else:
@@ -122,11 +126,13 @@ class WashPointThread(threading.Thread):
                 time.sleep(2)
 
 def parsearg():
-    global Delay_Time, Hero, Max_Mean
+    global Delay_Time, Hero, Max_Mean, Weight, Lower_Limit
     parser = argparse.ArgumentParser(description='WashPoint for hero')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to training')
     parser.add_argument('-e', '--hero', type=str, help='hero you want to wash point')
-    parser.add_argument('-m', '--max_mean', type=int, default=40, help='max harmonic mean')
+    parser.add_argument('-m', '--max_mean', type=int, default=120, help='max harmonic mean')
+    parser.add_argument('-w', '--weight', type=float, nargs=3, default=[1.0, 1.0, 1.0], help='weight of 3 fields')
+    parser.add_argument('-l', '--lower_limit', type=int, nargs=3, default=[0, 0, 0], help='lower limit of 3 fields')
     parser.add_argument('-i', '--init_point', type=int, nargs=3, help='init point to calc')
     res = parser.parse_args()
     dlist = res.delay.split(':')
@@ -136,6 +142,8 @@ def parsearg():
         Delay_Time = int(dlist[0]) * 3600 + int(dlist[1]) * 60
     Hero= res.hero
     Max_Mean = res.max_mean
+    Weight = res.weight
+    Lower_Limit = res.lower_limit
     if res.init_point is not None:
         thread = WashPointThread()
         print thread.get_harmonic_mean(res.init_point)
