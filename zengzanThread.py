@@ -17,7 +17,9 @@ logger = Logger.getLogger()
 
 Delay_Time = 0 
 Npc_String = None
+Times = 100
 FirstTime = True
+global_times = 0
 
 class zengzanThread(threading.Thread):
     def __init__(self, count=18):
@@ -43,12 +45,17 @@ class zengzanThread(threading.Thread):
                 t += 1
 
     def zengzan(self, nstr, times=1):
+        global global_times
         res = None
         for i in range(times):
+            if global_times >= Times:
+                logger.info('zengzan %d times, exit'%(Times))
+                sys.exit()
             res = self.do_zengzan(nstr)
             if res.has_key('exception'):
                 return res
-            logger.info('zengzan %s succeed'%(nstr))
+            global_times += 1
+            logger.info('zengzan %s %d times'%(nstr, global_times))
             if i < times-1:
                 time.sleep(2)
         return res
@@ -71,7 +78,7 @@ class zengzanThread(threading.Thread):
         return ni
 
     def run(self):
-        global FirstTime
+        global FirstTime, Times
         logger.info('zengzanThread start')
         if Delay_Time > 0:
             logger.info('I will start zengzan at ' + util.next_time(Delay_Time))
@@ -79,10 +86,9 @@ class zengzanThread(threading.Thread):
         while True:
             ni = self.getNpcInfo()
             remain_times = ni.getNumber()
-            #logger.info('%s remain number %d, serverTime: %s'%(Npc_String, remain_times, util.format_time(ni.getServerTime())))
             if remain_times > 0:
                 time.sleep(2)
-                res = self.zengzan(Npc_String, remain_times)
+                res = self.zengzan(Npc_String, remain_times + 100)
                 if res.has_key('exception'):
                     msg = res['exception']['message']
                     logger.info('zengzan exception: %s'%(msg))
@@ -93,6 +99,8 @@ class zengzanThread(threading.Thread):
                         time.sleep(sp)
                         FirstTime = True
                         continue
+                    elif msg == 'lessMobility':
+                        return
                     else:
                         time.sleep(2)
                         FirstTime = True
@@ -103,10 +111,11 @@ class zengzanThread(threading.Thread):
             time.sleep(sp)
 
 def parsearg():
-    global Delay_Time, Npc_String
+    global Delay_Time, Npc_String, Times
     parser = argparse.ArgumentParser(description='zengzan')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to zengzan')
-    parser.add_argument('-n', '--npc_id', required=False, type=str, default='xiangyuhuangjia', help='npc string')
+    parser.add_argument('-n', '--npc_id', required=False, type=str, default='yinlongjia', help='npc string')
+    parser.add_argument('-t', '--times', required=False, type=int, default=100, help='zengzan times')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:
@@ -114,6 +123,7 @@ def parsearg():
     elif len(dlist) == 2:
         Delay_Time = int(dlist[0]) * 3600 + int(dlist[1]) * 60
     Npc_String = res.npc_id
+    Times = res.times
 
 if __name__ == '__main__':
     parsearg()
