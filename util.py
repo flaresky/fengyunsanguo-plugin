@@ -39,6 +39,12 @@ def get_next_refresh_time(Server_Time):
     # 12:30
     elif off_seconds < 45000:
         res = zero_time.replace(hour=12, minute=30)
+    # 15:00
+    elif off_seconds < 54000:
+        res = zero_time.replace(hour=15)
+    # 17:00
+    elif off_seconds < 61200:
+        res = zero_time.replace(hour=17)
     # 19:00
     elif off_seconds < 68400:
         res = zero_time.replace(hour=19)
@@ -48,10 +54,22 @@ def get_next_refresh_time(Server_Time):
     # 21:30
     elif off_seconds < 77400:
         res = zero_time.replace(hour=21, minute=30)
+    # 22:30
+    elif off_seconds < 81000:
+        res = zero_time.replace(hour=22, minute=30)
     else:
         res = zero_time.replace(hour=5)
         res = res + datetime.timedelta(days=1)
     return int(time.mktime(res.timetuple())) 
+
+def get_xiongsou_refresh_time(Server_Time):
+    Server_Time = int(Server_Time)
+    last_time = datetime.datetime.fromtimestamp(Server_Time)
+    zero_time = last_time.replace(hour=19, minute=0, second=0)
+    off_seconds = int(Server_Time) - int(time.mktime(zero_time.timetuple()))
+    if off_seconds >= 3600:
+        zero_time = zero_time + datetime.timedelta(days=1)
+    return int(time.mktime(zero_time.timetuple())) 
 
 def notify(msg):
     msg = USER_INFO[DEFAULT_USER]['USERNAME'] + ' --- ' + msg
@@ -220,6 +238,27 @@ def decode_data(dl):
         idx += length + 2
     return ret
 
+def send_command(cmd, *args):
+    retry = 10
+    t = 1
+    while t <= retry:
+        try:
+            sanguo = Sanguo()
+            sanguo.login()
+            function = getattr(sanguo, cmd)
+            res = function(*args)
+            sanguo.close()
+            if res == None:
+                raise Exception()
+            return res
+        except:
+            #logger.error(cmd + "\n" + traceback.format_exc())
+            time.sleep(2*t)
+            t += 1
+
+def pretty_print(res):
+    print json.dumps(res, sort_keys = False, indent = 4)
+
 if __name__ == '__main__':
     #notify('magic is 22%')
     #print intlen_2_hexstr(15)
@@ -236,5 +275,5 @@ if __name__ == '__main__':
     #    }
     #res = send_data(data)
     #res = get_user('66702307')
-    res = get_user('67201307')
+    res = send_command('washHero', 'wangben')
     print json.dumps(res, sort_keys = False, indent = 4)
