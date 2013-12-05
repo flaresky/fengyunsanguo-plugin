@@ -136,8 +136,13 @@ USER_INFO = {
                         'USERNAME' : '中国钓鱼岛',
                         'LOGIN_DATA' :
                         '\x00\x50\x00\x05\x00\x03\x6e\x69\x6c\x00\x09\x31\x30\x30\x36\x38\x31\x37\x31\x35\x00\x01\x30\x00\x00\x00\x37\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x37\x37\x35\x38\x32\x35\x38\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x38\x33\x32\x37\x39\x39\x40\x71\x71\x2e\x63\x6f\x6d\x22\x7d',
+            'niu' : {
+                        'USERNAME' : 'laoniu',
+                        'LOGIN_DATA' :
+                        '\x00\x51\x00\x05\x00\x03\x6e\x69\x6c\x00\x08\x36\x37\x32\x34\x39\x34\x32\x37\x00\x01\x30\x00\x00\x00\x39\x7b\x22\x4b\x4c\x5f\x50\x41\x53\x53\x57\x4f\x52\x44\x22\x3a\x22\x31\x32\x33\x34\x35\x36\x22\x2c\x22\x4b\x4c\x5f\x50\x41\x53\x53\x50\x4f\x52\x54\x22\x3a\x22\x33\x37\x32\x30\x38\x32\x38\x30\x32\x40\x71\x71\x2e\x63\x6f\x6d\x22\x7d',
                         },
     }
+}
 
 UID = {
         'huatuo' : '41978',
@@ -161,6 +166,28 @@ UID = {
         'wangjian' : '53531',
         'qsh' : '53597',
         'baiqi' : '53664',
+        'wangben' : '54258',
+        'guigu' : '54379',
+        'xisi' : '54432',
+        'goujian' : '54496',
+        'mozi' : '54525',
+        'zangliang' : '54722',
+        'xiangyu' : '54744',
+        'liubei' : '55043',
+        'menghuo' : '55360',
+        'sweiyan' : '55522',
+        'syanliang' : '55581',
+        'slvbu' : '55582',
+        'szangfei' : '55706',
+        'sguanyu' : '55712',
+        'smacao' : '55713',
+        'szaoyun' : '55714',
+}
+
+INIT_POINT = {
+        'wangben' : (83, 85, 101),
+        'szangfei' : (110, 93, 96),
+        'sguanyu' : (110, 93, 96),
 }
 
 PEOPLE_ID = {
@@ -203,6 +230,10 @@ ARMY_ID = {
 NPC_ID = {
         'huangjia80' : 1317,
         'xiangyuhuangjia' : 1427,
+        'goujianjia' : 1930,
+        'goujian' : 1939,
+        'yinlongjia' : 2038,
+        'mozi' : 2039,
 }
 
 CITY_ID = {
@@ -222,6 +253,7 @@ CITY_ID = {
         'xinye' : '309',
         'xiangyang' : '310',
         'wuling' : '311',
+        'bajun' : '312',
         'test' : '209',
 }
 
@@ -239,6 +271,7 @@ KEJI = {
         'bagua' : '106',
         'qixing' : '107',
         'yanxing' : '108',
+        'jiugong' : '109',
         'bingfu' : '201',
         'lingqi' : '202',
         'pg' : '203',
@@ -253,7 +286,6 @@ KEJI = {
         'tousi' : '214',
 }
 KEJI_LIST = [
-        ('jiwen', 2),
         ('pg', 1),
         ('pf', 1),
         ('zf', 1),
@@ -262,8 +294,10 @@ KEJI_LIST = [
         ('ff', 1),
         ('lingqi', 2),
         ('bingfu', 1),
-        ('tousi', 2),
         ('fg', 1),
+        ('jiwen', 2),
+        ('tousi', 2),
+        ('jiugong', 5),
         #('yanxing', 5),
         #('cuxing', 5),
         #('cangse', 5),
@@ -440,4 +474,14 @@ LEVEL_EXP_MAP = {
         117 : 1548000,
         118 : 1584000,
         119 : 1620000,
+        120 : 1656000,
+        121 : 1692000,
+        122 : 1728000,
+        123 : 1764000,
+        124 : 1800000,
+        125 : 1836000,
+        126 : 1872000,
+        127 : 1908000,
+        128 : 1944000,
+        129 : 1980000,
 }
