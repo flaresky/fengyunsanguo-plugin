@@ -188,7 +188,6 @@ INIT_POINT = {
         'wangben' : (83, 85, 101),
         'szangfei' : (110, 93, 96),
         'sguanyu' : (110, 93, 96),
->>>>>>> 867d8a030d0dcb843e39964c5050180ecef2d82e
 }
 
 PEOPLE_ID = {
