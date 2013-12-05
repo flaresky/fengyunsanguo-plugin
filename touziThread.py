@@ -81,7 +81,7 @@ def parsearg():
     global Delay_Time, CityName, Thrive
     parser = argparse.ArgumentParser(description='touzi')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to upgrade touzi')
-    parser.add_argument('-c', '--city', type=str, default='xinye', help='touzi city name')
+    parser.add_argument('-c', '--city', type=str, default='bajun', help='touzi city name')
     parser.add_argument('-t', '--thrive', type=int, default=3, help='thrive')
     res = parser.parse_args()
     dlist = res.delay.split(':')
