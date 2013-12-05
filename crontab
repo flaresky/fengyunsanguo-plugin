@@ -10,4 +10,4 @@
 17,47 * * * * cd ~/psg; sh restart_tax.sh
 28 */2 * * * cd ~/psg; sh restart_touzi.sh
 23 */3 * * * cd ~/psg; python qiangzengThread.py -t 1
-#25 */2 * * * cd ~/psg; sh restart_jianzhu.sh
+25 */2 * * * cd ~/psg; sh restart_jianzhu.sh

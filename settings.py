@@ -253,6 +253,7 @@ CITY_ID = {
         'xinye' : '309',
         'xiangyang' : '310',
         'wuling' : '311',
+        'bajun' : '312',
         'test' : '209',
 }
 
