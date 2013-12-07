@@ -9,6 +9,7 @@ import util
 import sys
 import json
 from settings import *
+import sellBaowu
 
 logger = Logger.getLogger()
 
@@ -31,3 +32,5 @@ if __name__ == '__main__':
                     else:
                         logger.info('open box %s succeed'%(str(id)))
         logger.info('all opened, exit')
+        time.sleep(2)
+        sellBaowu.main()

@@ -1,11 +1,11 @@
-cd /home/tianqi/psg
+cd /home/droidhen/flaresky/psg
 
-eid=2332498 #qingwu
-#eid=1979715 #qingma
+#eid=2332498 #qingwu
+eid=2404052 #yinlong
 
 #did=1758407 #zifu
 
-enable=1
+enable=0
 tax=0
 quit=0
 up_magic=90

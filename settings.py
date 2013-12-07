@@ -157,7 +157,11 @@ UID = {
         'szuge' : '55755',
         'shuangzong' : '55764',
         'syuji' : '55787',
-	'syueying' : '55794',
+        'syueying' : '55794',
+        'szuoci' : '55857',
+        'sjiangwei' : '55861',
+        'spangtong' : '55862',
+        'sdiaocan' : '55863',
 }
 
 INIT_POINT = {
@@ -266,10 +270,10 @@ KEJI_LIST = [
         ('ff', 1),
         ('lingqi', 2),
         ('bingfu', 1),
-        ('fg', 1),
+        #('fg', 1),
         ('jiwen', 2),
-        ('tousi', 2),
-        ('jiugong', 5),
+        #('tousi', 2),
+        #('jiugong', 5),
         #('yanxing', 5),
         #('cuxing', 5),
         #('cangse', 5),
@@ -302,8 +306,8 @@ JIANZHU = {
 }
 JIANZHU_LIST = [
         #'zuceng',
-        'sangdian',
         'junji',
+        'sangdian',
         'jiaocang',
         'jiaocang2',
         'zangfang',
@@ -457,4 +461,6 @@ LEVEL_EXP_MAP = {
         127 : 1908000,
         128 : 1944000,
         129 : 1980000,
+        130 : 2016000,
+        131 : 2052000,
 }
