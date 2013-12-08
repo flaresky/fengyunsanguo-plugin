@@ -1,17 +1,13 @@
-30 19 * * * cd /home/tianqi/psg; python kuangzanThread.py -e
-50 19 * * * cd /home/tianqi/psg; python soukuangThread.py
-10,50 20 * * * cd /home/tianqi/psg; python kuangzanThread.py -e
-30 20 * * * cd /home/tianqi/psg; python soukuangThread.py
+#10,50 12 * * * cd ~/psg; python kuangzanThread.py -e
+#30 12 * * * cd ~/psg; python soukuangThread.py
 
-11 3 * * * cd /home/tianqi/psg; python soukuangThread.py
-10 5 * * * cd /home/tianqi/psg; python soukuangThread.py
-#1 6 * * * cd /home/tianqi/psg; sh start_magic.sh
-2 2 * * * cd /home/tianqi/psg; python oneTimePerDay.py
+#11 19 * * * cd ~/psg; python soukuangThread.py
+#10 21 * * * cd ~/psg; python soukuangThread.py
+2 4,12,23 * * * cd ~/psg; python oneTimePerDay.py
 
-#50 4 * * * cd /home/tianqi/psg; ./kill.sh weipai
-7 5 * * * cd /home/tianqi/psg; python tongsang.py
-#10 5 * * * cd /home/tianqi/psg; python weipaiThread.py
-
-#10 5 * * * cd /home/tianqi/psg; sh start_tax.sh
-#12 */2 * * * cd /home/tianqi/psg; sh start_tax.sh
-#3 * * * * cd /home/tianqi/psg; python soukuangThread.py
+16 21 * * * cd ~/psg; python tongsang.py
+2 11 * * * cd ~/psg; python bossThread.py -t 40
+17,47 * * * * cd ~/psg; sh restart_tax.sh
+28 */2 * * * cd ~/psg; sh restart_touzi.sh
+23 */3 * * * cd ~/psg; python qiangzengThread.py -t 1
+25 */2 * * * cd ~/psg; sh restart_jianzhu.sh

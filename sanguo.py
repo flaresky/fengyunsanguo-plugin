@@ -5,7 +5,10 @@ from settings import *
 import Logger
 import zlib
 import json
+import time
+import select
 import sys
+#import util
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -43,6 +46,17 @@ class Sanguo:
                 return json.loads(data)
         except:
             return None
+
+    def multiDecode(self, data):
+        ret = []
+        idx = 0
+        while idx < len(data):
+            slen = int(data[idx:idx+2].encode('hex'), 16)
+            if slen > 0:
+                tpdata = data[idx:idx+slen+2]
+                ret.append(self.decode(tpdata))
+            idx += slen + 2
+        return ret
 
     def compose_data(self, data):
         opcode = data['op']
@@ -341,6 +355,12 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def attackBoss(self):
+        data = {
+                'op' : 2907,
+            }
+        return self.sendData(data)
+
     def getKejiInfo(self):
         self.login()
         data = '\x00\x0f\x04\x6b\x00\x0b\x7b\x22\x6f\x70\x22\x3a\x31\x31\x33\x31\x7d'
@@ -445,6 +465,17 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def husong(self):
+        data = {
+                'op' : 2705,
+            }
+        self.sendData(data)
+        time.sleep(0.5)
+        data = {
+                'op' : 2713,
+            }
+        return self.sendData(data, False)
+
     def lanjie(self, convoyId):
         data = {
                 'op' : 2707,
@@ -452,20 +483,180 @@ class Sanguo:
             }
         return self.sendData(data)
 
-    def sendData(self, data):
+    def pozen_info(self, campaignid):
+        data = {
+                'op' : 3001,
+                'campaignId' : int(campaignid)
+            }
         self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(2)
+        res = self.tcpClientSock.recv(4096)
+        res = self.decode(res)
+        #res = util.decode_data(res)
+        return res
+
+    def pozen(self, armyid, op=3007):
+        data = {
+                'op' : int(op),
+                'armyId' : int(armyid)
+            }
+        return self.sendData(data)
+
+    def zhuanshen(self, hero):
+        data = {
+                'op' : 1139,
+                'heroId' : UID[hero],
+            }
+        return self.sendData(data)
+
+    def bianzhen(self, keji):
+        data = {
+                'isPvp' : False,
+                'op' : 1155,
+                'formationId' : KEJI[keji],
+            }
+        return self.sendData(data)
+
+    def pvp_baoming(self):
+        data = {
+                'op' : 3301,
+            }
+        return self.sendData(data)
+
+    def sendData(self, data, login=True):
+        if login:
+            self.login()
         data = self.compose_data(data)
         self.tcpClientSock.send(data)
         res = self.tcpClientSock.recv(BUFSIZE)
         res = self.decode(res)
         return res
 
-    def test(self):
+    def task_list(self, timeout=3):
         data = {
-                'op' : 501,
-                'campaignId' : 13,
+                'op' : 1329,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        #select.select([self.tcpClientSock], [], [], 30)
+        #self.tcpClientSock.setblocking(1)
+        #self.tcpClientSock.settimeout(30)
+        time.sleep(timeout)
+        res = self.tcpClientSock.recv(10240)
+        #print 'len is '+str(len(res))+'\n'
+        res = self.decode(res)
+        return res
+
+    def task_reward(self, eventId):
+        data = {
+                'eventId' : str(eventId),
+                'op' : 1331,
             }
         return self.sendData(data)
+
+    def kuafu_race_list(self):
+        data = {
+                'op' : 3307,
+            }
+        return self.sendData(data)
+
+    def baowu_list(self):
+        data = {
+                'op' : 3101,
+            }
+        return self.sendData(data)
+
+    def sell_baowu(self, bid):
+        data = {
+                'op' : 3105,
+                'jewelryId' : int(bid),
+            }
+        return self.sendData(data)
+
+    def tongtianta(self):
+        data = {
+                'op' : 3503,
+            }
+        return self.sendData(data)
+
+    def weipai(self, tpe, level):
+        op = 1021
+        data = {
+                'level' : str(level),
+                'op' : op,
+                'type' : str(tpe),
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(1)
+        res = self.tcpClientSock.recv(4*BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+
+    def washHero(self, hero):
+        op = 1117
+        data = {
+                'heroId' : UID[hero],
+                'type' : 1,
+                'op' : op,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(1)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+
+    def acceptWash(self, hero):
+        op = 1119
+        data = {
+                'heroId' : UID[hero],
+                'op' : op,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+        return self.sendData(data)
+
+    def refuseWash(self, hero):
+        op = 1121
+        data = {
+                'heroId' : UID[hero],
+                'op' : op,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+        return self.sendData(data)
+
+    def test(self):
+        data = {
+                'op' : 1329,
+            }
+        return self.sendData(data, False)
         
 if __name__ == '__main__':
     import time
@@ -484,7 +675,7 @@ if __name__ == '__main__':
     #res = sanguo.keji('jiwen')
     #res = sanguo.getNpcInfo('huangjia80')
     #res = sanguo.soukuang('limoges')
-    #res = sanguo.test()
+    #res = sanguo.task_list()
     #res = sanguo.get_general_info()
     #res = sanguo.getUserInfo('64308127')
     #res = sanguo.upgradeEquip('115863', 56, 0)
@@ -498,6 +689,15 @@ if __name__ == '__main__':
     #res = sanguo.husong_suaxin()
     #res = sanguo.husong_list()
     #res = sanguo.get_arena_reward()
+    #res = sanguo.husong()
+    #res = sanguo.pozen_info(3)
+    #res = sanguo.pvp_baoming()
+    #res = sanguo.kuafu_race_list()
+    #res = sanguo.tongtianta()
+    res = sanguo.washHero('wangben')
+    #res = sanguo.zhuanshen('goujian')
+    #res = sanguo.pozen(108)
+    #res = sanguo.bianzhen('yanxing')
     print json.dumps(res, sort_keys = False, indent = 4)
     #print stime
     #print int(time.time())

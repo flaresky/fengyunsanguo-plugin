@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 #encoding: utf-8
 from sanguo import Sanguo
 import time
@@ -127,7 +127,7 @@ class EquipInfo:
                                         self.get_upValue_by_id(eid),
                                         )
             if int(self.get_starLevel_by_id(eid)) > 0:
-                print '\t\tLevel: %s\tStart: %s'%(self.get_level_by_id(eid), self.get_starLevel_by_id(eid))
+                print '\t\tLevel: %s\tStar: %s'%(self.get_level_by_id(eid), self.get_starLevel_by_id(eid))
             else:
                 print '\t\tLevel: %s'%(self.get_level_by_id(eid))
             print '\t\tValue: %s'%(self.get_effectValue_by_id(eid))

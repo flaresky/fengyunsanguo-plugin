@@ -1,4 +1,4 @@
-﻿#!/usr/local/bin/python
+﻿#!/usr/bin/python
 import threading
 from sanguo import Sanguo
 import time
@@ -35,10 +35,10 @@ class MagicThread(threading.Thread):
         logger.info('next half hour is %s'%(str(last_time)))
         Server_Time = int(time.mktime(last_time.timetuple())) 
 
-    def do_upgrade(self):
+    def do_upgrade(self, magic):
         if Auto_Upgrade:
             import os
-            cmd = 'cd /home/tianqi/psg; sh ./upgrade.sh'
+            cmd = 'cd /home/tianqi/psg; bash ./upgrade.sh ' + str(magic)
             logger.info('run command "%s"'%(cmd))
             os.system(cmd)
 
@@ -46,7 +46,7 @@ class MagicThread(threading.Thread):
         if magic >= Min_Magic:
             title = 'Magic Value is %d%%'%(magic)
             util.notify(title)
-            self.do_upgrade()
+        self.do_upgrade(magic)
     
     def run(self):
         global Local_Server_Diff,Server_Time

@@ -1,1 +1,1 @@
-pgrep -U `id -u` -f "/usr/local/bin/python touziThread.py" || /usr/local/bin/python touziThread.py &
+pgrep -U `id -u` -f "python touziThread.py" || python touziThread.py &
