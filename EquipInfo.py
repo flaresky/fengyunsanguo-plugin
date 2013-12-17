@@ -45,6 +45,7 @@ class EquipInfo:
                 if not data:
                     raise Exception()
                 if not data.has_key('userEquipInfo'):
+                    print data
                     raise Exception()
                 return data
             except:

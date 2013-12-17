@@ -322,7 +322,7 @@ JIANZHU_LIST = [
         'minju8',  
         'minju9',  
         'minju10',  
-        'qianzuang',
+        #'qianzuang',
         'yinku',
 ]
 

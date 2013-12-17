@@ -318,12 +318,20 @@ class Sanguo:
             return None
 
     def get_equip_info(self):
+        op = 1003
+        data = {
+                'tag' : 1,
+                'op' : op,
+            }
         self.login()
-        data = '\x00\x17\x03\xeb\x00\x13\x7b\x22\x6f\x70\x22\x3a\x31\x30\x30\x33\x2c\x22\x74\x61\x67\x22\x3a\x31\x7d'
+        data = self.compose_data(data)
         self.tcpClientSock.send(data)
+        time.sleep(1)
         res = self.tcpClientSock.recv(BUFSIZE)
-        res = self.decode(res)
-        return res
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
 
     def get_heros(self):
         self.login()
@@ -727,7 +735,8 @@ if __name__ == '__main__':
     #res = sanguo.washHero('wangben')
     #res = sanguo.jinglianEquip(2391732)
     #res = sanguo.getBoxList()
-    res = sanguo.openBox(83606)
+    #res = sanguo.openBox(83606)
+    res = sanguo.get_equip_info()
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
     #res = sanguo.bianzhen('yanxing')

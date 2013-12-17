@@ -1,9 +1,9 @@
 cd /home/droidhen/flaresky/psg
 
 #eid=2332498 #qingwu
-eid=2404052 #yinlong
+eid=2300485 #qingfu
 
-#did=1758407 #zifu
+#did=749122 #qingma
 
 enable=0
 tax=0
