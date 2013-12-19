@@ -270,7 +270,7 @@ KEJI_LIST = [
         ('ff', 1),
         ('lingqi', 2),
         ('bingfu', 1),
-        #('fg', 1),
+        ('fg', 1),
         ('jiwen', 2),
         #('tousi', 2),
         #('jiugong', 5),
@@ -322,7 +322,7 @@ JIANZHU_LIST = [
         'minju8',  
         'minju9',  
         'minju10',  
-        #'qianzuang',
+        'qianzuang',
         'yinku',
 ]
 
