@@ -6,8 +6,9 @@
 2 4,12,23 * * * cd ~/psg; python oneTimePerDay.py
 
 16 21 * * * cd ~/psg; python tongsang.py
-2 11 * * * cd ~/psg; python bossThread.py -t 40
+#2 11 * * * cd ~/psg; python bossThread.py -t 40
 17,47 * * * * cd ~/psg; sh restart_tax.sh
-28 */2 * * * cd ~/psg; sh restart_touzi.sh
+#28 */2 * * * cd ~/psg; sh restart_touzi.sh
+*/10 * * * * cd ~/psg; sh restart_touzi.sh
 23 */3 * * * cd ~/psg; python qiangzengThread.py -t 1
-25 */2 * * * cd ~/psg; sh restart_jianzhu.sh
+#25 */2 * * * cd ~/psg; sh restart_jianzhu.sh
