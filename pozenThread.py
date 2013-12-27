@@ -188,7 +188,7 @@ def parsearg():
     global Delay_Time, Campaign
     parser = argparse.ArgumentParser(description='pozen')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to pozen')
-    parser.add_argument('-c', '--campagins', type=int, nargs='*', default=[3], help='')
+    parser.add_argument('-c', '--campagins', type=int, nargs='*', default=[5], help='')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:
