@@ -162,6 +162,10 @@ UID = {
         'sjiangwei' : '55861',
         'spangtong' : '55862',
         'sdiaocan' : '55863',
+        'scaopi' : '55913',
+        'sliubei' : '55914',
+        'scaocao' : '55915',
+        'sxiaoqiao' : '55916',
 }
 
 INIT_POINT = {
