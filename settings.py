@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #encoding: utf-8
-HOST = '42.62.23.18'
+HOST = '42.62.23.171'
 PORT = 8313
 
 LOGFILE = './log'
@@ -167,6 +167,19 @@ UID = {
 	'syanliang' : '55669',
 	'szangfei' : '55681',
 	'sguanyu' : '55683',
+    'sliucan' : '55868',
+    'sliubei' : '55869',
+    'sxiahou' : '55895',
+    'sdianwei' : '55897',
+    'scaopi' : '55898',
+}
+
+INIT_POINT = { 
+        'wangben' : (83, 85, 101),
+        'szangfei' : (110, 93, 96),
+        'sguanyu' : (110, 93, 96),
+        'sliubei' : (125, 100, 95),
+        'sliucan' : (120, 95, 90),
 }
 
 PEOPLE_ID = {
