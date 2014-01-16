@@ -1,14 +1,15 @@
 cd /home/droidhen/flaresky/psg
 
-#eid=2332498 #qingwu
-eid=2300485 #qingfu
+#eid=2300485 #qingfu
+eid=2495054 #hongfu
 
-#did=749122 #qingma
+#did=1401340 #qingwu
 
-enable=0
+enable=1
 tax=0
+tax_remain=0
 quit=0
-up_magic=90
+up_magic=91
 
 downgradeEquip()
 {
@@ -27,7 +28,7 @@ upgradeEquip()
 tax()
 {
     if [[ "$tax" -gt 0 ]]; then
-        sh ./start_tax.sh
+        pgrep -U `id -u` -f "python taxThread.py" || python taxThread.py -x -r $tax_remain &
     fi
 }
 
@@ -51,5 +52,5 @@ main()
 }
 
 if [[ "$enable" -gt 0 ]]; then
-    main
+    main $1
 fi

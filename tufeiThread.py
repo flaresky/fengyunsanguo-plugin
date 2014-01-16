@@ -61,7 +61,7 @@ def parsearg():
     global Times, Hero, Delay_Time
     parser = argparse.ArgumentParser(description='Get tax')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to upgrade keji')
-    parser.add_argument('-t', '--times', required=False, type=int, default=0, help='tufei times')
+    parser.add_argument('-t', '--times', required=False, type=int, default=50000, help='tufei times')
     parser.add_argument('-e', '--hero', required=True, type=str, nargs='*', default=['zuge'], help='tufei hero list')
     res = parser.parse_args()
     dlist = res.delay.split(':')

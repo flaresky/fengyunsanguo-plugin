@@ -55,7 +55,7 @@ def get_training_time():
             total_exp += get_time_by_level(l)
         for z in range(Zuansheng):
             To += 10
-            To = min(To, 130)
+            To = min(To, 150)
             print 'Will sum from level %d to level %d'%(From, To)
             for l in range(From, To):
                 total_exp += get_time_by_level(l)

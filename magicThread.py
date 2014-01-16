@@ -38,7 +38,7 @@ class MagicThread(threading.Thread):
     def do_upgrade(self, magic):
         if Auto_Upgrade:
             import os
-            cmd = 'cd /home/tianqi/psg; bash ./upgrade.sh ' + str(magic)
+            cmd = 'cd /home/droidhen/flaresky/psg; bash ./upgrade.sh ' + str(magic)
             logger.info('run command "%s"'%(cmd))
             os.system(cmd)
 
