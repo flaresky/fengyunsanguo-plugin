@@ -1,15 +1,16 @@
 cd /home/droidhen/flaresky/psg
 
 #eid=2300485 #qingfu
-eid=2495054 #hongfu
+#eid=2495054 #hongfu
+eid=2495053 #nvshu
 
-#did=1401340 #qingwu
+did=1110926 #hongsu
 
 enable=1
 tax=0
 tax_remain=0
 quit=0
-up_magic=91
+up_magic=94
 
 downgradeEquip()
 {

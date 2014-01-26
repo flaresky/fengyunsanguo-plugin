@@ -166,8 +166,10 @@ UID = {
         'sliubei' : '55914',
         'scaocao' : '55915',
         'sxiaoqiao' : '55916',
+        'sxiahou' : '55919',
         'sliucan' : '55922',
         'sdaqiao' : '55959',
+        'shuanggai' : '55984',
 }
 
 INIT_POINT = {
@@ -176,6 +178,8 @@ INIT_POINT = {
         'sguanyu' : (110, 93, 96),
         'sliubei' : (125, 100, 95),
         'sliucan' : (120, 95, 90),
+        'scaocao' : (100, 95, 125),
+        'guigu' : (90, 85, 105),
 }
 
 PEOPLE_ID = {
