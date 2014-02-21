@@ -23,6 +23,7 @@ black_list = (
                 #208,
                 301, 
                 401, 
+                501, 
             )
 op_config = {
             106 : 3017,
@@ -33,6 +34,8 @@ op_config = {
             320 : 3017,
             411 : 3017,
             420 : 3017,
+            511 : 3017,
+            520 : 3017,
             }
 
 class pozenThread(threading.Thread):
@@ -97,17 +100,21 @@ class pozenThread(threading.Thread):
                 t += 1
 
     def get_next_id(self, campaignid):
-        try:
-            res = self.get_pozen_info(campaignid)
-            #print json.dumps(res, sort_keys = False, indent = 4)
-            #sys.exit()
-            for info in res:
-                if info['status'] == 1:
-                    armyid = int(info['armyId'])
-                    if armyid not in black_list:
-                        return armyid
-        except:
-            return None
+        retry = 10
+        while retry > 0:
+            retry -= 1
+            try:
+                res = self.get_pozen_info(campaignid)
+                #print json.dumps(res, sort_keys = False, indent = 4)
+                #sys.exit()
+                for info in res:
+                    if info['status'] == 1:
+                        armyid = int(info['armyId'])
+                        if armyid not in black_list:
+                            return armyid
+                return -1
+            except:
+                time.sleep(3)
 
     def do_pozen(self, armyid):
         retry = 10
@@ -147,6 +154,10 @@ class pozenThread(threading.Thread):
                     #return
                     armyid = self.get_next_id(campaignid)
                     if armyid is None:
+                        logger.info('pozen network error')
+                        time.sleep(2)
+                        continue
+                    elif armyid == -1:
                         logger.info('pozen %d finished'%(campaignid))
                         break
                     elif armyid == g_previous_armyid:
@@ -175,7 +186,7 @@ def parsearg():
     global Delay_Time, Campaign
     parser = argparse.ArgumentParser(description='pozen')
     parser.add_argument('-d', '--delay', required=False, type=str, default='0', metavar='4:23', help='the time will delay to pozen')
-    parser.add_argument('-c', '--campagins', type=int, nargs='*', default=[1,2,3,4], help='')
+    parser.add_argument('-c', '--campagins', type=int, nargs='*', default=[5], help='')
     res = parser.parse_args()
     dlist = res.delay.split(':')
     if len(dlist) == 1:

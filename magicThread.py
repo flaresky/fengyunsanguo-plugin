@@ -35,18 +35,18 @@ class MagicThread(threading.Thread):
         logger.info('next half hour is %s'%(str(last_time)))
         Server_Time = int(time.mktime(last_time.timetuple())) 
 
-    def do_upgrade(self):
+    def do_upgrade(self, magic):
         if Auto_Upgrade:
             import os
-            cmd = 'cd ~/psg; sh ./upgrade.sh'
+            cmd = 'cd /home/tianqi/psg; bash ./upgrade.sh ' + str(magic)
             logger.info('run command "%s"'%(cmd))
             os.system(cmd)
 
     def notify(self, magic):
         if magic >= Min_Magic:
             title = 'Magic Value is %d%%'%(magic)
-            #util.notify(title)
-            self.do_upgrade()
+            util.notify(title)
+        self.do_upgrade(magic)
     
     def run(self):
         global Local_Server_Diff,Server_Time

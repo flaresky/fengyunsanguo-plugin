@@ -45,8 +45,11 @@ def get_training_time():
     hi = HeroInfo()
     exp_speed = int(hi.get_exp_speed())
     if Zuansheng > 0:
-        From = 1
-        To = 51
+        if From is None:
+            From = 1
+            To = 51
+        else:
+            To = From - From % 10 + 1
         print 'Will sum from level %d to level %d'%(From, To)
         for l in range(From, To):
             total_exp += get_time_by_level(l)
@@ -59,7 +62,7 @@ def get_training_time():
     else:
         if Hero:
             hid = UID[Hero]
-            exp_speed = hi.get_exp_speed_by_id(hid)
+            exp_speed = hi.get_exp_speed_by_id(hid) * (1 + hi.get_expMulti_by_id(hid))
             if not From:
                 From = int(hi.get_level_by_id(hid))
             if not To:

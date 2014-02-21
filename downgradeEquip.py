@@ -47,13 +47,35 @@ class downgradeThread(threading.Thread):
         if Delay_Time > 0:
             logger.info('I will start downgrade at ' + util.next_time(Delay_Time))
             time.sleep(Delay_Time)
-        for i in range(Times):
-            res = self.do_downgrade(Eid)
-            if res.has_key('exception'):
-                logger.info('Exit for Exception %s'%(res['exception']['message']))
-                break
-            logger.info('Downgrade %d times'%(i+1))
-            time.sleep(2)
+        if int(Eid) < 0:
+            ei = EquipInfo()
+            #logger.info('get %d equips'%(len(ei.get_equip_ids())))
+            for eid in ei.get_equip_ids():
+                level = ei.get_level_by_id(eid)
+                star = ei.get_starLevel_by_id(eid)
+                if level > star:
+                    logger.info('Downgrade equip %s'%(eid))
+                    exception = ""
+                    for i in range(int(level)):
+                        res = self.do_downgrade(eid)
+                        if res.has_key('exception'):
+                            logger.info('got Exception %s'%(res['exception']['message']))
+                            exception = res['exception']['message']
+                            #sys.exit()
+                            break
+                        logger.info('Downgrade %d times'%(i+1))
+                        time.sleep(2)
+                    if exception == 'beyondMaxSilver':
+                        logger.info('Exit for Exception %s'%(exception))
+                        break
+        else:
+            for i in range(Times):
+                res = self.do_downgrade(Eid)
+                if res.has_key('exception'):
+                    logger.info('Exit for Exception %s'%(res['exception']['message']))
+                    break
+                logger.info('Downgrade %d times'%(i+1))
+                time.sleep(2)
 
 def parsearg():
     global Delay_Time, Times, Eid

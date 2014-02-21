@@ -1,11 +1,14 @@
-cd /home/zilong/psg
+cd /home/droidhen/flaresky/psg
 
-eid=1365073
+#eid=2332498 #qingwu
+eid=2300485 #qingfu
 
-#did=1274986
+#did=749122 #qingma
 
-tax=1
+enable=0
+tax=0
 quit=0
+up_magic=90
 
 downgradeEquip()
 {
@@ -28,17 +31,25 @@ tax()
     fi
 }
 
+main()
+{
+    if [[ "$1" -ge "$up_magic" ]]; then
+        downgradeEquip
+        upgradeEquip 0 4
+        downgradeEquip
+        tax
+        upgradeEquip 20 3
+        downgradeEquip
+        tax
+        upgradeEquip 5 2
+        downgradeEquip
 
-downgradeEquip
-upgradeEquip 0 4
-downgradeEquip
-tax
-upgradeEquip 20 3
-downgradeEquip
-tax
-upgradeEquip 5 2
-downgradeEquip
+        if [[ "$quit" -gt 0 ]]; then
+            sh ./kill.sh magicThread.py
+        fi
+    fi
+}
 
-if [[ "$quit" -gt 0 ]]; then
-    sh ./kill.sh magicThread.py
+if [[ "$enable" -gt 0 ]]; then
+    main
 fi

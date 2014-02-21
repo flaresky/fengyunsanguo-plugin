@@ -47,6 +47,17 @@ class Sanguo:
         except:
             return None
 
+    def multiDecode(self, data):
+        ret = []
+        idx = 0
+        while idx < len(data):
+            slen = int(data[idx:idx+2].encode('hex'), 16)
+            if slen > 0:
+                tpdata = data[idx:idx+slen+2]
+                ret.append(self.decode(tpdata))
+            idx += slen + 2
+        return ret
+
     def compose_data(self, data):
         opcode = data['op']
         data = json.dumps(data)
@@ -307,12 +318,20 @@ class Sanguo:
             return None
 
     def get_equip_info(self):
+        op = 1003
+        data = {
+                'tag' : 1,
+                'op' : op,
+            }
         self.login()
-        data = '\x00\x17\x03\xeb\x00\x13\x7b\x22\x6f\x70\x22\x3a\x31\x30\x30\x33\x2c\x22\x74\x61\x67\x22\x3a\x31\x7d'
+        data = self.compose_data(data)
         self.tcpClientSock.send(data)
+        time.sleep(1)
         res = self.tcpClientSock.recv(BUFSIZE)
-        res = self.decode(res)
-        return res
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
 
     def get_heros(self):
         self.login()
@@ -386,6 +405,23 @@ class Sanguo:
         res = self.decode(res)
         logger.info('downgradeEquip eid=%s'%(str(eid)))
         return res
+
+    def jinglianEquip(self, eid):
+        op = 1035
+        data = {
+                'id' : eid,
+                'op' : 1035,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(1)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
 
     def sellEquip(self, eid):
         self.login()
@@ -571,6 +607,89 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def weipai(self, tpe, level):
+        op = 1021
+        data = {
+                'level' : str(level),
+                'op' : op,
+                'type' : str(tpe),
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(1)
+        res = self.tcpClientSock.recv(4*BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+
+    def washHero(self, hero):
+        op = 1117
+        data = {
+                'heroId' : UID[hero],
+                'type' : 1,
+                'op' : op,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        time.sleep(1)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+
+    def acceptWash(self, hero):
+        op = 1119
+        data = {
+                'heroId' : UID[hero],
+                'op' : op,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+        return self.sendData(data)
+
+    def refuseWash(self, hero):
+        op = 1121
+        data = {
+                'heroId' : UID[hero],
+                'op' : op,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+        return self.sendData(data)
+
+    def getBoxList(self):
+        data = {
+                'op' : 2407,
+            }
+        return self.sendData(data)
+
+    def openBox(self, id):
+        data = {
+                'op' : 2405,
+                'id' : str(id),
+            }
+        return self.sendData(data)
+
     def test(self):
         data = {
                 'op' : 1329,
@@ -599,7 +718,7 @@ if __name__ == '__main__':
     #res = sanguo.getUserInfo('64308127')
     #res = sanguo.upgradeEquip('115863', 56, 0)
     #res = sanguo.sellEquip('965347')
-    res = sanguo.tufei('guanyu')
+    #res = sanguo.tufei('guanyu')
     #res = sanguo.get_hero('zaoyun')
     #print 'magic='+str(res)
     #res = sanguo.touzi(309, 2)
@@ -612,7 +731,12 @@ if __name__ == '__main__':
     #res = sanguo.pozen_info(3)
     #res = sanguo.pvp_baoming()
     #res = sanguo.kuafu_race_list()
-    res = sanguo.tongtianta()
+    #res = sanguo.tongtianta()
+    #res = sanguo.washHero('wangben')
+    #res = sanguo.jinglianEquip(2391732)
+    res = sanguo.getBoxList()
+    #res = sanguo.openBox(83606)
+    #res = sanguo.get_equip_info()
     #res = sanguo.zhuanshen('goujian')
     #res = sanguo.pozen(108)
     #res = sanguo.bianzhen('yanxing')
