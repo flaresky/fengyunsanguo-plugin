@@ -1,14 +1,14 @@
 cd /home/droidhen/flaresky/psg
 
-#eid=2300485 #qingfu
-#eid=2495054 #hongfu
-eid=2495053 #nvshu
+eid=2531189 #nvsu
+#eid=2404053 #qingpi
 
-did=1110926 #hongsu
+#did=698158 #zifu
 
 enable=1
-tax=0
-tax_remain=0
+jinglian_level=150
+tax=1
+tax_remain=38
 quit=0
 up_magic=94
 
@@ -33,6 +33,13 @@ tax()
     fi
 }
 
+jinglian()
+{
+    if [[ "$jinglian_level" -gt 0 ]]; then
+        pgrep -U `id -u` -f "python jinglianEquip.py" || python jinglianEquip.py -i $eid -l $jinglian_level &
+    fi
+}
+
 main()
 {
     if [[ "$1" -ge "$up_magic" ]]; then
@@ -45,6 +52,7 @@ main()
         tax
         upgradeEquip 5 2
         downgradeEquip
+        jinglian
 
         if [[ "$quit" -gt 0 ]]; then
             sh ./kill.sh magicThread.py

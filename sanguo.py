@@ -690,6 +690,45 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def buyGem(self):
+        op = 3717
+        data = {
+                'treasureboxid' : 980973,
+                'op' : op,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+
+    def openGem(self, id):
+        op = 2405
+        data = {
+                'id' : id,
+                'op' : op,
+            }
+        self.login()
+        data = self.compose_data(data)
+        self.tcpClientSock.send(data)
+        res = self.tcpClientSock.recv(BUFSIZE)
+        res = self.multiDecode(res)
+        for rp in res:
+            if rp['op'] == op + 1:
+                return rp
+        return None
+
+    def sellGem(self, id):
+        data = {
+                'op' : 3709,
+                'id' : str(id),
+            }
+        return self.sendData(data)
+
     def test(self):
         data = {
                 'op' : 1329,
@@ -734,7 +773,9 @@ if __name__ == '__main__':
     #res = sanguo.tongtianta()
     #res = sanguo.washHero('wangben')
     #res = sanguo.jinglianEquip(2391732)
-    res = sanguo.getBoxList()
+    #res = sanguo.getBoxList()
+    res = sanguo.buyGem()
+    #res = sanguo.sellGem(24066)
     #res = sanguo.openBox(83606)
     #res = sanguo.get_equip_info()
     #res = sanguo.zhuanshen('goujian')

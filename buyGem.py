@@ -18,11 +18,17 @@ if __name__ == '__main__':
     while True:
         gemres = util.send_command('buyGem')
         if gemres is not None:
+            if gemres.has_key('exception'):
+                logger.error('Got Exception "%s"'%(res['exception']['message']))
+                sys.exit()
             try:
                 id = gemres['id']
                 logger.info('buy box ' + str(id))
                 gemres = util.send_command('openGem', id)
                 if gemres is not None:
+                    if gemres.has_key('exception'):
+                        logger.error('Got Exception "%s"'%(res['exception']['message']))
+                        sys.exit()
                     items = gemres['items']
                     for item in items:
                         if item.has_key('userGemId'):
