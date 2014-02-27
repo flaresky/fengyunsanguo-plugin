@@ -31,8 +31,7 @@ if __name__ == '__main__':
         #gemres = {'id' : 84484}
         if gemres is not None:
             if gemres.has_key('exception'):
-                logger.error('Got Exception "%s"'%(res['exception']['message']))
-                sys.exit()
+                logger.error('Got Exception "%s"'%(gemres['exception']['message']))
             try:
                 id = gemres['id']
                 #logger.info('buy box ' + str(id))
@@ -40,8 +39,7 @@ if __name__ == '__main__':
                 gemres = util.send_command('openGem', id)
                 if gemres is not None:
                     if gemres.has_key('exception'):
-                        logger.error('Got Exception "%s"'%(res['exception']['message']))
-                        sys.exit()
+                        logger.error('Got Exception "%s"'%(gemres['exception']['message']))
                     items = gemres['items']
                     times += 1
                     for item in items:
