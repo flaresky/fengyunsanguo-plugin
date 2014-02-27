@@ -594,6 +594,12 @@ class Sanguo:
             }
         return self.sendData(data)
 
+    def baoshi_list(self):
+        data = {
+                'op' : 3701,
+            }
+        return self.sendData(data)
+
     def sell_baowu(self, bid):
         data = {
                 'op' : 3105,
