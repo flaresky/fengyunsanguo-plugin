@@ -32,6 +32,8 @@ if __name__ == '__main__':
         if gemres is not None:
             if gemres.has_key('exception'):
                 logger.error('Got Exception "%s"'%(gemres['exception']['message']))
+                if gemres['exception']['message'] == 'gravelIsNotEnough':
+                    break
                 continue
             try:
                 id = gemres['id']

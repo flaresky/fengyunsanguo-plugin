@@ -1,9 +1,10 @@
 cd /home/droidhen/flaresky/psg
 
+#eid=2534749 #renhuang
 eid=2531189 #nvsu
-#eid=2404053 #qingpi
 
-#did=698158 #zifu
+#did=2072668 #qingpi
+did=1781505 #baihu
 
 enable=1
 jinglian_level=150

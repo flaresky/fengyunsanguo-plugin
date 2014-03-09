@@ -82,7 +82,7 @@ def main():
     for bid in bi.get_hero_ids():
         heroid = bi.get_heroid_by_id(bid)
         quality = bi.get_quality_by_id(bid)
-        if heroid == 0 and quality < 5:
+        if heroid == 0 and quality < 4:
             time.sleep(2)
             sell_baoshi(bid)
             cnt += 1
