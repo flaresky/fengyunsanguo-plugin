@@ -45,6 +45,12 @@ def print_res(res):
         out = out + r'\x' + os
     print out
 
+    out = out.split('\\x')
+    out = ', (byte) 0x'.join(out)
+    out = out[2:]
+    out = 'put("xxx", new byte[]{' + out + '});'
+    print out
+
 def main():
     parsearg()
     userId = get_userid()
@@ -52,7 +58,6 @@ def main():
     #print login_json
     ret = '\x00\x05\x00\x03\x6e\x69\x6c\x00' + chr(len(str(userId))) + str(userId) + '\x00\x01\x30\x00\x00\x00' + chr(len(login_json)) + login_json
     ret = '\x00' + chr(len(ret)) + ret
-
     print_res(ret)
 
 if __name__ == '__main__':
